@@ -8,7 +8,7 @@
   },
   forms: {
     signUp: {errors: []},
-    logIn: {errors: []},
+    signIn: {errors: []},
     newStory: {errors: ["Title can't be blank", "Content can't be blank"]}
   },
   stories: {
