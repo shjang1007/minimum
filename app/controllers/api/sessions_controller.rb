@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
     )
 
     if @user
-      login!(@user)
+      signin!(@user)
 
       render "api/users/show"
     else
@@ -16,11 +16,11 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     # Likely that this will never occur, but implement for safe measure
-    unless logged_in?
+    unless signed_in?
       render json: ["No current user to log out"], status: 404
     end
 
-    logout!
+    signout!
 
     # return empty object to indicate no user
     render json: {}

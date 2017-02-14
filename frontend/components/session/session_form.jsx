@@ -26,7 +26,7 @@ class SessionForm extends Component {
     this.props.processForm(user).then( () => this.props.router.push("/"));
   }
 
-  errors() {
+  renderErrors() {
     if (this.props.errors) {
       return (
         this.props.errors.map( error => {
@@ -40,9 +40,8 @@ class SessionForm extends Component {
     const { email, password } = this.state;
     return (
       <section className="form-container">
-
         <ul>
-          {this.errors()}
+          {this.renderErrors()}
         </ul>
 
         <form onSubmit={this.handleSubmit}>

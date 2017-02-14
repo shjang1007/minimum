@@ -4,7 +4,8 @@ import SessionForm from "./session_form";
 
 const mapStateToProps = (state, ownProps) => {
   const errors = state.session.errors;
-  const formType = ownProps.location.pathname === "/signin" ? "signin" : "signup";
+  const formType =
+    ownProps.location.pathname === "/signin" ? "signin" : "signup";
 
   return { errors, formType };
 };

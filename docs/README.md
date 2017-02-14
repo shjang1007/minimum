@@ -1,10 +1,10 @@
 # Minimum
 
-[Minimum Live][heroku] **Note:** Currently not setup yet.
+[Minimum Live][heroku] **Note:** Not live yet.
 
 [Trello Link][trello]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://minimums.herokuapp.com
 [trello]: https://trello.com/b/m4LI40pb/minimum
 
 ## Minimum Viable Product
