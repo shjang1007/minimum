@@ -6,7 +6,7 @@ class SessionForm extends Component {
     super(props);
 
     this.state = {
-      username: "",
+      email: "",
       password: ""
     };
 
@@ -37,7 +37,7 @@ class SessionForm extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
       <section className="form-container">
 
@@ -47,9 +47,9 @@ class SessionForm extends Component {
 
         <form onSubmit={this.handleSubmit}>
           <input
-            onChange={this.update("username")}
+            onChange={this.update("email")}
             placeholder="example@email.com"
-            value={username} />
+            value={email} />
 
           <input
             onChange={this.update("password")}
