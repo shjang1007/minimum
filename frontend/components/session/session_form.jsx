@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router";
+import { merge } from 'lodash';
 
 class SessionForm extends Component {
   constructor(props) {
@@ -10,29 +11,30 @@ class SessionForm extends Component {
       password: ""
     };
 
-    this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  update(property) {
+  update(field) {
     return (e) => {
-      return this.setState({[property]: e.target.value});
+      this.setState({[field]: e.target.value});
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user).then( () => this.props.router.push("/"));
+    const user = merge({}, this.state);
+    this.props.submitForm(user).then(
+      () => this.props.router.push("/")
+    );
   }
 
   renderErrors() {
     if (this.props.errors) {
-      return (
-        this.props.errors.map( error => {
-          return (<li className="error" key={error}>{error}</li>);
-        })
-      );
+      const errorList = this.props.errors.map((error) => (
+        <li className="error" key={error}>{error}</li>
+      ));
+
+      return errorList;
     }
   }
 
@@ -45,12 +47,16 @@ class SessionForm extends Component {
         </ul>
 
         <form onSubmit={this.handleSubmit}>
+          <label htmlFor="email">Email address</label>
           <input
+            type="text"
             onChange={this.update("email")}
-            placeholder="example@email.com"
+            placeholder="yourname@example.com"
             value={email} />
 
+          <label htmlFor="password">Password</label>
           <input
+            type="password"
             onChange={this.update("password")}
             placeholder="******"
             value={password} />

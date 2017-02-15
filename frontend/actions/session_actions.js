@@ -5,13 +5,15 @@ export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 
 export const signup = (user) => (dispatch) => {
   return sessionApiUtil.signup(user).then(
-    (user) => (dispatch(receiveCurrentUser(user)))
+    (user) => (dispatch(receiveCurrentUser(user))),
+    (errors) => (dispatch(receiveErrors(errors.responseJSON)))
   );
 };
 
 export const signin = (user) => (dispatch) => {
   return sessionApiUtil.signin(user).then(
-    (user) => (dispatch(receiveCurrentUser(user)))
+    (user) => (dispatch(receiveCurrentUser(user))),
+    (errors) => (dispatch(receiveErrors(errors.responseJSON)))
   );
 };
 

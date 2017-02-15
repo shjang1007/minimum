@@ -6,7 +6,6 @@ const App = ({ children }) => {
   return (
     <div>
       { children }
-      <h1>Minimum</h1>
     </div>
   );
 };

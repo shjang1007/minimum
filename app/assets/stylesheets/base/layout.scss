@@ -1,0 +1,24 @@
+html {
+	position: relative;
+	height: 100%;
+  background: #fff;
+}
+
+body {
+	max-width: 1000px!important;
+	margin: 0 auto;
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.button {
+  vertical-align: middle;
+}
+
+.gray-button {
+  color: rgba(0,0,0,.44);
+}
+
+.green-button {
+  color: #02b875;
+}
