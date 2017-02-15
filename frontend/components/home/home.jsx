@@ -17,16 +17,14 @@ export default class Home extends Component {
           <div className="inner-bar">
             <nav className="left-nav">
               <Link to="/" className="logo-link">
-                <img src="/assets/konoha-logo.png" className="logo" />
-                <span>Medium</span>
-
+                <img src="/assets/medium-logo.svg" className="logo" />
               </Link>
             </nav>
 
             <nav className="right-nav">
               <ul>
                 <li>
-                  <button className=" button gray-button">Write a story</button>
+                  <button className="write-story-button button gray-button">Write a story</button>
                 </li>
                 <li>
                   <Link to="/signup" className="button green-button">Sign up</Link>
@@ -36,30 +34,21 @@ export default class Home extends Component {
                 </li>
                 <li>
                   <button className="button gray-button">
-                    <i className="fa fa-search" aria-hidden="true"></i>
+                    <i className="fa fa-search icon-2x" aria-hidden="true"></i>
                   </button>
                 </li>
               </ul>
             </nav>
           </div>
-          <div className="inner-bar">
+          <div className="second-inner-bar">
             <ul>
               <li>Home</li>
               <li>Top stories</li>
-              <li>Editors'' picks</li>
+              <li>Editors{`'`} picks</li>
             </ul>
           </div>
         </header>
-
-        <section className="main-body">
-          <ul>
-            <li>
-              <p>AHHHHHHH</p>
-            </li>
-          </ul>
-        </section>
       </main>
-
     );
   }
 }

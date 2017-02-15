@@ -12,13 +12,17 @@ body {
   font-weight: 400;
 	font-size: 18px;
   color: rgba(0,0,0,.8);
-  display: block;
   line-height: 1.4;
 }
 
 main {
   height: 100%;
   background: #fff;
+}
+
+.main-body {
+  display: flex;
+  margin: 10px;
 }
 
 .button {
