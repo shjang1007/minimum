@@ -31,7 +31,7 @@ class Home extends Component {
   }
 
   signOutButton() {
-    if (window.currentUser) {
+    if (this.props.currentUser) {
       return <button onClick={this.signOutUser}>Sign Out</button>;
     }
   }

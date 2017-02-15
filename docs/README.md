@@ -32,7 +32,7 @@
 [components]: component-hierarchy.md
 [sample-state]: sample-state.md
 [api-endpoints]: api-endpoints.md
-[DB schema]: schema.md
+[schema]: schema.md
 
 ## Implementation Timeline
 
