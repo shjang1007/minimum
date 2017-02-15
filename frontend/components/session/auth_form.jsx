@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router";
-import { merge } from 'lodash';
+import { merge } from "lodash";
 
-class SessionForm extends Component {
+class AuthForm extends Component {
   constructor(props) {
     super(props);
 
@@ -23,9 +23,8 @@ class SessionForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = merge({}, this.state);
-    this.props.submitForm(user).then(
-      () => this.props.router.push("/")
-    );
+
+    this.props.submitForm(user).then(this.props.router.push("/"));
   }
 
   renderErrors() {
@@ -61,11 +60,11 @@ class SessionForm extends Component {
             placeholder="******"
             value={password} />
 
-          <input type="submit" value="Submit" />
+          <input type="submit" value={this.props.submitText} />
         </form>
       </section>
     );
   }
 }
 
-export default withRouter(SessionForm);
+export default withRouter(AuthForm);

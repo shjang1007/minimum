@@ -37,8 +37,8 @@
 |Path   | Component   |
 |-------|-------------|
 | "/" | "HomeContainer" |
-| "/signup" | "AuthFormContainer" |
-| "/signin" | "AuthFormContainer" |
+| "/signUp" | "AuthFormContainer" |
+| "/signIn" | "AuthFormContainer" |
 | "/stories" | "StoriesContainer" |
 | "/stories/storyId" | "StoryContainer" |
 | "/new-story" | "NewStoryContainer" |

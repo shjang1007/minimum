@@ -1,13 +1,27 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import Modal from "react-modal";
+import SessionIntro from "../session/session_intro";
 
-import SessionFormContainer from "../session/session_form_container";
 
 export default class Home extends Component {
-  toggleModalActive(e) {
-    e.preventDefault();
-    let modal = document.getElementById("sign-modal");
-    modal.addClass("is-active");
+  constructor(props) {
+    super(props);
+
+    this.state = ({
+      modalOpen: false
+    });
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal () {
+    this.setState({ modalOpen: true });
+  }
+
+  closeModal () {
+    this.setState({ modalOpen: false});
   }
 
   render() {
@@ -27,10 +41,10 @@ export default class Home extends Component {
                   <button className="write-story-button button gray-button">Write a story</button>
                 </li>
                 <li>
-                  <Link to="/signup" className="button green-button">Sign up</Link>
-                </li>
-                <li>
-                  <Link to="/signin" className="button green-button">Sign in</Link>
+                  <a className = "button green-button"
+                      onClick={this.openModal}>
+                    Sign In/Sign Up
+                  </a>
                 </li>
                 <li>
                   <button className="button gray-button">
@@ -48,6 +62,18 @@ export default class Home extends Component {
             </ul>
           </div>
         </header>
+
+        <Modal
+          isOpen={this.state.modalOpen}
+          onRequestClose={this.closeModal}
+          contentLabel="Modal">
+          <button onClick={this.closeModal}>
+            <i className="fa fa-times" aria-hidden="true"></i>
+          </button>
+
+          <SessionIntro />
+        </Modal>
+
       </main>
     );
   }

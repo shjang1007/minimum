@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
-import { signin, signup } from "../../actions/session_actions";
+import { signIn, signUp } from "../../actions/session_actions";
 import SessionForm from "./session_form";
 
 const mapStateToProps = (state, ownProps) => {
   const errors = state.session.errors;
   const formType =
-    ownProps.location.pathname === "/signin" ? "signin" : "signup";
+    ownProps.formType === "signIn" ? "signIn" : "signUp";
 
   return { errors, formType };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const action = ownProps.location.pathname === "/signin" ? signin : signup;
+  const action = ownProps.formType === "signIn" ? signIn : signUp;
   return {
     submitForm: (user) => dispatch(action(user))
   };
