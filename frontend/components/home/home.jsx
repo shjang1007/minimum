@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import Modal from "react-modal";
 import SessionIntro from "../session/session_intro";
 
+import { signOut } from "../../actions/session_actions";
 
 export default class Home extends Component {
   constructor(props) {
@@ -14,6 +15,8 @@ export default class Home extends Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+
+    this.signOutUser = this.signOutUser.bind(this);
   }
 
   openModal () {
@@ -24,7 +27,19 @@ export default class Home extends Component {
     this.setState({ modalOpen: false});
   }
 
+  signOutUser (e) {
+    e.preventDefault();
+    this.props.signOut();
+  }
+
+  signOutButton() {
+    if (window.currentUser) {
+      return <button onClick={this.signOutUser}>Sign Out</button>;
+    }
+  }
+
   render() {
+    const text = "Editors' picks";
     return (
       <main>
         <header className="main-bar">
@@ -45,6 +60,7 @@ export default class Home extends Component {
                       onClick={this.openModal}>
                     Sign In/Sign Up
                   </a>
+                  {this.signOutButton()}
                 </li>
                 <li>
                   <button className="button gray-button">
@@ -58,7 +74,7 @@ export default class Home extends Component {
             <ul>
               <li>Home</li>
               <li>Top stories</li>
-              <li>Editors{`'`} picks</li>
+              <li>{text}</li>
             </ul>
           </div>
         </header>
@@ -71,7 +87,7 @@ export default class Home extends Component {
             <i className="fa fa-times" aria-hidden="true"></i>
           </button>
 
-          <SessionIntro />
+          <SessionIntro closeModal={this.closeModal}/>
         </Modal>
 
       </main>

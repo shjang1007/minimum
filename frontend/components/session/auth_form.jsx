@@ -24,7 +24,7 @@ class AuthForm extends Component {
     e.preventDefault();
     const user = merge({}, this.state);
 
-    this.props.submitForm(user).then(this.props.router.push("/"));
+    this.props.submitForm(user).then(() => this.props.closeModal());
   }
 
   renderErrors() {
@@ -38,32 +38,7 @@ class AuthForm extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
-    return (
-      <section className="form-container">
-        <ul>
-          {this.renderErrors()}
-        </ul>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email address</label>
-          <input
-            type="text"
-            onChange={this.update("email")}
-            placeholder="yourname@example.com"
-            value={email} />
-
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            onChange={this.update("password")}
-            placeholder="******"
-            value={password} />
-
-          <input type="submit" value={this.props.submitText} />
-        </form>
-      </section>
-    );
   }
 }
 

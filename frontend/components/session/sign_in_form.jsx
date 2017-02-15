@@ -1,20 +1,70 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
 import { connect } from "react-redux";
+import { merge } from "lodash";
 import { signIn, receiveErrors } from "../../actions/session_actions";
-import AuthForm from "./auth_form";
 
 class signInForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = ({
+      email: "",
+      password: ""
+    });
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
   componentDidMount() {
     this.props.clearErrors();
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const user = merge({}, this.state);
+
+    this.props.signIn(user).then(() => this.props.closeModal());
+  }
+
+  update(field) {
+    return (e) => {
+      this.setState({[field]: e.target.value});
+    };
+  }
+
+  renderErrors() {
+    if (this.props.errors) {
+      return this.props.errors.map((error) => (
+        <li className="error" key={error}>{error}</li>
+      ));
+    }
+  }
+
   render() {
-    const { signIn, errors } = this.props;
+    const { email, password } = this.state;
     return (
-      <section>
-        <AuthForm submitText="Sign in" submitForm={ signIn } errors={ errors }/>
+      <section className="form-container">
+        <ul>
+          {this.renderErrors()}
+        </ul>
+
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="email">Email address</label>
+          <input
+            type="text"
+            onChange={this.update("email")}
+            placeholder="yourname@example.com"
+            value={email} />
+
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            onChange={this.update("password")}
+            placeholder="******"
+            value={password} />
+
+          <button>Sign in</button>
+        </form>
       </section>
     );
   }

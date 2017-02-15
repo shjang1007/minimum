@@ -17,7 +17,7 @@ export const signIn = (user) => (dispatch) => {
   );
 };
 
-export const signoOut = () => (dispatch) => {
+export const signOut = () => (dispatch) => {
   return sessionApiUtil.signOut().then(
     () => (dispatch(receiveCurrentUser(null)))
   );

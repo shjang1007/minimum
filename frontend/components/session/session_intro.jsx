@@ -41,9 +41,9 @@ export default class SessionIntro extends Component {
           </div>
         );
       case "SIGN_IN_FORM":
-        return <SignInForm />;
+        return <SignInForm closeModal={this.props.closeModal}/>;
       case "SIGN_UP_FORM":
-        return <SignUpForm />;
+        return <SignUpForm closeModal={this.props.closeModal}/>;
       default:
 
     }

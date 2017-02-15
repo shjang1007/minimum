@@ -9,6 +9,7 @@
 User.destroy_all
 
 ActiveRecord::Base.transaction do
+  User.create(email:"guest@example.com", password: "123456", username: "guest123", name: "Guest Account")
   User.create(email: "a@a.com", password:"123456", username: "babyshark", name: "Baby Shark")
   User.create(email: "b@b.com", password:"123456", username: "drunkentiger", name: "Drunken Tiger")
 end
