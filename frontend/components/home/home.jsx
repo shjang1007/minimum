@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
+import { Link, withRouter } from "react-router";
 import Modal from "react-modal";
 import SessionIntro from "../session/session_intro";
 
-import { signOut } from "../../actions/session_actions";
-
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -39,7 +37,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const text = "Editors' picks";
+    const editorSection = "Editors' picks";
     return (
       <main>
         <header className="main-bar">
@@ -74,7 +72,7 @@ export default class Home extends Component {
             <ul>
               <li>Home</li>
               <li>Top stories</li>
-              <li>{text}</li>
+              <li>{editorSection}</li>
             </ul>
           </div>
         </header>
@@ -94,3 +92,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default Home;

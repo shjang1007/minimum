@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import SignInForm from "./sign_in_form";
 import SignUpForm from "./sign_up_form";
 
-export default class SessionIntro extends Component {
+import { signIn } from "../../actions/session_actions";
+
+class SessionIntro extends Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +20,9 @@ export default class SessionIntro extends Component {
     return (e) => {
       switch (action) {
         case "demo":
-          break;
+          return this.props.signIn({email: "guest@example.com", password: "123456"}).then(
+            () => this.props.closeModal()
+          );
         case "signIn":
           return this.setState({stage: "SIGN_IN_FORM"});
         case "signUp":
@@ -49,3 +54,11 @@ export default class SessionIntro extends Component {
     }
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    signIn: (user) => dispatch(signIn(user))
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SessionIntro);

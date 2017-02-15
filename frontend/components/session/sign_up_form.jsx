@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { merge } from "lodash";
 import { signUp, receiveErrors } from "../../actions/session_actions";
 
-class signUpForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
 
@@ -133,4 +133,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(signUpForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
