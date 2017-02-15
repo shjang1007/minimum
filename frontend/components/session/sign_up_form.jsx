@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { merge } from "lodash";
 import { signUp, receiveErrors } from "../../actions/session_actions";
 
+// For now, just rending one form page to handle all info
+
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
@@ -51,14 +53,14 @@ class SignUpForm extends Component {
   }
 
   renderFirstPage() {
-    const { email, password } = this.state;
+    const { email, password, username, name } = this.state;
     return (
       <section className="form-container">
         <ul>
           {this.renderErrors()}
         </ul>
 
-        <form onSubmit={this.goToNextPage}>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="email">Email address</label>
           <input
             type="text"
@@ -73,7 +75,22 @@ class SignUpForm extends Component {
             placeholder="******"
             value={password} />
 
-          <button>next</button>
+          <label htmlFor="username">Username</label>
+          <input
+            type="username"
+            onChange={this.update("username")}
+            placeholder="Enter your username"
+            value={username} />
+
+          <label htmlFor="name">Name</label>
+          <input
+            type="name"
+            onChange={this.update("name")}
+            placeholder="Enter your name please"
+            value={name} />
+
+
+          <button>Sign up</button>
         </form>
       </section>
     );
