@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router";
+import { connect } from "react-redux";
 import Modal from "react-modal";
+import { signOut } from "../../actions/session_actions";
 import AuthSets from "../session/auth_sets";
 
 import customModalStyle from "./modal_style";
@@ -88,10 +90,24 @@ class Home extends Component {
             <AuthSets closeModal={this.closeModal}/>
 
         </Modal>
-
       </main>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
