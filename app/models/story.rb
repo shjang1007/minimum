@@ -16,6 +16,7 @@
 
 class Story < ActiveRecord::Base
   validates :title, :content, :author, presence: true
+  # Maybe I can remove this later?
   validates :title, uniqueness: { scope: :author, message: "Already exist" }
 
   belongs_to(
