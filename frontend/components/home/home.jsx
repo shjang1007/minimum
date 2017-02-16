@@ -85,26 +85,8 @@ class Home extends Component {
           contentLabel="Modal"
           style={customModalStyle}>
 
-            <div className="overlay-title">
-              <div className="auth-logo-set">
-                <img src={window.images.picLogo} className="auth-logo-pic" />
-                <img src={window.images.wordLogo} className="auth-logo-word" />
-              </div>
-            </div>
-            <div className="overlay-content">
-              Sign in to Minimum to connect with voices and perspectives that matter.
-            </div>
-
             <AuthSets closeModal={this.closeModal}/>
 
-            <div className="auth-privacy-msg">
-              <div>
-                To use Minimum you must be minimalistic
-              </div>
-              <div>
-                If you sign up with Twitter or Facebook, we’ll start you off with a network by automatically importing any followers/followees or friends already on Medium. Also, we’ll never post to Twitter or Facebook without your permission. For more info, please see Login FAQ.
-              </div>
-            </div>
         </Modal>
 
       </main>

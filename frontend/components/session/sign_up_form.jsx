@@ -56,41 +56,51 @@ class SignUpForm extends Component {
     const { email, password, username, name } = this.state;
     return (
       <section className="form-container">
-        <ul>
+        <ul className="errors">
           {this.renderErrors()}
         </ul>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email address</label>
+        <form className="sign-form" onSubmit={this.handleSubmit}>
+          <label className="label-form" htmlFor="email">Email address</label>
           <input
+            className="input-form"
             type="text"
             onChange={this.update("email")}
             placeholder="yourname@example.com"
             value={email} />
 
-          <label htmlFor="password">Password</label>
+          <label className="label-form" htmlFor="password">Password</label>
           <input
+            className="input-form"
             type="password"
             onChange={this.update("password")}
             placeholder="******"
             value={password} />
 
-          <label htmlFor="username">Username</label>
+          <label className="label-form" htmlFor="username">Username</label>
           <input
+            className="input-form"
             type="username"
             onChange={this.update("username")}
             placeholder="Enter your username"
             value={username} />
 
-          <label htmlFor="name">Name</label>
+          <label className="label-form" htmlFor="name">Name</label>
           <input
+            className="input-form"
             type="name"
             onChange={this.update("name")}
             placeholder="Enter your name please"
             value={name} />
 
+          <button className="toggle-sign-up-in"
+              onClick={this.props.togglePage}>
+            Or sign in to Minimum using E-mail
+          </button>
 
-          <button>Sign up</button>
+          <button className="sign-button">
+            Create a new account to join Minimum
+          </button>
         </form>
       </section>
     );

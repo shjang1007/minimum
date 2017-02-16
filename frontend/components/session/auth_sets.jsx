@@ -13,10 +13,10 @@ class AuthSets extends Component {
       stage: "USER_OPTIONS"
     });
 
-    this.handleClick = this.handleClick.bind(this);
+    this.togglePage = this.togglePage.bind(this);
   }
 
-  handleClick(action) {
+  togglePage(action) {
     return (e) => {
       switch (action) {
         case "demo":
@@ -37,25 +37,66 @@ class AuthSets extends Component {
     switch (this.state.stage) {
       case "USER_OPTIONS":
         return(
+          <section className="authsets-container">
+            <div className="overlay-title">
+              <div className="auth-logo-set">
+                <img src={window.images.picLogo} className="auth-logo-pic" />
+                <img src={window.images.wordLogo} className="auth-logo-word" />
+              </div>
+            </div>
+            <div className="overlay-content">
+              Sign in to Minimum to connect with voices and perspectives that matter.
+            </div>
+
             <div className="auth-sets">
               <button className="auth-button guest-button"
-                  onClick={this.handleClick("demo")}>
+                  onClick={this.togglePage("demo")}>
                 Continue with Guest Account
               </button>
               <button className="auth-button signin-button"
-                  onClick={this.handleClick("signIn")}>
+                  onClick={this.togglePage("signIn")}>
                 Sign in with E-mail
               </button>
               <button className="auth-button signup-button"
-                  onClick={this.handleClick("signUp")}>
+                  onClick={this.togglePage("signUp")}>
                 Sign up with E-mail
               </button>
             </div>
+
+            <div className="auth-privacy-msg">
+              <div>
+                To use Minimum you must be minimalistic
+              </div>
+              <div>
+                If you sign up with Twitter or Facebook, we’ll start you off with a network by automatically importing any followers/followees or friends already on Medium. Also, we’ll never post to Twitter or Facebook without your permission. For more info, please see Login FAQ.
+              </div>
+            </div>
+          </section>
         );
       case "SIGN_IN_FORM":
-        return <SignInForm closeModal={this.props.closeModal}/>;
+        return (
+          <section className="sign-in-form">
+            <h3 className="overlay-title">
+              Enter your email address and password to sign in to Minimum
+            </h3>
+            <div className="overlay-content">
+              <SignInForm closeModal={this.props.closeModal}
+                          togglePage={this.togglePage("signUp")}/>
+            </div>
+          </section>
+        );
       case "SIGN_UP_FORM":
-        return <SignUpForm closeModal={this.props.closeModal}/>;
+        return (
+          <section className="sign-in-form">
+            <h3 className="overlay-title">
+              Almost there, fill in the form to create an account
+            </h3>
+            <div className="overlay-content">
+              <SignUpForm closeModal={this.props.closeModal}
+                          togglePage={this.togglePage("signIn")}/>
+            </div>
+          </section>
+        );
       default:
         break;
     }

@@ -44,26 +44,41 @@ class SignInForm extends Component {
     const { email, password } = this.state;
     return (
       <section className="form-container">
-        <ul>
+        <ul className="errors">
           {this.renderErrors()}
         </ul>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email address</label>
+        <form className="sign-form" onSubmit={this.handleSubmit}>
+          <label className="label-form"
+              htmlFor="email">
+            Email address
+          </label>
           <input
+            className="input-form"
             type="text"
             onChange={this.update("email")}
             placeholder="yourname@example.com"
             value={email} />
 
-          <label htmlFor="password">Password</label>
+          <label className="label-form"
+              htmlFor="password">
+            Password
+          </label>
           <input
+            className="input-form"
             type="password"
             onChange={this.update("password")}
             placeholder="******"
             value={password} />
 
-          <button>Sign in</button>
+          <button className="toggle-sign-up-in"
+              onClick={this.props.togglePage}>
+            Or create an account on Minimum
+          </button>
+
+          <button className="sign-button">
+            Sign me in to Minimum
+          </button>
         </form>
       </section>
     );
