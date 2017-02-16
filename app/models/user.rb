@@ -27,6 +27,13 @@ class User < ActiveRecord::Base
     user.try(:valid_password?, password) ? user : nil
   end
 
+  has_many(
+    :stories,
+    class_name: "Story",
+    foreign_key: :author,
+    primary_key: :username
+  )
+
   attr_reader :password
 
   def password=(password)

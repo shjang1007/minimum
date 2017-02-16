@@ -16,4 +16,25 @@
 
 class Story < ActiveRecord::Base
   validates :title, :content, :author, presence: true
+
+  belongs_to(
+    :author,
+    class_name: "User",
+    foreign_key: :author,
+    primary_key: :username
+  )
+
+  belongs_to(
+    :story,
+    class_name: "Story",
+    foreign_key: :parent_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :comments,
+    class_name: "Story",
+    foreign_key: :parent_id,
+    primary_key: :id
+  )
 end
