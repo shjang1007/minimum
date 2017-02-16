@@ -11,7 +11,7 @@ class StoryIndex extends Component {
 
   render() {
     const { stories } = this.props;
-    const storyList = stories.map( (story) => (<StoryIndexItem story={ story } />));
+    const storyList = stories.map( (story) => (<StoryIndexItem key={story.id} story={ story } />));
 
     return (
       <ul className="stories-index">
@@ -29,8 +29,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    fetchStories: () => dispatch(fetchStories),
-    receiveStories: (stories) => dispatch(receiveStories)
+    fetchStories: () => dispatch(fetchStories()),
+    receiveStories: (stories) => dispatch(receiveStories())
   });
 };
 

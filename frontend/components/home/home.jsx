@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Modal from "react-modal";
 import { signOut } from "../../actions/session_actions";
 import AuthSets from "../session/auth_sets";
+import StoryIndex from "../story/story_index";
 
 import customModalStyle from "./modal_style";
 
@@ -81,6 +82,10 @@ class Home extends Component {
           </div>
         </header>
 
+        <section className="homecontainer-stream">
+          <StoryIndex />
+        </section>
+
         <Modal
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}
@@ -88,7 +93,6 @@ class Home extends Component {
           style={customModalStyle}>
 
             <AuthSets closeModal={this.closeModal}/>
-
         </Modal>
       </main>
     );

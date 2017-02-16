@@ -1,4 +1,6 @@
 .main-bar {
+  display: flex;
+  flex-direction: column;
   color: rgba(0,0,0,.44);
   border-bottom: 1px solid #f7f7f5;
   height: 65px;

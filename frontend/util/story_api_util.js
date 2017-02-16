@@ -1,5 +1,5 @@
 export const fetchStories = () => {
-  return $.ajx({
+  return $.ajax({
     method: "GET",
     url: "api/stories"
   });
