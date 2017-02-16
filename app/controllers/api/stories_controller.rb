@@ -2,7 +2,7 @@ class Api::StoriesController < ApplicationController
   def index
     stories = Story.all
     # Include to make query faster
-    @stories = stories.includes(:author, :comments, :story)
+    @stories = stories.includes(:author, :comments, :parent_story)
     render :index
   end
 

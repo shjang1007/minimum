@@ -28,7 +28,7 @@ class Story < ActiveRecord::Base
   )
 
   belongs_to(
-    :story,
+    :parent_story,
     class_name: "Story",
     foreign_key: :parent_id,
     primary_key: :id
