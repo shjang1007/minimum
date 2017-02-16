@@ -22,7 +22,6 @@ const style = {
     left            : "none",
     right           : "none",
     bottom          : "none",
-    border          : "1px solid red",
     zIndex          : 11,
     padding         : 0,
     boxShadow       : "0 2px 6px 0 rgba(0,0,0,.44)",

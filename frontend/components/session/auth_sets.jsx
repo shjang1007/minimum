@@ -37,16 +37,16 @@ class AuthSets extends Component {
     switch (this.state.stage) {
       case "USER_OPTIONS":
         return(
-            <div className="aut-sets">
-              <button className="auth-button"
+            <div className="auth-sets">
+              <button className="auth-button guest-button"
                   onClick={this.handleClick("demo")}>
                 Continue with Guest Account
               </button>
-              <button className="auth-button"
+              <button className="auth-button signin-button"
                   onClick={this.handleClick("signIn")}>
                 Sign in with E-mail
               </button>
-              <button className="auth-button"
+              <button className="auth-button signup-button"
                   onClick={this.handleClick("signUp")}>
                 Sign up with E-mail
               </button>

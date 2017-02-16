@@ -1,5 +1,4 @@
 .overlay-title {
-  border: 1px solid blue;
   background-color: #f0f0f0;
   padding: 24px;
   font-size: 18px;
@@ -21,12 +20,12 @@
 }
 
 .auth-logo-word {
-  height: 100px;
-  width: 100px;
+  margin-top: -24px;
+  height: 65px;
+  width: 151px;
 }
 
 .overlay-content {
-  border: 1px solid green;
   padding: 0 32px;
   margin: 24px 0;
   font-size: 16px;
@@ -36,13 +35,52 @@
 }
 
 .auth-sets {
-  border: 1px solid pink;
+  display: flex;
+  flex-direction: column;
 }
 
 .auth-button {
-  border: 1px solid purple;
+  width: 100%;
+  margin: 0 auto 10px;
+  border-radius: 2px;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 18px;
+  padding-right: 18px;
+  max-width: 456px;
+  height: 58px;
+  vertical-align: middle;
 }
 
+.guest-button {
+  background-color: #55acee;
+  color: #fff;
+}
+
+.signin-button {
+  background-color: #3b5998;
+  color: #fff;
+}
+
+.signup-button {
+  height: 44px;
+  padding: 0;
+  color: #00ab6b;
+  font-size: 15px;
+  margin-top: 15px;
+  margin: 0 auto 10px;
+  margin-top: 15px!important;
+  text-align: center;
+}
+
+.signup-button:hover {
+  text-decoration: underline;
+}
+
+
 .auth-privacy-msg {
-  border: 1px solid yellow;
+  text-align: left;
+  margin: 40px 32px 20px 32px;
+  font-size: 14px;
+  color: rgba(0,0,0,0.44);
 }
