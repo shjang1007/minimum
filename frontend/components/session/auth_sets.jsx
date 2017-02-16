@@ -5,7 +5,7 @@ import SignUpForm from "./sign_up_form";
 
 import { signIn } from "../../actions/session_actions";
 
-class SessionIntro extends Component {
+class AuthSets extends Component {
   constructor(props) {
     super(props);
 
@@ -37,13 +37,20 @@ class SessionIntro extends Component {
     switch (this.state.stage) {
       case "USER_OPTIONS":
         return(
-          <div className="user-options">
-            <ul>
-              <li><button onClick={this.handleClick("demo")}>Demo Account</button></li>
-              <li><button onClick={this.handleClick("signIn")}>Sign in with Email</button></li>
-              <li><a onClick={this.handleClick("signUp")}>Sign up</a></li>
-            </ul>
-          </div>
+            <div className="aut-sets">
+              <button className="auth-button"
+                  onClick={this.handleClick("demo")}>
+                Continue with Guest Account
+              </button>
+              <button className="auth-button"
+                  onClick={this.handleClick("signIn")}>
+                Sign in with E-mail
+              </button>
+              <button className="auth-button"
+                  onClick={this.handleClick("signUp")}>
+                Sign up with E-mail
+              </button>
+            </div>
         );
       case "SIGN_IN_FORM":
         return <SignInForm closeModal={this.props.closeModal}/>;
@@ -61,4 +68,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(SessionIntro);
+export default connect(null, mapDispatchToProps)(AuthSets);

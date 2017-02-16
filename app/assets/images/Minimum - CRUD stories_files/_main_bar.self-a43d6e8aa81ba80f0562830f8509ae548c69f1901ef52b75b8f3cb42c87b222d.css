@@ -1,0 +1,102 @@
+/* line 1, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.main-bar {
+  color: rgba(0, 0, 0, 0.44);
+  border-bottom: 1px solid #f7f7f5;
+  height: 65px;
+  font-size: 14px;
+  font-weight: 400px;
+}
+
+/* line 9, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.inner-bar {
+  justify-content: space-between;
+  display: flex;
+  max-width: 1000px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* line 17, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.second-inner-bar {
+  justify-content: space-between;
+  display: flex;
+  max-width: 1000px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  border-bottom: 1px solid #f7f7f5;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* line 27, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.second-inner-bar > ul {
+  display: flex;
+  align-items: center;
+}
+
+/* line 32, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.second-inner-bar > ul > li {
+  padding: 15px 20px 18px 0px;
+}
+
+/* line 36, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.second-inner-bar > ul > li:last-child {
+  padding: 15px 0px 18px 0px;
+}
+
+/* line 40, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.inner-bar > ul {
+  display: flex;
+}
+
+/* line 44, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.left-nav {
+  height: 65px !important;
+}
+
+/* line 48, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.logo-link {
+  padding-left: 0;
+  margin-left: -4px;
+  padding-top: 10px;
+  padding-right: 14px;
+}
+
+/* line 55, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.logo {
+  width: 45px;
+  line-height: 45px;
+  height: 45px;
+  transform-origin: 50% 50% 0px;
+}
+
+/* line 62, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.right-nav {
+  display: flex;
+  line-height: 44px;
+  margin: 10px 0px 10px 10px;
+}
+
+/* line 68, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.right-nav:last-child {
+  margin-right: 0px;
+}
+
+/* line 72, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.right-nav > ul {
+  display: flex;
+  align-items: center;
+}
+
+/* line 77, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.right-nav > ul > li {
+  padding-right: 8px;
+  height: 37px;
+  line-height: 35px;
+  line-height: 30px;
+  height: 32px;
+}
+
+/* line 85, /Users/appacademy/Desktop/Minimum/app/assets/stylesheets/components/_main_bar.scss */
+.write-story-button {
+  margin-right: 15px;
+}

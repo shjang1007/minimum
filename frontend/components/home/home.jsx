@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router";
 import Modal from "react-modal";
-import SessionIntro from "../session/session_intro";
+import AuthSets from "../session/auth_sets";
+
+import customModalStyle from "./modal_style";
 
 class Home extends Component {
   constructor(props) {
@@ -44,7 +46,7 @@ class Home extends Component {
           <div className="inner-bar">
             <nav className="left-nav">
               <Link to="/" className="logo-link">
-                <img src="/assets/medium-logo.svg" className="logo" />
+                <img src="/assets/medium-dark100.png" className="logo" />
               </Link>
             </nav>
 
@@ -80,12 +82,29 @@ class Home extends Component {
         <Modal
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}
-          contentLabel="Modal">
-          <button onClick={this.closeModal}>
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </button>
+          contentLabel="Modal"
+          style={customModalStyle}>
 
-          <SessionIntro closeModal={this.closeModal}/>
+            <div className="overlay-title">
+              <div className="auth-logo-set">
+                <img src="/assets/medium-dark100.png" className="auth-logo-pic" />
+                <img src="/assets/medium-word-dark100.png" className="auth-logo-word" />
+              </div>
+            </div>
+            <div className="overlay-content">
+              Sign in to Minimum to connect with voices and perspectives that matter.
+            </div>
+
+            <AuthSets closeModal={this.closeModal}/>
+
+            <div className="auth-privacy-msg">
+              <div>
+                To use Minimum you must be minimalistic
+              </div>
+              <div>
+                If you sign up with Twitter or Facebook, we’ll start you off with a network by automatically importing any followers/followees or friends already on Medium. Also, we’ll never post to Twitter or Facebook without your permission. For more info, please see Login FAQ.
+              </div>
+            </div>
         </Modal>
 
       </main>
