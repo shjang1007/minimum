@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
   has_many(
     :stories,
     class_name: "Story",
-    foreign_key: :author,
-    primary_key: :username
+    foreign_key: :author_id,
+    primary_key: :id
   )
 
   attr_reader :password

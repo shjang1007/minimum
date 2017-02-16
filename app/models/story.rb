@@ -16,12 +16,13 @@
 
 class Story < ActiveRecord::Base
   validates :title, :content, :author, presence: true
+  validates :title, uniqueness: { scope: :author, message: "Already exist" }
 
   belongs_to(
     :author,
     class_name: "User",
-    foreign_key: :author,
-    primary_key: :username
+    foreign_key: :author_id,
+    primary_key: :id
   )
 
   belongs_to(
