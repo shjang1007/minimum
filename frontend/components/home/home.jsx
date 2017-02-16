@@ -46,7 +46,7 @@ class Home extends Component {
           <div className="inner-bar">
             <nav className="left-nav">
               <Link to="/" className="logo-link">
-                <img src="/assets/medium-dark100.png" className="logo" />
+                <img src={window.images.picLogo} className="logo" />
               </Link>
             </nav>
 
@@ -87,8 +87,8 @@ class Home extends Component {
 
             <div className="overlay-title">
               <div className="auth-logo-set">
-                <img src="/assets/medium-dark100.png" className="auth-logo-pic" />
-                <img src="/assets/medium-word-dark100.png" className="auth-logo-word" />
+                <img src={window.images.picLogo} className="auth-logo-pic" />
+                <img src={window.images.wordLogo} className="auth-logo-word" />
               </div>
             </div>
             <div className="overlay-content">

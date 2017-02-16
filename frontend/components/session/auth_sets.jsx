@@ -57,7 +57,7 @@ class AuthSets extends Component {
       case "SIGN_UP_FORM":
         return <SignUpForm closeModal={this.props.closeModal}/>;
       default:
-
+        break;
     }
   }
 }
