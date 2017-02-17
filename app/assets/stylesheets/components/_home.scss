@@ -1,0 +1,27 @@
+.home-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  border: 1px solid blue;
+  background: #fafafa;
+}
+
+.home-content {
+  // use of position relative?
+  padding: 35px 0 0 0;
+  min-height: 100vh;
+  max-width: 1000px;
+}
+
+.home-stories {
+  max-width: 660px;
+}
+
+.sidebar {
+  padding: 0 0 60px 18px;
+}
+
+// .sidebar > ul {
+//   display: flex;
+//   flex-direction: column;
+// }

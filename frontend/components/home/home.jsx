@@ -46,8 +46,23 @@ class Home extends Component {
         </section>
 
         <section className="home-container">
+          <section className="home-content">
+            <div className="home-stories">
+              <StoryIndex />
+            </div>
 
+            <div className="sidebar">
+              <ul>
+                <li>Top Stories</li>
+                <li>My Stories</li>
+                <li>Super Stories</li>
+                <li>Babyshark Stories</li>
+              </ul>
+            </div>
+          </section>
         </section>
+
+
 
         <Modal
           isOpen={this.state.modalOpen}
@@ -78,7 +93,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home);
-
-// <section className="homecontainer-stream">
-//   <StoryIndex />
-// </section>

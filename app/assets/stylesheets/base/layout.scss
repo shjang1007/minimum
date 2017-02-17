@@ -21,38 +21,30 @@ body {
   background: #fff;
 }
 
+.surface-container {
+  // top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  // visibility: visible;
+}
+
 .main-nav-container {
-  position: absolute;
+  // position: absolute;
   z-index: 500;
   width: 100%;
   font-size: 14px;
   color: rgba(0,0,0,.44);
   letter-spacing: 0;
-  top: 0;
+  // top: 0;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
-}
-
-.home-container {
-  border: 1px solid blue;
-  background: #fafafa;
-}
-
-.surface-container {
-  top: 0;
-  height: 100%;
-  width: 100%;
-  // visibility: visible;
 }
 
 .button {
   font-size: 14px;
 }
 
-// .main-body {
-//   display: flex;
-//   margin: 10px;
-// }
-//
 .gray-button {
   color: rgba(0,0,0,.44);
   transition: background-color, .1s border-color, .1s color .1s fill;
