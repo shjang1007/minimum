@@ -1,5 +1,6 @@
 import React from "react";
 import UserDropDown from "./user_drop_down";
+import SearchBar from "./search_bar";
 
 const MainNav = ({ openModal, currentUser, signOutUser }) => {
   let rightNav;
@@ -11,10 +12,8 @@ const MainNav = ({ openModal, currentUser, signOutUser }) => {
             Write a story
           </button>
         </li>
-        <li>
-          <button className="gray-button">
-            <img src={window.images.magnifier} className="icon" />
-          </button>
+        <li className="searchBar">
+          <SearchBar />
         </li>
         <li>
           <button className="gray-button">
@@ -44,9 +43,7 @@ const MainNav = ({ openModal, currentUser, signOutUser }) => {
           </a>
         </li>
         <li>
-          <button className="gray-button">
-            <img src={window.images.magnifier} className="icon" />
-          </button>
+          <SearchBar />
         </li>
       </ul>);
   }

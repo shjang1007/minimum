@@ -13,6 +13,12 @@ const UserDropDown = ({ currentUser, signOutUser }) => {
 
       <ul className="drop-down">
         <li>
+          New Story
+        </li>
+        <li>
+          Profile
+        </li>
+        <li>
           <a className="green-button" onClick={signOutUser}>
             Sign out
           </a>
@@ -23,10 +29,3 @@ const UserDropDown = ({ currentUser, signOutUser }) => {
 };
 
 export default UserDropDown;
-
-// <li>
-//   New Story
-// </li>
-// <li>
-//   Profile
-// </li>

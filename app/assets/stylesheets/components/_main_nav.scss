@@ -61,6 +61,20 @@
   padding: 0 8px;
 }
 
+// Search bar and show toggle
+.search-container {
+  display: flex;
+
+  & input {
+    display: none;
+  }
+}
+
+.show + input {
+  display: flex;
+}
+
+// Navigation profile and drop-down toggle
 .nav-profile {
   padding-left: 8px;
 }
@@ -82,6 +96,8 @@
   flex-direction: column;
 }
 
+
+// Logos/Icons/Avatar
 .logo-link {
    display: flex;
 }
