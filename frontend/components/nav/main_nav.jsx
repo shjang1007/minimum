@@ -1,4 +1,5 @@
 import React from "react";
+import UserDropDown from "./user_drop_down";
 
 const MainNav = ({ openModal, currentUser, signOutUser }) => {
   let rightNav;
@@ -21,10 +22,10 @@ const MainNav = ({ openModal, currentUser, signOutUser }) => {
           </button>
         </li>
         <li className="nav-profile">
-          <a className="green-button" onClick={signOutUser}>Sign out</a>
+          <UserDropDown signOutUser={ signOutUser }
+              currentUser={ currentUser }/>
         </li>
         <li>
-          <img src={ currentUser.avatar_url } className="avatar" />
         </li>
       </ul>
     );
