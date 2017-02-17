@@ -14,7 +14,7 @@ class Api::StoriesController < ApplicationController
 
   def create
     @story = Story.new(story_params)
-    @story.published_at = Date.now
+    @story.published_at = Date.today.strftime("%b %-d")
 
     if @story.save
       render :show

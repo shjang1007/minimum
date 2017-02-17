@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217151940) do
+ActiveRecord::Schema.define(version: 20170217195800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170217151940) do
     t.string   "sub_title"
     t.text     "content",                      null: false
     t.boolean  "published",    default: false
-    t.date     "published_at"
+    t.string   "published_at"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "parent_id"

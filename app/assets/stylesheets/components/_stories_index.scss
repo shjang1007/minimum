@@ -17,6 +17,8 @@
 }
 
 .author-info {
+  display: flex;
+  flex-direction: row;
   border: 1px solid blue;
   margin: 4px;
 }
@@ -39,4 +41,9 @@
 .content-detail > li {
   border: 1px solid red;
   margin: 4px;
+}
+
+.story-avatar {
+  width: 36px;
+  height: 36px;
 }

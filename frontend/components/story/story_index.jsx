@@ -11,7 +11,9 @@ class StoryIndex extends Component {
 
   render() {
     const { stories } = this.props;
-    const storyList = stories.map( (story) => (<StoryIndexItem key={story.id} story={ story } />));
+    const storyList = stories.map( (story) => (
+      <StoryIndexItem key={story.id} story={ story } />
+    ));
 
     return (
       <ul className="story-index">
