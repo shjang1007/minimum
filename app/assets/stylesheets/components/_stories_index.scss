@@ -1,4 +1,39 @@
 .stories-index {
   border: 1px solid red;
-  height: 100%;
+  margin: 4px;
+}
+
+.stories-index-item {
+  border: 1px solid yellow;
+  margin: 4px;
+}
+
+.story-index-profile {
+  border: 1px solid green;
+  margin: 4px;
+}
+
+.author-info {
+  border: 1px solid blue;
+  margin: 4px;
+}
+
+.author-info > li {
+  border: 1px solid red;
+  margin: 4px;
+}
+
+.story-index-content {
+  border: 1px solid purple;
+  margin: 4px;
+}
+
+.content-detail {
+  border: 1px solid pink;
+  margin: 4px;
+}
+
+.content-detail > li {
+  border: 1px solid red;
+  margin: 4px;
 }

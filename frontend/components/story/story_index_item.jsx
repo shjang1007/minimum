@@ -7,7 +7,7 @@ class StoryIndexItem extends Component {
     return(
       <li className="stories-index-item">
         <div className="story-index-profile">
-          <ul className="autho-info">
+          <ul className="author-info">
             <li>{author.username}</li>
             <li>{author.name}</li>
           </ul>
