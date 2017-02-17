@@ -31,8 +31,9 @@ gem 'bcrypt'
 # gem 'capistrano-rails', group: :development
 
 gem 'faker', '~> 1.7', '>= 1.7.3'
-gem "paperclip", "~> 5.0.0"
+gem 'paperclip', '~> 5.0.0'
 gem 'font-awesome-sass'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -6,7 +6,9 @@ const MainNav = ({ openModal, currentUser, signOutUser }) => {
     rightNav = (
       <ul>
         <li>
-          <button className="write-story-button gray-button">Write a story</button>
+          <button className="write-story-button gray-button">
+            Write a story
+          </button>
         </li>
         <li>
           <button className="gray-button">
@@ -21,13 +23,18 @@ const MainNav = ({ openModal, currentUser, signOutUser }) => {
         <li className="nav-profile">
           <a className="green-button" onClick={signOutUser}>Sign out</a>
         </li>
+        <li>
+          <img src={ currentUser.avatar_url } className="avatar" />
+        </li>
       </ul>
-    )
+    );
   } else {
     rightNav = (
       <ul>
         <li>
-          <button className="write-story-button gray-button">Write a story</button>
+          <button className="write-story-button gray-button">
+            Write a story
+          </button>
         </li>
         <li>
           <a className = "middle-button green-button"
@@ -40,7 +47,7 @@ const MainNav = ({ openModal, currentUser, signOutUser }) => {
             <img src={window.images.magnifier} className="icon" />
           </button>
         </li>
-      </ul>)
+      </ul>);
   }
 
   const editorSection = "Editors' picks";

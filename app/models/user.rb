@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
   validates :email, :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_attached_file :avatar,
+    default_url: "profile-avatar.png",
+    styles: { default: "100x100#" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
     user.try(:valid_password?, password) ? user : nil
