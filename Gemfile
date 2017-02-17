@@ -29,6 +29,9 @@ gem 'bcrypt'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+gem 'faker', '~> 1.7', '>= 1.7.3'
+gem "paperclip", "~> 5.0.0"
 gem 'font-awesome-sass'
 
 group :development, :test do
@@ -38,7 +41,6 @@ group :development, :test do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'faker', '~> 1.7', '>= 1.7.3'
 end
 
 group :development do

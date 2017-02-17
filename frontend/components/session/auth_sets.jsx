@@ -20,7 +20,9 @@ class AuthSets extends Component {
     return (e) => {
       switch (action) {
         case "demo":
-          return this.props.signIn({email: "guest@example.com", password: "123456"}).then(
+          return this.props.signIn({
+              email: "guest@example.com",
+              password: "123456"}).then(
             () => this.props.closeModal()
           );
         case "signIn":
@@ -40,8 +42,8 @@ class AuthSets extends Component {
           <section className="authsets-container">
             <div className="overlay-title">
               <div className="auth-logo-set">
-                <img src={window.images.picLogo} className="auth-logo-pic" />
-                <img src={window.images.wordLogo} className="auth-logo-word" />
+                <img src={window.images.logo} className="auth-logo-pic" />
+                <img src={window.images.logoword} className="auth-logo-word" />
               </div>
             </div>
             <div className="overlay-content">
