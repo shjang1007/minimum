@@ -1,16 +1,18 @@
 import React from "react";
+import { Link } from "react-router";
 import UserDropDown from "./user_drop_down";
 import SearchBar from "./search_bar";
 
-const MainNav = ({ openModal, currentUser, signOutUser }) => {
+const MainNav = ({ router, openModal, currentUser, signOutUser }) => {
   let rightNav;
   if (currentUser) {
     rightNav = (
       <ul>
         <li>
-          <button className="write-story-button gray-button">
+          <Link to="/new-story"
+              className="write-story-button gray-button">
             Write a story
-          </button>
+          </Link>
         </li>
         <li className="searchBar">
           <SearchBar />
@@ -32,9 +34,10 @@ const MainNav = ({ openModal, currentUser, signOutUser }) => {
     rightNav = (
       <ul>
         <li>
-          <button className="write-story-button gray-button">
+          <Link to="/new-story"
+              className="write-story-button gray-button">
             Write a story
-          </button>
+          </Link>
         </li>
         <li>
           <a className = "middle-button green-button"
