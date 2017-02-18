@@ -1,7 +1,8 @@
 import React from "react";
 import { merge } from "lodash";
 
-import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS } from "../actions/session_actions";
+import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS }
+  from "../actions/session_actions";
 
 const _initialState = {
   currentUser: null,

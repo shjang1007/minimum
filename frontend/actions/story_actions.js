@@ -18,7 +18,10 @@ export const fetchStory = (id) => (dispatch) => {
 
 export const createStory = (story) => (dispatch) => {
   return storyApiUtil.createStory(story).then(
-    (story) => (dispatch(receiveStory(story)))
+    (story) => {
+      dispatch(receiveStory(story));
+      return story;
+    }
   );
 };
 

@@ -14,7 +14,9 @@ class Api::StoriesController < ApplicationController
 
   def create
     @story = Story.new(story_params)
-    @story.published_at = Date.today.strftime("%b %-d")
+    # If I have this, when it's created first, I can set the date in, but
+    # I won't be able to do set it to when I actually want to publish
+    # @story.published_at = Date.today.strftime("%b %-d")
 
     if @story.save
       render :show
@@ -24,9 +26,9 @@ class Api::StoriesController < ApplicationController
   end
 
   def update
-    @story = Story.find(params[:id])
+    @story = Story.find(params[:story][:id])
 
-    if @story.update(sotry_params)
+    if @story.update(story_params)
       render :show
     else
       # Maybe different error rendering required?
@@ -57,7 +59,7 @@ class Api::StoriesController < ApplicationController
         :published,
         :published_at,
         :parent_id,
-        :author
+        :author_id
       )
   end
 end

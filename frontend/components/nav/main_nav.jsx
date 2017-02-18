@@ -22,41 +22,66 @@ class MainNav extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal () {
+  openModal() {
     this.setState({ modalOpen: true });
   }
 
-  closeModal () {
+  closeModal() {
     this.setState({ modalOpen: false});
   }
 
   renderRightNav() {
     const { currentUser, signOutUser } = this.props;
+    const pathname = this.props.location.pathname;
     if (currentUser) {
-      return (
-        <ul>
-          <li>
-            <Link to="/new-story"
-                className="write-story-button gray-button">
-              Write a story
-            </Link>
-          </li>
-          <li className="searchBar">
-            <SearchBar />
-          </li>
-          <li>
-            <button className="gray-button">
-              <img src={window.images.bell} className="icon bell" />
-            </button>
-          </li>
-          <li className="nav-profile">
-            <UserDropDown signOutUser={ signOutUser }
-                currentUser={ currentUser }/>
-          </li>
-          <li>
-          </li>
-        </ul>
-      );
+      if (pathname === "/new-story") {
+        return (
+          <ul>
+            <li>
+              <input type="submit"
+                  className="write-story-button gray-button"
+                  value="Publish">
+              </input>
+            </li>
+            <li>
+              <button className="gray-button">
+                <img src={window.images.bell} className="icon bell" />
+              </button>
+            </li>
+            <li className="nav-profile">
+              <UserDropDown signOutUser={ signOutUser }
+                  currentUser={ currentUser }/>
+            </li>
+            <li>
+            </li>
+          </ul>
+        );
+      } else {
+        return (
+          <ul>
+            <li>
+              <Link to="/new-story"
+                  className="write-story-button gray-button">
+                Write a story
+              </Link>
+            </li>
+            <li className="searchBar">
+              <SearchBar />
+            </li>
+            <li>
+              <button className="gray-button">
+                <img src={window.images.bell} className="icon bell" />
+              </button>
+            </li>
+            <li className="nav-profile">
+              <UserDropDown signOutUser={ signOutUser }
+                  currentUser={ currentUser }/>
+            </li>
+            <li>
+            </li>
+          </ul>
+        );
+      }
     } else {
       return (
         <ul>

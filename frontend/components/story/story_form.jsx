@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router";
+import { Link, withRouter } from "react-router";
 import { merge } from "lodash";
 import { fetchStory, createStory, updateStory }
-  from "../../actions/session_actions";
+  from "../../actions/story_actions";
 
 class StoryForm extends Component {
   constructor(props) {
@@ -12,21 +12,45 @@ class StoryForm extends Component {
     this.state = this.props.story;
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
+  }
+
+  // componentDidMount() {
+  //   if (this.props.params) {
+  //     this.props.fetchStory(this.props.params.storyId);
+  //   }
+  // }
+  //
+  componentWillReceiveProps(newProps) {
+    this.setState(newProps.story);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    // Here I set published to true and published_at to date
+
+    this.props.processForm(this.state).then(
+      this.router.push("/")
+    );
   }
 
   update(field) {
+    const { router, processForm, formType } = this.props;
     return (e) => {
-      this.setState({[field]: e.target.value});
+      return this.setState({[field]: e.target.value}, () => {
+        if (formType === "new") {
+          processForm(this.state).then( (newStory) => {
+            router.push(`/${newStory.id}/edit-story`);
+          });
+        } else {
+          processForm(this.state);
+        }
+      });
     };
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, status } = this.props;
+    const { title, sub_title, content } = this.state;
     return (
       <main className="story-main">
         <header className="story-header">
@@ -38,25 +62,26 @@ class StoryForm extends Component {
             {currentUser.name}
           </Link>
           <div>
-            Draft
+            { status }
           </div>
         </header>
 
-        <form className="story-content">
+        <form className="story-content" onSubmit={this.handleSubmit}>
           <input onChange={this.update("title")}
+              type="text"
               placeholder="Title"
-              value={this.state.title} />
+              value={ title } />
             <input onChange={this.update("sub_title")}
+              type="text"
               placeholder="Subtitle"
-              value={this.state.sub_title} />
+              value={sub_title } />
             <textarea onChange={this.update("content")}
                 placeholder="Tell your story..."
-                value={this.state.content}/>
+                value={ content }/>
         </form>
       </main>
     );
   }
-
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -66,25 +91,33 @@ const mapStateToProps = (state, ownProps) => {
     content: "",
     author_id: state.session.currentUser.id
   };
-  const currentUser = state.session.currentUser;
 
+  const currentUser = state.session.currentUser;
+  const formType = ownProps.location.pathname === "/new-story" ?
+    "new" : "edit";
+
+  let status = "Draft";
   if (ownProps.params.storyId) {
-    story = state.stories[ownProps.pramas.storyId];
+    story = state.stories[ownProps.params.storyId];
+    if (story.published) {
+      status = "story.published_at";
+    }
   }
 
-  return { story, currentUser };
+  return { story, currentUser, formType, status };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let processForm = ownProps.location.pathname === "/new-story" ?
+  const processForm = ownProps.location.pathname === "/new-story" ?
     createStory : updateStory;
 
   return ({
-    processForm: (story) => (dispatch(processForm(story)))
+    processForm: (story) => (dispatch(processForm(story))),
+    fetchStory: (story) => (dispatch(processForm(story)))
   });
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(StoryForm);
+)(StoryForm));
