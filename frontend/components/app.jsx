@@ -1,9 +1,11 @@
 import React from "react";
+import MainNav from "./nav/main_nav";
 
-const App = ({ children }) => {
+const App = (props) => {
   return (
     <div>
-      { children }
+      <MainNav />
+      { props.children }
     </div>
   );
 };
