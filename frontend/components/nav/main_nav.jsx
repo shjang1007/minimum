@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router";
+import { Link, withRouter } from "react-router";
 import { signOut } from "../../actions/session_actions";
 import Modal from "react-modal";
 import customModalStyle from "./modal_style";
@@ -79,8 +79,30 @@ class MainNav extends Component {
     }
   }
 
-  render() {
+  renderBottomBar() {
+    const pathname = this.props.location.pathname;
     const editorSection = "Editors' picks";
+    if (pathname === "/") {
+      return (
+        <div className="inner-bar bottom-bar">
+          <ul>
+            <li><button className="gray-button category">Home</button></li>
+            <li><button className="gray-button category">Top stories</button></li>
+            <li><button className="gray-button category">{editorSection}</button></li>
+            <li><button className="gray-button category">Politics</button></li>
+            <li><button className="gray-button category">Technology</button></li>
+            <li><button className="gray-button category">Humans</button></li>
+            <li><button className="gray-button category">Culture</button></li>
+            <li><button className="gray-button category">Business</button></li>
+            <li><button className="gray-button category">Entertainment</button></li>
+            <li><button className="gray-button category">Bookmarks</button></li>
+          </ul>
+        </div>
+      )
+    }
+  }
+
+  render() {
     return (
       <section className="main-nav-container">
         <header className="main-bar">
@@ -96,20 +118,8 @@ class MainNav extends Component {
               { this.renderRightNav() }
             </nav>
           </div>
-          <div className="inner-bar bottom-bar">
-            <ul>
-              <li><button className="gray-button category">Home</button></li>
-              <li><button className="gray-button category">Top stories</button></li>
-              <li><button className="gray-button category">{editorSection}</button></li>
-              <li><button className="gray-button category">Politics</button></li>
-              <li><button className="gray-button category">Technology</button></li>
-              <li><button className="gray-button category">Humans</button></li>
-              <li><button className="gray-button category">Culture</button></li>
-              <li><button className="gray-button category">Business</button></li>
-              <li><button className="gray-button category">Entertainment</button></li>
-              <li><button className="gray-button category">Bookmarks</button></li>
-            </ul>
-          </div>
+
+          { this.renderBottomBar() }
         </header>
 
         <Modal
@@ -125,7 +135,7 @@ class MainNav extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return ({
     currentUser: state.session.currentUser
   });
@@ -137,7 +147,7 @@ const mapDispatchToProps = (dispatch) => {
   });
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(MainNav);
+)(MainNav));
