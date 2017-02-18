@@ -8,12 +8,29 @@ import StoryIndex from "./story/story_index";
 import StoryForm from "./story/story_form";
 
 const Root = ({ store }) => {
+
+  const _ensureLoggedIn = (nextState, replace) => {
+    const currentUser = store.getState().session.currentUser;
+      if (!currentUser) {
+        replace("/");
+      }
+  };
+
+  // const _ensureSameAuthor = (nextState, replace) => {
+  //   const currentUser = store.getState().session.currentUser;
+  //   if (currentUser.id !== nextState.params.storyId) {
+  //     replace('/');
+  //   }
+  // };
+
   return (
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
           <IndexRoute component={ Home } />
-          <Route path="/new-story" component={ StoryForm } />
+          <Route path="/new-story"
+              component={ StoryForm }
+              onEnter={ _ensureLoggedIn}/>
           <Route path="/:storyId/edit-story" component={ StoryForm } />
         </Route>
       </Router>

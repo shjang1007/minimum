@@ -61,10 +61,10 @@ class MainNav extends Component {
       return (
         <ul>
           <li>
-            <Link to="/new-story"
+            <a onClick={this.openModal}
                 className="write-story-button gray-button">
               Write a story
-            </Link>
+            </a>
           </li>
           <li>
             <a className = "middle-button green-button"

@@ -26,20 +26,3 @@ const Home = (props)=> {
 };
 
 export default Home;
-
-// const mapStateToProps = (state) => {
-//   return {
-//     currentUser: state.session.currentUser
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     signOut: () => dispatch(signOut())
-//   };
-// };
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Home);
