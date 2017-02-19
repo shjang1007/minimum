@@ -33,10 +33,16 @@ class MainNav extends Component {
   }
 
   handlePublish() {
+    const monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+      "Oct", "Nov", "Dec"
+    ];
+    const date = new Date();
+
     const story = {
       id: this.props.params.storyId,
       published: true,
-      published_at: "date"
+      published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
     };
 
     return this.props.publishStory(story);

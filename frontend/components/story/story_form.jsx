@@ -14,12 +14,6 @@ class StoryForm extends Component {
     this.update = this.update.bind(this);
   }
 
-  // componentDidMount() {
-  //   if (this.props.params) {
-  //     this.props.fetchStory(this.props.params.storyId);
-  //   }
-  // }
-  //
   componentWillReceiveProps(newProps) {
     this.setState(newProps.story);
   }
@@ -91,7 +85,7 @@ const mapStateToProps = (state, ownProps) => {
   if (ownProps.params.storyId) {
     story = state.stories[ownProps.params.storyId];
     if (story.published) {
-      status = "story.published_at";
+      status = story.published_at;
     }
   }
 
