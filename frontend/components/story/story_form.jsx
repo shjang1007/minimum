@@ -11,7 +11,6 @@ class StoryForm extends Component {
 
     this.state = this.props.story;
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
   }
 
@@ -23,14 +22,6 @@ class StoryForm extends Component {
   //
   componentWillReceiveProps(newProps) {
     this.setState(newProps.story);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-
-    this.props.processForm(this.state).then(
-      this.router.push("/")
-    );
   }
 
   update(field) {

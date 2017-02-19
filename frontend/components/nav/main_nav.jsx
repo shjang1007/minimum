@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { signOut } from "../../actions/session_actions";
+import { updateStory } from "../../actions/story_actions";
 import Modal from "react-modal";
 import customModalStyle from "./modal_style";
 import UserDropDown from "./user_drop_down";
@@ -20,6 +21,7 @@ class MainNav extends Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handlePublish = this.handlePublish.bind(this);
   }
 
   openModal() {
@@ -30,18 +32,29 @@ class MainNav extends Component {
     this.setState({ modalOpen: false});
   }
 
+  handlePublish() {
+    const story = {
+      id: this.props.params.storyId,
+      published: true,
+      published_at: "date"
+    };
+
+    return this.props.publishStory(story);
+  }
+
   renderRightNav() {
     const { currentUser, signOutUser } = this.props;
     const pathname = this.props.location.pathname;
+
     if (currentUser) {
-      if (pathname === "/new-story") {
+      if (pathname === "/new-story" || pathname.includes("/edit-story")) {
         return (
           <ul>
             <li>
-              <input type="submit"
-                  className="write-story-button gray-button"
-                  value="Publish">
-              </input>
+              <button onClick={this.handlePublish}
+                  className="write-story-button gray-button">
+                Publish
+              </button>
             </li>
             <li>
               <button className="gray-button">
@@ -168,7 +181,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    signOutUser: () => (dispatch(signOut()))
+    signOutUser: () => (dispatch(signOut())),
+    publishStory: (story) => (dispatch(updateStory(story)))
   });
 };
 
