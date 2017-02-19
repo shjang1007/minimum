@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
-import { merge } from "lodash";
-import { fetchStory, createStory, updateStory }
+import { createStory, updateStory }
   from "../../actions/story_actions";
 
 class StoryForm extends Component {
@@ -97,8 +96,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     createStory : updateStory;
 
   return ({
-    processForm: (story) => (dispatch(processForm(story))),
-    fetchStory: (story) => (dispatch(processForm(story)))
+    processForm: (story) => (dispatch(processForm(story)))
   });
 };
 

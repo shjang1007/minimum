@@ -6,6 +6,7 @@ import App from "./app";
 import Home from "./home/home";
 import StoryIndex from "./story/story_index";
 import StoryForm from "./story/story_form";
+import StoryShow from "./story/story_show";
 
 const Root = ({ store }) => {
 
@@ -16,12 +17,12 @@ const Root = ({ store }) => {
       }
   };
 
-  // const _ensureSameAuthor = (nextState, replace) => {
-  //   const currentUser = store.getState().session.currentUser;
-  //   if (currentUser.id !== nextState.params.storyId) {
-  //     replace('/');
-  //   }
-  // };
+  const _ensureSameAuthor = (nextState, replace) => {
+    const currentUser = store.getState().session.currentUser;
+    if (currentUser.id !== nextState.params.storyId) {
+      replace('/');
+    }
+  };
 
   return (
     <Provider store={ store }>
@@ -30,8 +31,11 @@ const Root = ({ store }) => {
           <IndexRoute component={ Home } />
           <Route path="/new-story"
               component={ StoryForm }
-              onEnter={ _ensureLoggedIn}/>
-          <Route path="/:storyId/edit-story" component={ StoryForm } />
+              onEnter={ _ensureLoggedIn }/>
+          <Route path="/:storyId/edit-story"
+              component={ StoryForm }
+              onEnter={ _ensureSameAuthor }/>
+          <Route path="/stories/:storyId" component={ StoryShow } />
         </Route>
       </Router>
     </Provider>
