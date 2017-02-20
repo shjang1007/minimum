@@ -15,7 +15,7 @@ class StoryIndexItem extends Component {
               <img src={ author.avatar_url } className="story-avatar" />
             </li>
             <li>
-              <Link to="/@author.username"
+              <Link to={ `/@q${author.username}` }
                   className="green-button">
                 {author.name}
               </Link>
