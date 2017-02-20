@@ -57,8 +57,8 @@ class StoryForm extends Component {
     if (file) {
       fileReader.readAsDataURL(file);
       let formData = new FormData();
-      formData.id = this.props.params.storyId;
-      formData.append("story[image]", this.state.image_file);
+      formData.id = this.state.id;
+      formData.append("story[image]", file);
       this.props.updateStoryImage(formData);
     }
   }
