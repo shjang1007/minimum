@@ -6,7 +6,10 @@ export const REMOVE_STORY = "REMOVE_STORY";
 
 export const fetchStories = () => (dispatch) => {
   return storyApiUtil.fetchStories().then(
-    (stories) => (dispatch(receiveStories(stories)))
+    (stories) => {
+      dispatch(receiveStories(stories));
+      return stories;
+    }
   );
 };
 

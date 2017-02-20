@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { merge, values } from "lodash";
 import { fetchStories, receiveStories } from "../../actions/story_actions";
+import { selectAllStories, selectPublishedStories } from "../../reducers/selectors";
 import StoryIndexItem from "./story_index_item";
 
 class StoryIndex extends Component {
@@ -26,7 +27,7 @@ class StoryIndex extends Component {
 const mapStateToProps = (state) => {
   const stories = values(state.stories);
 
-  return { stories };
+  return { stories: selectAllStories(state) };
 };
 
 const mapDispatchToProps = (dispatch) => {

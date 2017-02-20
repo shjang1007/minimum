@@ -25,6 +25,7 @@ class StoryShow extends Component {
         <section className="story-show-content">
           <h1>{ story.title }</h1>
           <h3>{ story.sub_title }</h3>
+          <img src={story.image_url} className="instroy-image" />
           <p>{ story.content }</p>
         </section>
         <footer className="story-show-content">
@@ -35,6 +36,12 @@ class StoryShow extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return ({
+    story: state.stories[ownProps.params.storyId]
+  });
+};
+
 const mapDispatchToProps = (dispatch) => {
   return ({
     fetchStory: (id) => (dispatch(fetchStory(id)))
@@ -42,6 +49,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(StoryShow);
