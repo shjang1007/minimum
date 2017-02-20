@@ -12,22 +12,27 @@ class StoryIndex extends Component {
 
   render() {
     const { stories } = this.props;
-    const storyList = stories.map( (story) => (
-      <StoryIndexItem key={story.id} story={ story } />
-    ));
 
-    return (
-      <ul className="story-index">
-        {storyList}
-      </ul>
-    );
+    if (stories) {
+      const storyList = stories.map( (story) => (
+        <StoryIndexItem key={story.id} story={ story } />
+      ));
+
+      return (
+        <ul className="story-index">
+          {storyList}
+        </ul>
+      );
+    } else {
+      return(<div className="loading"></div>);
+    }
   }
 }
 
 const mapStateToProps = (state) => {
   const stories = values(state.stories);
 
-  return { stories: selectAllStories(state) };
+  return { stories: selectPublishedStories(state) };
 };
 
 const mapDispatchToProps = (dispatch) => {

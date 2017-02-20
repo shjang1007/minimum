@@ -35,7 +35,7 @@ class StoryShow extends Component {
         </main>
       );
     } else {
-      return (<div></div>);
+      return (<div className="loading"></div>);
     }
   }
 }
