@@ -30,15 +30,11 @@ class StoryIndex extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const stories = values(state.stories);
-
   return { stories: selectPublishedStories(state) };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return ({
-    fetchStories: () => dispatch(fetchStories())
-  });
+  return ({ fetchStories: () => dispatch(fetchStories()) });
 };
 
 export default connect(

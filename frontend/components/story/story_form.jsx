@@ -21,6 +21,7 @@ class StoryForm extends Component {
         (story) => {
           this.setState(story);
           this.setState({image_preview_url: story.image_url});
+
         }
       );
     }
@@ -64,28 +65,29 @@ class StoryForm extends Component {
   }
 
   render() {
-    const { currentUser, status } = this.props;
-    const { title, sub_title, content } = this.state;
-    return (
-      <main className="story-main">
-        <header className="story-header">
-          <Link to={`/@${currentUser.username}`}>
-            <img src={ currentUser.avatar_url }
+    if (this.props.story) {
+      const { currentUser, status } = this.props;
+      const { title, sub_title, content } = this.state;
+      return (
+        <main className="story-main">
+          <header className="story-header">
+            <Link to={`/@${currentUser.username}`}>
+              <img src={ currentUser.avatar_url }
                 className="instory-avatar" />
-          </Link>
-          <Link to={`/@${currentUser.username}`}>
-            {currentUser.name}
-          </Link>
-          <div>
-            { status }
-          </div>
-        </header>
+            </Link>
+            <Link to={`/@${currentUser.username}`}>
+              {currentUser.name}
+            </Link>
+            <div>
+              { status }
+            </div>
+          </header>
 
-        <form className="story-content" onSubmit={this.handleSubmit}>
-          <input type="file"
+          <form className="story-content" onSubmit={this.handleSubmit}>
+            <input type="file"
               onChange={this.updateFile}/>
             <img src={ this.state.image_preview_url }/>
-          <input onChange={this.update("title")}
+            <input onChange={this.update("title")}
               type="text"
               placeholder="Title"
               value={ title } />
@@ -94,11 +96,13 @@ class StoryForm extends Component {
               placeholder="Subtitle"
               value={ sub_title } />
             <textarea onChange={this.update("content")}
-                placeholder="Tell your story..."
-                value={ content }/>
-        </form>
-      </main>
-    );
+              placeholder="Tell your story..."
+              value={ content }/>
+          </form>
+        </main>);
+    } else {
+      return(<div className="loading"></div>);
+    }
   }
 }
 
@@ -120,6 +124,9 @@ const mapStateToProps = (state, ownProps) => {
 
   if (state.stories[ownProps.params.storyId]) {
     story = state.stories[ownProps.params.storyId];
+    if (story.published) {
+      status = story.published_at;
+    }
   }
 
   return { story, currentUser, formType, status };

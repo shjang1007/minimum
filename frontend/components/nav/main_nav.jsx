@@ -45,7 +45,9 @@ class MainNav extends Component {
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
     };
 
-    return this.props.publishStory(story);
+    return this.props.publishStory(story).then(
+      this.props.router.push(`/stories/${story.id}`)
+    );
   }
 
   renderRightNav() {

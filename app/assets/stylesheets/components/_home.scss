@@ -17,9 +17,11 @@
 .home-stories {
   // Eventually I will need this when I actually implement Sidebar
   max-width: 660px;
+  width: 100%;
 }
 
 .sidebar {
+  width: 340px;
   border: 1px solid yellow;
   padding: 0 0 60px 18px;
 }
