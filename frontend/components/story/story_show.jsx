@@ -10,29 +10,33 @@ class StoryShow extends Component {
 
   render() {
     const { story } = this.props;
-    const author = story.author;
-    return (
-      <main className="story-show-container">
-        <header className="story-show-header">
-          <Link to={`/@${author.username}`}>
-            <img src={ author.avatar_url }
+    if (story) {
+      const author = story.author;
+      return (
+        <main className="story-show-container">
+          <header className="story-show-header">
+            <Link to={`/@${author.username}`}>
+              <img src={ author.avatar_url }
                 className="instory-avatar" />
-          </Link>
-          <Link to={`/@${author.username}`}>
-            {author.name}
-          </Link>
-        </header>
-        <section className="story-show-content">
-          <h1>{ story.title }</h1>
-          <h3>{ story.sub_title }</h3>
-          <img src={story.image_url} className="instroy-image" />
-          <p>{ story.content }</p>
-        </section>
-        <footer className="story-show-content">
+            </Link>
+            <Link to={`/@${author.username}`}>
+              {author.name}
+            </Link>
+          </header>
+          <section className="story-show-content">
+            <h1>{ story.title }</h1>
+            <h3>{ story.sub_title }</h3>
+            <img src={story.image_url} className="instroy-image" />
+            <p>{ story.content }</p>
+          </section>
+          <footer className="story-show-content">
 
-        </footer>
-      </main>
-    );
+          </footer>
+        </main>
+      );
+    } else {
+      return (<div></div>);
+    }
   }
 }
 
