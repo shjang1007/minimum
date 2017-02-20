@@ -59,7 +59,8 @@ class Api::StoriesController < ApplicationController
         :published,
         :published_at,
         :parent_id,
-        :author_id
+        :author_id,
+        :image
       )
   end
 end

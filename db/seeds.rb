@@ -22,7 +22,9 @@ ActiveRecord::Base.transaction do
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     published: true,
     published_at: Date.today.strftime("%b %-d"),
-    author_id: user1.id)
+    author_id: user1.id,
+    image: File.open(File.join(Rails.root, "app/assets/images/pooh-and-friends.png"))
+  )
 
   story2 = Story.create(
     title: Faker::Food.ingredient,
@@ -30,7 +32,9 @@ ActiveRecord::Base.transaction do
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     published: true,
     published_at: Date.today.strftime("%b %-d"),
-    author_id: user1.id)
+    author_id: user1.id,
+    image: File.open(File.join(Rails.root, "app/assets/images/pooh-and-friends.png"))
+  )
 
   story3 = Story.create(
     title: Faker::Food.ingredient,
@@ -38,7 +42,9 @@ ActiveRecord::Base.transaction do
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     published: true,
     published_at: Date.today.strftime("%b %-d"),
-    author_id: user2.id)
+    author_id: user2.id,
+    image: File.open(File.join(Rails.root, "app/assets/images/pooh-and-friends.png"))
+  )
 
   story4 = Story.create(
     title: Faker::Food.ingredient,
@@ -46,7 +52,9 @@ ActiveRecord::Base.transaction do
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     published: true,
     published_at: Date.today.strftime("%b %-d"),
-    author_id: user2.id)
+    author_id: user2.id,
+    image: File.open(File.join(Rails.root, "app/assets/images/pooh-and-friends.png"))
+  )
 
   story5 = Story.create(
     title: Faker::Food.ingredient,
@@ -54,7 +62,9 @@ ActiveRecord::Base.transaction do
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     published: true,
     published_at: Date.today.strftime("%b %-d"),
-    author_id: user2.id)
+    author_id: user2.id,
+    image: File.open(File.join(Rails.root, "app/assets/images/pooh-and-friends.png"))
+  )
 
   story6 = Story.create(
     title: Faker::Food.ingredient,
@@ -62,5 +72,7 @@ ActiveRecord::Base.transaction do
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     published: true,
     published_at: Date.today.strftime("%b %-d"),
-    author_id: user3.id)
+    author_id: user3.id,
+    image: File.open(File.join(Rails.root, "app/assets/images/pooh-and-friends.png"))
+  )
 end

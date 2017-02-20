@@ -33,8 +33,7 @@ const Root = ({ store }) => {
               component={ StoryForm }
               onEnter={ _ensureLoggedIn }/>
           <Route path="/:storyId/edit-story"
-              component={ StoryForm }
-              onEnter={ _ensureSameAuthor }/>
+              component={ StoryForm }/>
           <Route path="/stories/:storyId" component={ StoryShow } />
         </Route>
       </Router>

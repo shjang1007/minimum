@@ -20,11 +20,11 @@ class Story < ActiveRecord::Base
   # validates :title, uniqueness: { scope: :author, message: "Already exist" }
   validates :published, inclusion: { in: [ true, false ] }
 
-  # has_attached_file :image
-  #   default_url: "",
-  #   styles: { medium: "300x300>", thumb: "100x100>" }
-  #
-  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  has_attached_file :image,
+    default_url: "no_image",
+    styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   belongs_to(
     :author,

@@ -19,3 +19,7 @@ if story.comments
     end
   end
 end
+
+if story.image.file?
+  json.image_url asset_path(story.image.url(:medium))
+end

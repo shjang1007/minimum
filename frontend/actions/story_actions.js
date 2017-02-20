@@ -12,7 +12,10 @@ export const fetchStories = () => (dispatch) => {
 
 export const fetchStory = (id) => (dispatch) => {
   return storyApiUtil.fetchStory(id).then(
-    (story) => (dispatch(receiveStory(story)))
+    (story) => {
+      dispatch(receiveStory(story));
+      return story;
+    }
   );
 };
 
@@ -27,6 +30,12 @@ export const createStory = (story) => (dispatch) => {
 
 export const updateStory = (story) => (dispatch) => {
   return storyApiUtil.updateStory(story).then(
+    (story) => (dispatch(receiveStory(story)))
+  );
+};
+
+export const updateStoryImage = (formData) => (dispatch) => {
+  return storyApiUtil.updateStoryImage(formData).then(
     (story) => (dispatch(receiveStory(story)))
   );
 };

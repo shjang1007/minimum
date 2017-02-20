@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Props has story info
 class StoryIndexItem extends Component {
   render() {
-    const { title, sub_title, content, author, published_at } =
+    const { title, sub_title, content, author, published_at, image_url } =
       this.props.story;
 
     return(
@@ -23,7 +23,9 @@ class StoryIndexItem extends Component {
           <ul className="content-detail">
             <li>{title}</li>
             <li>{sub_title}</li>
-            <li>{content}</li>
+            <li>
+              <img src={ image_url } className="story-index-image"/>
+            </li>
           </ul>
         </div>
       </li>

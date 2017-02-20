@@ -28,6 +28,17 @@ export const updateStory = (story) => {
   });
 };
 
+export const updateStoryImage = (formData) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/stories/${formData["id"]}`,
+    contentType: false,
+    processData: false,
+    data: formData,
+    dataType: 'json'
+  });
+};
+
 export const deleteStory = (id) => {
   return $.ajax({
     method: "DELETE",

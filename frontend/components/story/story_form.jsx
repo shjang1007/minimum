@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
-import { createStory, updateStory }
+import { createStory, updateStory, fetchStory, updateStoryImage }
   from "../../actions/story_actions";
+import * as StoryApiUtil from "../../util/story_api_util";
 
 class StoryForm extends Component {
   constructor(props) {
@@ -11,10 +12,24 @@ class StoryForm extends Component {
     this.state = this.props.story;
 
     this.update = this.update.bind(this);
+    this.updateFile = this.updateFile.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.params.storyId) {
+      this.props.fetchStory(this.props.params.storyId).then(
+        (story) => {
+          this.setState(story);
+          this.setState({image_preview_url: story.image_url});
+        }
+      );
+    }
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState(newProps.story);
+    if (this.props.params.storyId !== newProps.params.storyId) {
+      this.setState(newProps.story);
+    }
   }
 
   update(field) {
@@ -30,6 +45,22 @@ class StoryForm extends Component {
         }
       });
     };
+  }
+
+  updateFile(e) {
+    let fileReader = new FileReader();
+    let file = e.currentTarget.files[0];
+    fileReader.onloadend = () => {
+      this.setState({ image_file: file, image_preview_url: fileReader.result });
+    };
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+      let formData = new FormData();
+      formData.id = this.props.params.storyId;
+      formData.append("story[image]", this.state.image_file);
+      this.props.updateStoryImage(formData);
+    }
   }
 
   render() {
@@ -51,6 +82,9 @@ class StoryForm extends Component {
         </header>
 
         <form className="story-content" onSubmit={this.handleSubmit}>
+          <input type="file"
+              onChange={this.updateFile}/>
+            <img src={ this.state.image_preview_url }/>
           <input onChange={this.update("title")}
               type="text"
               placeholder="Title"
@@ -58,7 +92,7 @@ class StoryForm extends Component {
             <input onChange={this.update("sub_title")}
               type="text"
               placeholder="Subtitle"
-              value={sub_title } />
+              value={ sub_title } />
             <textarea onChange={this.update("content")}
                 placeholder="Tell your story..."
                 value={ content }/>
@@ -73,6 +107,8 @@ const mapStateToProps = (state, ownProps) => {
     title: "",
     sub_title: "",
     content: "",
+    image_file: null,
+    image_preview_url: null,
     author_id: state.session.currentUser.id
   };
 
@@ -81,11 +117,9 @@ const mapStateToProps = (state, ownProps) => {
     "new" : "edit";
 
   let status = "Draft";
-  if (ownProps.params.storyId) {
+
+  if (state.stories[ownProps.params.storyId]) {
     story = state.stories[ownProps.params.storyId];
-    if (story.published) {
-      status = story.published_at;
-    }
   }
 
   return { story, currentUser, formType, status };
@@ -96,7 +130,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     createStory : updateStory;
 
   return ({
-    processForm: (story) => (dispatch(processForm(story)))
+    processForm: (story) => (dispatch(processForm(story))),
+    updateStoryImage: (formData) => (dispatch(updateStoryImage(formData))),
+    fetchStory: (id) => (dispatch(fetchStory(id)))
   });
 };
 
