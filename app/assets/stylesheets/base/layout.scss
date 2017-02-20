@@ -38,12 +38,13 @@ body {
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
 }
 
-.button {
-  font-size: 14px;
-}
+// .button {
+//   font-size: 14px;
+// }
 
 .gray-button {
   color: rgba(0,0,0,.44);
+  font-size: 14px;
   transition: background-color, .1s border-color, .1s color .1s fill;
 }
 
@@ -53,6 +54,7 @@ body {
 
 .green-button {
   color: #00ab6b;
+  font-size: 14px;
   font-weight: lighter;
   transition: background-color, .1s border-color, .1s color .1s fill;
 }

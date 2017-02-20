@@ -15,13 +15,20 @@ class StoryIndexItem extends Component {
               <img src={ author.avatar_url } className="story-avatar" />
             </li>
             <li>
-              <div>{author.name}</div>
-              <div>{published_at}</div>
+              <Link to="/@author.username"
+                  className="green-button">
+                {author.name}
+              </Link>
+              <Link to={ `/stories/${id}` }
+                  className="gray-button">
+                {published_at}
+              </Link>
             </li>
           </ul>
         </div>
         <div className="story-index-content">
-          <Link to={ `/stories/${id}` }>
+          <Link to={ `/stories/${id}` }
+              className="gray-button">
             <ul className="content-detail">
               <li>{title}</li>
               <li>{sub_title}</li>
