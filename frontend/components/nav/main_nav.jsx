@@ -16,21 +16,32 @@ class MainNav extends Component {
     super(props);
 
     this.state = ({
-      modalOpen: false
+      authModalOpen: false,
+      deleteModalOpen: false
     });
 
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    this.openAuthModal = this.openAuthModal.bind(this);
+    this.closeAuthModal = this.closeAuthModal.bind(this);
+    this.openDeleteModal = this.openDeleteModal.bind(this);
+    this.closeDeleteModal = this.closeDeleteModal.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
     this.signOutUser = this.signOutUser.bind(this);
   }
 
-  openModal() {
-    this.setState({ modalOpen: true });
+  openAuthModal() {
+    this.setState({ authModalOpen: true });
   }
 
-  closeModal() {
-    this.setState({ modalOpen: false});
+  closeAuthModal() {
+    this.setState({ authModalOpen: false});
+  }
+
+  openDeleteModal() {
+    this.setState({ deleteModalOpen: true });
+  }
+
+  closeDeleteModal() {
+    this.setState({ deleteModalOpen: false});
   }
 
   handlePublish() {
@@ -59,6 +70,7 @@ class MainNav extends Component {
 
   deleteStory(id) {
     return () => {
+      this.closeDeleteModal();
       this.props.deleteStory(id).then(
         this.props.router.push("/")
       );
@@ -68,9 +80,8 @@ class MainNav extends Component {
   renderRightNav() {
     const { currentUser } = this.props;
     const pathname = this.props.location.pathname;
-    const storyId = this.props.params.storyId;
     const deleteButton = pathname.includes("/edit-story") ?
-      (<button onClick={this.deleteStory(storyId)}>Delete Story</button>) : <div></div>;
+      (<button onClick={this.openDeleteModal}>Delete Story</button>) : <div></div>;
 
     if (currentUser) {
       if (pathname === "/new-story" || pathname.includes("/edit-story")) {
@@ -83,6 +94,9 @@ class MainNav extends Component {
               </button>
             </li>
             <li>
+              { deleteButton }
+            </li>
+            <li>
               <button className="gray-button">
                 <img src={window.images.bell} className="icon bell" />
               </button>
@@ -90,9 +104,6 @@ class MainNav extends Component {
             <li className="nav-profile">
               <UserDropDown signOutUser={ this.signOutUser }
                   currentUser={ currentUser }/>
-            </li>
-            <li>
-              { deleteButton }
             </li>
           </ul>
         );
@@ -169,6 +180,7 @@ class MainNav extends Component {
   }
 
   render() {
+    const storyId = this.props.params.storyId;
     return (
       <section className="main-nav-container">
         <header className="main-bar">
@@ -188,13 +200,39 @@ class MainNav extends Component {
           { this.renderBottomBar() }
         </header>
 
-        <Modal
-          isOpen={this.state.modalOpen}
-          onRequestClose={this.closeModal}
+        <Modal className="login-modal"
+          isOpen={this.state.authModalOpen}
+          onRequestClose={this.closeAuthModal}
           contentLabel="Modal"
           style={customModalStyle}>
 
-          <AuthSets closeModal={this.closeModal}/>
+          <AuthSets closeModal={this.closeAuthModal}/>
+        </Modal>
+
+        <Modal className="delete-modal"
+          isOpen={this.state.deleteModalOpen}
+          onRequestClose={this.closeDeleteModal}
+          contentLabel="Modal"
+          style={customModalStyle}>
+
+          <div className="delete-modal">
+            <h3 className="delete-modal-title">
+              Delete
+            </h3>
+            <div className="delete-modal-content">
+              Deleted stories are gone forever. Are you sure?
+            </div>
+            <ul className="delete-modal-buttons">
+              <button className="delete-modal-button"
+                onClick={this.deleteStory(storyId)}>
+                Delete
+              </button>
+              <button className="delete-modal-button"
+                  onClick={this.closeDeleteModal}>
+                Cancel
+              </button>
+            </ul>
+          </div>
         </Modal>
       </section>
     );
