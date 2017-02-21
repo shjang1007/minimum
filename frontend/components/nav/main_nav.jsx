@@ -80,6 +80,7 @@ class MainNav extends Component {
   renderRightNav() {
     const { currentUser } = this.props;
     const pathname = this.props.location.pathname;
+    const storyId = this.props.params.storyId;
     const deleteButton = pathname.includes("/edit-story") ?
       (<button className="gray-button button"
           onClick={this.openDeleteModal}>
@@ -110,13 +111,20 @@ class MainNav extends Component {
           </ul>
         );
       } else {
+        const composeStoryButton =
+          Object.keys(currentUser.stories).includes(storyId) ?
+          (<Link to={`/${storyId}/edit-story`}
+              className="write-story-button green-button">
+            Edit
+          </Link>) :
+          (<Link to="/new-story"
+              className="write-story-button green-button">
+            Write a story
+          </Link>);
         return (
           <ul className="right-nav-menu">
             <li>
-              <Link to="/new-story"
-                  className="write-story-button green-button">
-                Write a story
-              </Link>
+              { composeStoryButton }
             </li>
             <li className="searchBar">
               <SearchBar />
