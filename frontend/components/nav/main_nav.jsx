@@ -89,7 +89,7 @@ class MainNav extends Component {
           <ul className="right-nav-menu">
             <li>
               <Link to="/new-story"
-                  className="write-story-button gray-button">
+                  className="write-story-button green-button">
                 Write a story
               </Link>
             </li>

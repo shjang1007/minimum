@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const UserDropDown = ({ currentUser, signOutUser }) => {
   const toggleDropDown = (e) => {
@@ -11,18 +12,28 @@ const UserDropDown = ({ currentUser, signOutUser }) => {
         <img src={ currentUser.avatar_url } className="avatar" />
       </button>
 
-      <ul className="drop-down">
+      <ul className="drop-down-container">
         <li>
-          New Story
+          <ul className="drop-down">
+            <li>
+              <Link to="/new-story">
+                New Story
+              </Link>
+            </li>
+            <li>
+              <Link to={`/@${currentUser.username}`}>
+                Profile
+              </Link>
+            </li>
+            <li className="separator"></li>
+            <li>
+              <a className="gray-button" onClick={signOutUser}>
+                Sign out
+              </a>
+            </li>
+          </ul>
         </li>
-        <li>
-          Profile
-        </li>
-        <li>
-          <a className="green-button" onClick={signOutUser}>
-            Sign out
-          </a>
-        </li>
+        <li className="popover-arrow"></li>
       </ul>
     </div>
   );
