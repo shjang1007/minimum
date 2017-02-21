@@ -19,7 +19,7 @@ class StoryShow extends Component {
               <div>
                 <Link to={`/@${author.username}`}>
                   <img src={ author.avatar_url }
-                    className="instory-avatar" />
+                    className="instory-avatar avatar" />
                 </Link>
               </div>
               <div>
@@ -54,7 +54,7 @@ class StoryShow extends Component {
                 <div>
                   <Link to={`/@${author.username}`}>
                     <img src={ author.avatar_url }
-                      className="instory-avatar" />
+                      className="instory-avatar avatar" />
                   </Link>
                 </div>
                 <div>

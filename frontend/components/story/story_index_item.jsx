@@ -12,7 +12,7 @@ class StoryIndexItem extends Component {
         <div className="story-index-profile">
           <ul className="author-info">
             <li>
-              <img src={ author.avatar_url } className="story-avatar" />
+              <img src={ author.avatar_url } className="story-avatar avatar" />
             </li>
             <li className="author-date-container">
               <Link to={ `/@${author.username}` }

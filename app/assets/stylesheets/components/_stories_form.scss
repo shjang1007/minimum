@@ -1,16 +1,69 @@
+.story-main {
+  min-height: 100vh;
+  max-width: 740px;
+  margin: 0 auto;
+}
+
 .story-header {
-  border: 1px solid red;
-  margin: 4px;
+  padding: 0 20px;
   display: flex;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  align-items: center;
+}
+
+.story-form-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.name-and-status {
+  padding-left: 15px;
+}
+
+.name-and-status > div {
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 2px;
+  color: rgba(0,0,0,.44);
 }
 
 .story-content {
-  border: 1px solid yellow;
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  padding: 0 20px 5px 20px;
 }
 
-.story-content * {
-  border: 1px solid blue;
-  margin: 4px;
+.form-title {
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  margin-left: -2.5px;
+  line-height: 1.04;
+  letter-spacing: -.028em;
+}
+
+.form-subtitle {
+  margin: 10px 0 0 0;
+  font-size: 27px;
+  margin-left: -1.69px;
+  line-height: 1.22;
+  letter-spacing: -.022em;
+  font-weight: 300;
+}
+
+.form-content {
+  margin: 10px 0 0 0;
+  font-family: serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -.003em
+}
+
+.image-upload > input {
+  display: none;
 }

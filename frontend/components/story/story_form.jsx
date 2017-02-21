@@ -21,7 +21,6 @@ class StoryForm extends Component {
         (story) => {
           this.setState(story);
           this.setState({image_preview_url: story.image_url});
-
         }
       );
     }
@@ -73,30 +72,41 @@ class StoryForm extends Component {
           <header className="story-header">
             <Link to={`/@${currentUser.username}`}>
               <img src={ currentUser.avatar_url }
-                className="instory-avatar" />
+                className="story-form-avatar avatar" />
             </Link>
-            <Link to={`/@${currentUser.username}`}>
-              {currentUser.name}
-            </Link>
-            <div>
-              { status }
+            <div className="name-and-status">
+              <Link to={`/@${currentUser.username}`}>
+                {currentUser.name}
+              </Link>
+              <div>
+                { status }
+              </div>
             </div>
           </header>
 
-          <form className="story-content" onSubmit={this.handleSubmit}>
-            <input type="file"
-              onChange={this.updateFile}/>
-            <img src={ this.state.image_preview_url }/>
+          <form className="story-content">
+            <div className="image-upload">
+              <label for="file-input">
+                <i className="fa fa-camera" aria-hidden="true"></i>
+              </label>
+              <input type="file"
+                id="file-input"
+                onChange={this.updateFile}/>
+            </div>
             <input onChange={this.update("title")}
               type="text"
+              className="form-title"
               placeholder="Title"
               value={ title } />
             <input onChange={this.update("sub_title")}
               type="text"
+              className="form-subtitle"
               placeholder="Subtitle"
               value={ sub_title } />
+            <img src={ this.state.image_preview_url }/>
             <textarea onChange={this.update("content")}
               placeholder="Tell your story..."
+              className="form-content"
               value={ content }/>
           </form>
         </main>);
