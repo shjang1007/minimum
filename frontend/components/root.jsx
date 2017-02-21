@@ -7,6 +7,7 @@ import Home from "./home/home";
 import StoryIndex from "./story/story_index";
 import StoryForm from "./story/story_form";
 import StoryShow from "./story/story_show";
+import UserShow from "./user/user_show";
 
 const Root = ({ store }) => {
 
@@ -35,6 +36,7 @@ const Root = ({ store }) => {
           <Route path="/:storyId/edit-story"
               component={ StoryForm }/>
           <Route path="/stories/:storyId" component={ StoryShow } />
+          <Route path="/@:username" component={ UserShow } />
         </Route>
       </Router>
     </Provider>
