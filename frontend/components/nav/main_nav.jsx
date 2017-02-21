@@ -154,7 +154,7 @@ class MainNav extends Component {
           </li>
           <li>
             <a className = "middle-button green-button"
-                onClick={this.openModal}>
+                onClick={this.openAuthModal}>
               Sign In/Sign Up
             </a>
           </li>
