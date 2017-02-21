@@ -5,7 +5,7 @@ class UserShow extends Component {
   render() {
     return (
       <main>
-        <div>Why is this not working?</div>
+        Welcome to the user show page!
       </main>
     );
   }
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  
+
 };
 
 export default connect(

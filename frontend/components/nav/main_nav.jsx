@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { signOut } from "../../actions/session_actions";
-import { updateStory } from "../../actions/story_actions";
+import { updateStory, deleteStory } from "../../actions/story_actions";
 import Modal from "react-modal";
 import customModalStyle from "./modal_style";
 import UserDropDown from "./user_drop_down";
@@ -57,9 +57,20 @@ class MainNav extends Component {
     );
   }
 
+  deleteStory(id) {
+    return () => {
+      this.props.deleteStory(id).then(
+        this.props.router.push("/")
+      );
+    };
+  }
+
   renderRightNav() {
     const { currentUser } = this.props;
     const pathname = this.props.location.pathname;
+    const storyId = this.props.params.storyId;
+    const deleteButton = pathname.includes("/edit-story") ?
+      (<button onClick={this.deleteStory(storyId)}>Delete Story</button>) : <div></div>;
 
     if (currentUser) {
       if (pathname === "/new-story" || pathname.includes("/edit-story")) {
@@ -81,6 +92,7 @@ class MainNav extends Component {
                   currentUser={ currentUser }/>
             </li>
             <li>
+              { deleteButton }
             </li>
           </ul>
         );
@@ -128,6 +140,7 @@ class MainNav extends Component {
           <li>
             <SearchBar />
           </li>
+
         </ul>);
     }
   }
@@ -197,7 +210,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     signOut: () => (dispatch(signOut())),
-    publishStory: (story) => (dispatch(updateStory(story)))
+    publishStory: (story) => (dispatch(updateStory(story))),
+    deleteStory: (id) => (dispatch(deleteStory(id)))
   });
 };
 

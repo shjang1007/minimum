@@ -44,7 +44,7 @@ export const updateStoryImage = (formData) => (dispatch) => {
 };
 
 export const deleteStory = (id) => (dispatch) => {
-  return storyApiUtil.deleteStory(story).then(
+  return storyApiUtil.deleteStory(id).then(
     (story) => (dispatch(removeStory(story)))
   );
 };

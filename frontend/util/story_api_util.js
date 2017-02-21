@@ -31,7 +31,7 @@ export const updateStory = (story) => {
 export const updateStoryImage = (formData) => {
   return $.ajax({
     method: "PATCH",
-    url: `api/stories/${formData["id"]}`,
+    url: `api/stories/${formData.id}`,
     contentType: false,
     processData: false,
     data: formData,
