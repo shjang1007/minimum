@@ -1,6 +1,5 @@
-.story-show-container {
+.story-content-container {
   margin: 0 auto;
-  border: 1px solid red;
   max-width: 740px;
   padding-right: 20px;
   padding-left: 20px;
@@ -69,7 +68,7 @@
 }
 
 .story-show-footer {
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
   border-top: 1px solid rgba(0,0,0,.05);
   display: flex;
   font-size: 15px;
@@ -87,4 +86,18 @@
   font-size: 14px;
   color: rgba(0,0,0,.6);
   margin-bottom: 4px;
+}
+
+.response-container {
+  background: #fafafa;
+  border: 1px solid red;
+  padding: 20px;
+}
+
+.response-contents {
+  border: 1px solid green;
+  margin: 0 auto;
+  max-width: 740px;
+  padding-right: 20px;
+  padding-left: 20px;
 }

@@ -14,42 +14,8 @@ class StoryShow extends Component {
       const author = story.author;
       return (
         <main className="story-show-container">
-          <header className="story-show-header">
-            <div>
-              <Link to={`/@${author.username}`}>
-                <img src={ author.avatar_url }
-                  className="instory-avatar" />
-              </Link>
-            </div>
-            <div>
-              <ul className="story-detail-info">
-                <li>
-                  <Link to={`/@${author.username}`}>
-                    {author.name}
-                  </Link>
-                </li>
-                <li className="description">
-                  description of {author.name}
-                </li>
-                <li className="description">
-                  {story.published_at}
-                </li>
-              </ul>
-            </div>
-          </header>
-          <section className="story-show-details">
-            <h1 className="story-show-title">
-              { story.title }
-            </h1>
-            <h3 className="story-show-subtitle">
-              { story.sub_title }
-            </h3>
-            <img src={story.image_url} className="story-show-image" />
-            <p className="story-show-content">
-              { story.content }
-            </p>
-          </section>
-          <footer className="story-show-footer">
+          <section className="story-content-container">
+            <header className="story-show-header">
               <div>
                 <Link to={`/@${author.username}`}>
                   <img src={ author.avatar_url }
@@ -58,17 +24,58 @@ class StoryShow extends Component {
               </div>
               <div>
                 <ul className="story-detail-info">
-                  <li className="footer-author">
+                  <li>
                     <Link to={`/@${author.username}`}>
                       {author.name}
                     </Link>
                   </li>
-                  <li className="description footer-description">
+                  <li className="description">
                     description of {author.name}
+                  </li>
+                  <li className="description">
+                    {story.published_at}
                   </li>
                 </ul>
               </div>
-          </footer>
+            </header>
+            <section className="story-show-details">
+              <h1 className="story-show-title">
+                { story.title }
+              </h1>
+              <h3 className="story-show-subtitle">
+                { story.sub_title }
+              </h3>
+              <img src={story.image_url} className="story-show-image" />
+              <p className="story-show-content">
+                { story.content }
+              </p>
+            </section>
+            <footer className="story-show-footer">
+                <div>
+                  <Link to={`/@${author.username}`}>
+                    <img src={ author.avatar_url }
+                      className="instory-avatar" />
+                  </Link>
+                </div>
+                <div>
+                  <ul className="story-detail-info">
+                    <li className="footer-author">
+                      <Link to={`/@${author.username}`}>
+                        {author.name}
+                      </Link>
+                    </li>
+                    <li className="description footer-description">
+                      description of {author.name}
+                    </li>
+                  </ul>
+                </div>
+            </footer>
+          </section>
+          <section className="response-container">
+            <div className="response-contents">
+              Comments will go here!
+            </div>
+          </section>
         </main>
       );
     } else {
