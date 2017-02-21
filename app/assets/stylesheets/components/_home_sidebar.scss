@@ -1,0 +1,32 @@
+.sidebar-content {
+  width: 322px;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.welcome {
+  font-size: 14px;
+  border-bottom: 1px solid rgba(0,0,0,.0785);
+  margin: 0 0 15px 20px;
+}
+
+.sidebar-items > li {
+  margin-bottom: 48px;
+}
+
+.sidebar-header {
+  margin: 0 30px 0 20px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,.0785);
+  font-size: 14px;
+}
+
+.sidebar-header:last-child {
+  color: rgba(0,0,0,.44);
+  padding-top: 2px;
+}
+
+.item-preview > li {
+  margin: 20px;
+  font-size: 12px;
+}

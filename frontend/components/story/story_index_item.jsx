@@ -14,8 +14,8 @@ class StoryIndexItem extends Component {
             <li>
               <img src={ author.avatar_url } className="story-avatar" />
             </li>
-            <li>
-              <Link to={ `/@q${author.username}` }
+            <li className="author-date-container">
+              <Link to={ `/@${author.username}` }
                   className="green-button">
                 {author.name}
               </Link>
@@ -30,10 +30,18 @@ class StoryIndexItem extends Component {
           <Link to={ `/stories/${id}` }
               className="gray-button">
             <ul className="content-detail">
-              <li>{title}</li>
-              <li>{sub_title}</li>
               <li>
                 <img src={ image_url } className="story-index-image"/>
+              </li>
+              <li>
+                <h3 className="story-index-title">
+                  {title}
+                </h3>
+              </li>
+              <li>
+                <h4 className="story-index-subtitle">
+                  {sub_title}
+                </h4>
               </li>
             </ul>
           </Link>

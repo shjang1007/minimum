@@ -11,14 +11,63 @@ const Home = (props)=> {
             <StoryIndex />
           </div>
 
-          <div className="sidebar">
-            <ul>
-              <li>Top Stories</li>
-              <li>My Stories</li>
-              <li>Super Stories</li>
-              <li>Babyshark Stories</li>
-            </ul>
-          </div>
+          <section className="sidebar">
+            <div className="sidbar-content">
+              <div className="welcome">
+                Welcome to medium
+              </div>
+              <ul className="sidebar-items">
+                <li>
+                  <section className="sidebar-header">
+                    <div>Top Stories</div>
+                  </section>
+                  <div>
+                    <ul className="item-preview">
+                      <li>Item 1</li>
+                      <li>Item 2</li>
+                      <li>Item 3</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <section className="sidebar-header">
+                    <div>My stories</div>
+                  </section>
+                  <div>
+                    <ul className="item-preview">
+                      <li>Item 1</li>
+                      <li>Item 2</li>
+                      <li>Item 3</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <section className="sidebar-header">
+                    <div>Super Stories</div>
+                  </section>
+                  <div>
+                    <ul className="item-preview">
+                      <li>Item 1</li>
+                      <li>Item 2</li>
+                      <li>Item 3</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <section className="sidebar-header">
+                    <div>Babyshark Stories</div>
+                  </section>
+                  <div>
+                    <ul className="item-preview">
+                      <li>Item 1</li>
+                      <li>Item 2</li>
+                      <li>Item 3</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
         </section>
       </section>
     </main>

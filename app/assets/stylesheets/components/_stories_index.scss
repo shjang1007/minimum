@@ -13,37 +13,72 @@
 
 .story-index-profile {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .author-info {
   display: flex;
-  flex-direction: row;
-  border: 1px solid blue;
-  margin: 4px;
 }
 
 .author-info > li {
-  border: 1px solid red;
-  margin: 4px;
+}
+
+.author-date-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
 }
 
 .story-index-content {
-  border: 1px solid purple;
-  margin: 4px;
+  padding-bottom: 5px;
+  // Do I need this?
+  word-break: break-word;
+  word-wrap: break-word;
 }
 
 .content-detail {
-  border: 1px solid pink;
-  margin: 4px;
+
 }
 
 .content-detail > li {
-  border: 1px solid red;
-  margin: 4px;
+}
+
+.story-index-title {
+  margin: 31px 0 0 0;
+  font-size: 29px;
+  margin-left: -1.81px;
+  line-height: 1.04;
+  letter-spacing: -.028em;
+  color: rgba(0,0,0,.8);
+}
+
+.story-index-subtitle {
+  margin-top: 5px;
+  margin-bottom: 7px;
+  font-size: 23px;
+  margin-left: -1.44px;
+  line-height: 1.22;
+  letter-spacing: -.022em;
+  color: rgba(0,0,0,.44);
+  font-weight: 400;
+}
+
+.story-index-image {
+  // Transition and opacity?
+
+}
+
+.story-index-readmore {
+  font-size: 12px;
+  border-radius: 0;
+  color: rgba(0,0,0,.44);
+  vertical-align: baseline;
+  text-align: left;
 }
 
 .story-avatar {
   width: 36px;
   height: 36px;
+  border-radius: 100%;
+  border: 0;
 }
