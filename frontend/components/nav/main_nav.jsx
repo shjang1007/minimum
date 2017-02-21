@@ -22,6 +22,7 @@ class MainNav extends Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
+    this.signOutUser = this.signOutUser.bind(this);
   }
 
   openModal() {
@@ -50,17 +51,23 @@ class MainNav extends Component {
     );
   }
 
+  signOutUser() {
+    this.props.signOut().then(
+      this.props.router.push("/")
+    );
+  }
+
   renderRightNav() {
-    const { currentUser, signOutUser } = this.props;
+    const { currentUser } = this.props;
     const pathname = this.props.location.pathname;
 
     if (currentUser) {
       if (pathname === "/new-story" || pathname.includes("/edit-story")) {
         return (
-          <ul>
+          <ul className="right-nav-menu">
             <li>
               <button onClick={this.handlePublish}
-                  className="write-story-button gray-button">
+                  className="write-story-button green-button">
                 Publish
               </button>
             </li>
@@ -70,7 +77,7 @@ class MainNav extends Component {
               </button>
             </li>
             <li className="nav-profile">
-              <UserDropDown signOutUser={ signOutUser }
+              <UserDropDown signOutUser={ this.signOutUser }
                   currentUser={ currentUser }/>
             </li>
             <li>
@@ -79,7 +86,7 @@ class MainNav extends Component {
         );
       } else {
         return (
-          <ul>
+          <ul className="right-nav-menu">
             <li>
               <Link to="/new-story"
                   className="write-story-button gray-button">
@@ -95,7 +102,7 @@ class MainNav extends Component {
               </button>
             </li>
             <li className="nav-profile">
-              <UserDropDown signOutUser={ signOutUser }
+              <UserDropDown signOutUser={ this.signOutUser }
                   currentUser={ currentUser }/>
             </li>
             <li>
@@ -105,7 +112,7 @@ class MainNav extends Component {
       }
     } else {
       return (
-        <ul>
+        <ul className="right-nav-menu">
           <li>
             <a onClick={this.openModal}
                 className="write-story-button gray-button">
@@ -144,7 +151,7 @@ class MainNav extends Component {
             <li><button className="gray-button category">Bookmarks</button></li>
           </ul>
         </div>
-      )
+      );
     }
   }
 
@@ -189,7 +196,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    signOutUser: () => (dispatch(signOut())),
+    signOut: () => (dispatch(signOut())),
     publishStory: (story) => (dispatch(updateStory(story)))
   });
 };

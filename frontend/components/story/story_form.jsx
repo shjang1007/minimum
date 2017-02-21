@@ -86,7 +86,7 @@ class StoryForm extends Component {
 
           <form className="story-content">
             <div className="image-upload">
-              <label for="file-input">
+              <label htmlFor="file-input">
                 <i className="fa fa-camera" aria-hidden="true"></i>
               </label>
               <input type="file"

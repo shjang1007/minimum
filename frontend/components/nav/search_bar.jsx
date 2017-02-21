@@ -12,7 +12,8 @@ const SearchBar = (props) => {
         <img src={window.images.magnifier} className="icon" />
       </button>
 
-      <input placeholder="Search Minimum" />
+      <input className="search-bar" 
+          placeholder="Search Minimum" />
     </div>
   );
 };
