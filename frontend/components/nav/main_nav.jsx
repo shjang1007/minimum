@@ -81,7 +81,9 @@ class MainNav extends Component {
     const { currentUser } = this.props;
     const pathname = this.props.location.pathname;
     const deleteButton = pathname.includes("/edit-story") ?
-      (<button onClick={this.openDeleteModal}>Delete Story</button>) : <div></div>;
+      (<button className="gray-button button"
+          onClick={this.openDeleteModal}>
+        Delete Story</button>) : <div></div>;
 
     if (currentUser) {
       if (pathname === "/new-story" || pathname.includes("/edit-story")) {
