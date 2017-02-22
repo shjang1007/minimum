@@ -4,7 +4,9 @@ export const selectAllStories = ({ stories }) => values(stories);
 
 export const selectPublishedStories = ({ stories }) => {
   const storiesArray = values(stories);
-  return storiesArray.filter( (story) => story.published);
+  return storiesArray.filter( (story) => (
+    story.published && !story.parent_id
+  ));
 };
 
 export const selectPublishedComments = ({ comments }) => {
@@ -16,5 +18,3 @@ export const selectDraftStories = ({ stories }) => {
   const storiesArray = values(stories);
   return storiesArray.filter( (story) => !story.published);
 };
-
-// return foundStory || {};

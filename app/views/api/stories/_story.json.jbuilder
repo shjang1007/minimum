@@ -1,4 +1,5 @@
-json.extract! story, :id, :title, :sub_title, :content, :published, :published_at
+json.extract! story, :id, :title, :sub_title, :content, :published,
+  :published_at, :parent_id
 
 json.author do
   json.partial! "api/users/user", user: story.author

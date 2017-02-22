@@ -7,9 +7,7 @@ import CommentIndexItem from "./comment_index_item";
 // Comments are just another stories. Should I make another comment action reducers ... just for the sake of clarity?
 
 const CommentIndex = ({ comments }) => {
-  // componentDidMount() {
-  //   this.props.fetchComments();
-  // }
+
   if (comments) {
     const commentList = values(comments).map( (comment) => (
       <CommentIndexItem key={comment.id} comment={ comment } />
@@ -25,17 +23,12 @@ const CommentIndex = ({ comments }) => {
   }
 }
 
-export default CommentIndex;
+const mapStateToProps = (state, ownProps) => {
+  return { comments: selectPublishedComments(ownProps) };
+};
 
-// const mapStateToProps = (state) => {
-//   return { comments: selectPublishedComments(state) };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return ({ fetchComments: () => dispatch(fetchComments()) });
-// };
-//
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(CommentIndex);
+
+export default connect(
+  mapStateToProps,
+  null
+)(CommentIndex);
