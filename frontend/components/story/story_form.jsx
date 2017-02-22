@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { createStory, updateStory, fetchStory, updateStoryImage }
   from "../../actions/story_actions";
-import * as StoryApiUtil from "../../util/story_api_util";
 
 class StoryForm extends Component {
   constructor(props) {
@@ -37,8 +36,8 @@ class StoryForm extends Component {
     return (e) => {
       return this.setState({[field]: e.target.value}, () => {
         if (formType === "new") {
-          processForm(this.state).then( (newStory) => {
-            router.push(`/${newStory.id}/edit-story`);
+          processForm(this.state).then( (action) => {
+            router.push(`/${action.story.id}/edit-story`);
           });
         } else {
           processForm(this.state);

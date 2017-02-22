@@ -7,8 +7,7 @@ export const REMOVE_STORY = "REMOVE_STORY";
 export const fetchStories = () => (dispatch) => {
   return storyApiUtil.fetchStories().then(
     (stories) => {
-      dispatch(receiveStories(stories));
-      return stories;
+      return dispatch(receiveStories(stories));
     }
   );
 };
@@ -16,8 +15,7 @@ export const fetchStories = () => (dispatch) => {
 export const fetchStory = (id) => (dispatch) => {
   return storyApiUtil.fetchStory(id).then(
     (story) => {
-      dispatch(receiveStory(story));
-      return story;
+      return dispatch(receiveStory(story));
     }
   );
 };
@@ -25,8 +23,7 @@ export const fetchStory = (id) => (dispatch) => {
 export const createStory = (story) => (dispatch) => {
   return storyApiUtil.createStory(story).then(
     (story) => {
-      dispatch(receiveStory(story));
-      return story;
+      return dispatch(receiveStory(story));
     }
   );
 };

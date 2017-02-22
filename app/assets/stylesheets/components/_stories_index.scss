@@ -2,7 +2,7 @@
 
 }
 
-.story-index-item {
+.index-item {
   background-color: #fff;
   border-radius: 3px;
   margin-bottom: 10px;
@@ -11,16 +11,16 @@
   border: 1px solid rgba(0,0,0,.09);
 }
 
-.story-index-profile {
+.index-item-profile {
   display: flex;
   margin-bottom: 10px;
 }
 
-.author-info {
+.index-item-author-info {
   display: flex;
 }
 
-.author-info > li {
+.index-item-author-info > li {
 }
 
 .author-date-container {
@@ -29,7 +29,7 @@
   padding-left: 10px;
 }
 
-.story-index-content {
+.index-item-content {
   padding-bottom: 5px;
   // Do I need this?
   word-break: break-word;
@@ -43,7 +43,7 @@
 .content-detail > li {
 }
 
-.story-index-title {
+.index-item-title {
   margin: 31px 0 0 0;
   font-size: 29px;
   margin-left: -1.81px;
@@ -52,7 +52,7 @@
   color: rgba(0,0,0,.8);
 }
 
-.story-index-subtitle {
+.index-item-subtitle {
   margin-top: 5px;
   margin-bottom: 7px;
   font-size: 23px;
@@ -63,7 +63,7 @@
   font-weight: 400;
 }
 
-.story-index-image {
+.index-item-image {
   // Transition and opacity?
 
 }

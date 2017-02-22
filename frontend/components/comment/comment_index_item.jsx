@@ -7,9 +7,9 @@ const CommentIndexItem = ({ comment }) => {
           image_url } = comment
 
   return(
-    <li className="story-index-item">
-      <div className="story-index-profile">
-        <ul className="author-info">
+    <li className="index-item">
+      <div className="index-item-profile">
+        <ul className="index-item-author-info">
           <li>
             <img src={ author.avatar_url } className="story-avatar avatar" />
           </li>
@@ -25,20 +25,20 @@ const CommentIndexItem = ({ comment }) => {
           </li>
         </ul>
       </div>
-      <div className="story-index-content">
+      <div className="index-item-content">
         <Link to={ `/stories/${id}` }
             className="gray-button">
           <ul className="content-detail">
             <li>
-              <img src={ image_url } className="story-index-image"/>
+              <img src={ image_url } className="index-item-image"/>
             </li>
             <li>
-              <h3 className="story-index-title">
+              <h3 className="index-item-title">
                 {title}
               </h3>
             </li>
             <li>
-              <h4 className="story-index-subtitle">
+              <h4 className="index-item-subtitle">
                 {sub_title}
               </h4>
             </li>

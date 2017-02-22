@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { fetchStory } from "../../actions/story_actions";
 import CommentIndex from "../comment/comment_index";
+import CommentForm from "../comment/comment_form";
 
 class StoryShow extends Component {
   componentDidMount() {
@@ -19,8 +20,7 @@ class StoryShow extends Component {
   }
 
   render() {
-    const { story } = this.props;
-
+    const { story, currentUser } = this.props;
 
     if (story) {
       const author = story.author;
@@ -85,6 +85,7 @@ class StoryShow extends Component {
           </section>
           <section className="response-container">
             <div className="response-contents">
+              <CommentForm currentUser={ currentUser }/>
               <CommentIndex comments={ story.comments }/>
             </div>
           </section>
@@ -98,7 +99,8 @@ class StoryShow extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    story: state.stories[ownProps.params.storyId]
+    story: state.stories[ownProps.params.storyId],
+    currentUser: state.session.currentUser
   });
 };
 
