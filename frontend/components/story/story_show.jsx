@@ -10,7 +10,8 @@ class StoryShow extends Component {
   }
 
   renderImage() {
-    if (this.props.story) {
+    const { story } = this.props;
+    if (story.image_url) {
       return (<img src={story.image_url} className="story-show-image" />);
     } else {
       return (<div className="no-picture-tag"></div>);

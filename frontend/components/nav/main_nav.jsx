@@ -26,6 +26,8 @@ class MainNav extends Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
     this.signOutUser = this.signOutUser.bind(this);
+
+    // this.renderRightNav = this.renderRightNav.bind(this);
   }
 
   openAuthModal() {
@@ -78,6 +80,8 @@ class MainNav extends Component {
   }
 
   renderComposeButton() {
+    const storyId = this.props.params.storyId;
+
     if (currentUser.stories && Object.keys(currentUser.stories).includes(storyId)) {
       return (<Link to={`/${storyId}/edit-story`}
           className="write-story-button green-button">
@@ -94,7 +98,6 @@ class MainNav extends Component {
   renderRightNav() {
     const { currentUser } = this.props;
     const pathname = this.props.location.pathname;
-    const storyId = this.props.params.storyId;
     const deleteButton = pathname.includes("/edit-story") ?
       (<button className="gray-button button"
           onClick={this.openDeleteModal}>
@@ -128,7 +131,7 @@ class MainNav extends Component {
         return (
           <ul className="right-nav-menu">
             <li>
-              { this.renderComposeButton }
+              { this.renderComposeButton() }
             </li>
             <li className="searchBar">
               <SearchBar />
