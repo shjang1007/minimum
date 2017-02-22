@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { merge, values } from "lodash";
 import { fetchStories } from "../../actions/story_actions";
-import { selectAllStories, selectPublishedStories } from "../../reducers/selectors";
+import { selectPublishedStories } from "../../reducers/selectors";
 import StoryIndexItem from "./story_index_item";
 
 class StoryIndex extends Component {

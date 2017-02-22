@@ -75,4 +75,35 @@ ActiveRecord::Base.transaction do
     author_id: user3.id,
     image: File.open(File.join(Rails.root, "app/assets/images/pooh-and-friends.png"))
   )
+
+  story7 = Story.create(
+    title: Faker::Food.ingredient,
+    sub_title: Faker::Color.color_name,
+    content: "In the beginning God created the heavens and the earth. 2 Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.",
+    published: true,
+    published_at: Date.today.strftime("%b %-d"),
+    author_id: user3.id,
+    parent_id: story1.id
+  )
+
+  story8 = Story.create(
+    title: Faker::Food.ingredient,
+    sub_title: Faker::Color.color_name,
+    content: "In the beginning God created the heavens and the earth. 2 Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.",
+    published: true,
+    published_at: Date.today.strftime("%b %-d"),
+    author_id: user3.id,
+    parent_id: story1.id
+
+  )
+
+  story9 = Story.create(
+    title: Faker::Food.ingredient,
+    sub_title: Faker::Color.color_name,
+    content: "In the beginning God created the heavens and the earth. 2 Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.",
+    published: true,
+    published_at: Date.today.strftime("%b %-d"),
+    author_id: user3.id,
+    parent_id: story1.id
+  )
 end

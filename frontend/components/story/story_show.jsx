@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { fetchStory } from "../../actions/story_actions";
+import CommentIndex from "../comment/comment_index";
 
 class StoryShow extends Component {
   componentDidMount() {
@@ -10,6 +11,7 @@ class StoryShow extends Component {
 
   render() {
     const { story } = this.props;
+
     if (story) {
       const author = story.author;
       return (
@@ -73,7 +75,7 @@ class StoryShow extends Component {
           </section>
           <section className="response-container">
             <div className="response-contents">
-              Comments will go here!
+              <CommentIndex comments={ story.comments }/>
             </div>
           </section>
         </main>
