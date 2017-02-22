@@ -147,7 +147,7 @@ class MainNav extends Component {
       return (
         <ul className="right-nav-menu">
           <li>
-            <a onClick={this.openModal}
+            <a onClick={this.openAuthModal}
                 className="write-story-button gray-button">
               Write a story
             </a>
