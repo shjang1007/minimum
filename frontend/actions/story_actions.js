@@ -3,6 +3,7 @@ import * as storyApiUtil from "../util/story_api_util";
 export const RECEIVE_STORIES = "RECEIVE_STORIES";
 export const RECEIVE_STORY = "RECEIVE_STORY";
 export const REMOVE_STORY = "REMOVE_STORY";
+export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 
 export const fetchStories = () => (dispatch) => {
   return storyApiUtil.fetchStories().then(
@@ -33,6 +34,11 @@ export const updateStory = (story) => (dispatch) => {
     (story) => (dispatch(receiveStory(story)))
   );
 };
+export const updateComment = (story) => (dispatch) => {
+  return storyApiUtil.updateStory(story).then(
+    (story) => (dispatch(receiveComment(story)))
+  );
+};
 
 export const updateStoryImage = (formData) => (dispatch) => {
   return storyApiUtil.updateStoryImage(formData).then(
@@ -57,6 +63,13 @@ export const receiveStory = (story) => {
   return ({
     type: RECEIVE_STORY,
     story
+  });
+};
+
+export const receiveComment = (comment) => {
+  return ({
+    type: RECEIVE_COMMENT,
+    comment
   });
 };
 

@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    store = configureStore(preloadedState);
+    window.store = configureStore(preloadedState);
   } else {
-    store = configureStore();
+    window.store = configureStore();
   }
 
   Modal.setAppElement(document.body);
-  ReactDOM.render(<Root store={ store } />, root);
+  ReactDOM.render(<Root store={ window.store } />, root);
 });
