@@ -77,6 +77,20 @@ class MainNav extends Component {
     };
   }
 
+  renderComposeButton() {
+    if (currentUser.stories && Object.keys(currentUser.stories).includes(storyId)) {
+      return (<Link to={`/${storyId}/edit-story`}
+          className="write-story-button green-button">
+        Edit
+      </Link>);
+    } else {
+      return (<Link to="/new-story"
+          className="write-story-button green-button">
+        Write a story
+      </Link>);
+    }
+  }
+
   renderRightNav() {
     const { currentUser } = this.props;
     const pathname = this.props.location.pathname;
@@ -111,20 +125,10 @@ class MainNav extends Component {
           </ul>
         );
       } else {
-        const composeStoryButton =
-          Object.keys(currentUser.stories).includes(storyId) ?
-          (<Link to={`/${storyId}/edit-story`}
-              className="write-story-button green-button">
-            Edit
-          </Link>) :
-          (<Link to="/new-story"
-              className="write-story-button green-button">
-            Write a story
-          </Link>);
         return (
           <ul className="right-nav-menu">
             <li>
-              { composeStoryButton }
+              { this.renderComposeButton }
             </li>
             <li className="searchBar">
               <SearchBar />
