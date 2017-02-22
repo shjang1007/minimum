@@ -33,14 +33,19 @@ const CommentIndexItem = ({ comment }) => {
               <img src={ image_url } className="index-item-image"/>
             </li>
             <li>
-              <h3 className="index-item-title">
-                {title}
+              <h3 className="index-item-title comment-contents">
+                { title }
               </h3>
             </li>
             <li>
-              <h4 className="index-item-subtitle">
-                {sub_title}
+              <h4 className="index-item-subtitle comment-contents">
+                { sub_title }
               </h4>
+            </li>
+            <li>
+              <p className="index-item-content comment-contents">
+                { content }
+              </p>
             </li>
           </ul>
         </Link>

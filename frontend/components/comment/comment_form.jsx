@@ -11,40 +11,62 @@ class CommentForm extends Component {
     this.state = ({
       content: "",
       parent_id: props.params.storyId,
-      author_id: props.currentUser.id
+      author_id: props.currentUser.id,
+      update: false,
+
     });
 
-    this.update = this.update.bind(this);
-  }
-
-  // I can comeback to this, if I want to refresh and still manage to have my state
-  // componentDidMount() {
-  //   if (this.props.params.storyId) {
-  //     this.props.fetchStory(this.props.params.storyId).then(
-  //       (story) => {
-  //         this.setState(story);
-  //         this.setState({image_preview_url: story.image_url});
-  //       }
-  //     );
-  //   }
-  // }
-
-  componentWillReceiveProps(newProps) {
-    this.setState(newProps.story);
+    this.handlePublish = this.handlePublish.bind(this);
   }
 
   update(field) {
-    const { content } = this.state;
+    const { content, parent_id, author_id, update } = this.state;
+    const { updateStory, createStory } = this.props;
 
-    let processForm = this.props.updateStory;
-    if (content.length === 0) processForm = this.props.createStory;
     return (e) => {
       this.setState({[field]: e.target.value}, () => {
-        processForm(this.state).then(action => {
-          this.setState({id: action.story.id});
-        });
+        if (!update) {
+          this.setState({ update: true});
+          const comment = ({ content, parent_id, author_id });
+          createStory(comment).then(action => {
+            this.setState({id: action.story.id});
+          });
+        } else {
+          const comment = ({ content, parent_id, author_id,
+            id: this.state.id
+          });
+          updateStory(comment);
+        }
       });
     };
+  }
+
+  handlePublish() {
+    const monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+      "Oct", "Nov", "Dec"
+    ];
+    const date = new Date();
+
+    const story = {
+      id: this.state.id,
+      published: true,
+      published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
+    };
+
+    this.props.updateStory(story).then(
+      this.setState({
+        id: null,
+        content: "",
+        parent_id: this.props.params.storyId,
+        author_id: this.props.currentUser.id,
+        update: false
+      })
+    );
+  }
+
+  handleFullScreen(e) {
+
   }
 
   render() {
@@ -59,7 +81,8 @@ class CommentForm extends Component {
                 className="story-avatar avatar" />
             </Link>
             <div className="author-date-container">
-              <Link to={`/@${currentUser.username}`}>
+              <Link to={`/@${currentUser.username}`}
+                  className="green-button">
                 {currentUser.name}
               </Link>
             </div>
@@ -71,7 +94,7 @@ class CommentForm extends Component {
             className="form-content"
             value={ content }/>
 
-          <button>Publish</button>
+          <button onClick={ this.handlePublish }>Publish</button>
           <button>Go Full Screen</button>
         </form>
       </main>
@@ -79,39 +102,11 @@ class CommentForm extends Component {
   }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//   let story = {
-//     title: "",
-//     sub_title: "",
-//     content: "",
-//     image_file: null,
-//     image_preview_url: null,
-//     parent_id: ownProps.params.storyId,
-//     author_id: state.session.currentUser.id
-//   };
-//
-//   const currentUser = state.session.currentUser;
-//   const formType = ownProps.location.pathname === "/new-story" ?
-//     "new" : "edit";
-//
-//   let status = "Draft";
-//
-//   if (state.stories[ownProps.params.storyId]) {
-//     story = state.stories[ownProps.params.storyId];
-//     if (story.published) {
-//       status = story.published_at;
-//     }
-//   }
-//
-//   return { story, currentUser };
-// };
-
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
     createStory: (story) => (dispatch(createStory(story))),
     updateStory: (story) => (dispatch(updateStory(story)))
   });
-  // fetchStory: (id) => (dispatch(fetchStory(id)))
 };
 
 export default withRouter(connect(

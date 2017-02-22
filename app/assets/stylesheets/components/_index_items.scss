@@ -63,6 +63,16 @@
   font-weight: 400;
 }
 
+.index-item-content {
+  font-family: serif;
+  margin-top: 5px;
+  font-size: 18px;
+  line-height: 1.58;
+  letter-spacing: -.004em;
+  color: rgba(0,0,0,.8);
+  font-weight: 400;
+}
+
 .index-item-image {
   // Transition and opacity?
 
@@ -81,4 +91,8 @@
   height: 36px;
   border-radius: 100%;
   border: 0;
+}
+
+.comment-contents {
+  margin-top: 5px;
 }

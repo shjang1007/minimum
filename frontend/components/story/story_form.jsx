@@ -9,9 +9,6 @@ class StoryForm extends Component {
     super(props);
 
     this.state = this.props.story;
-
-    this.update = this.update.bind(this);
-    this.updateFile = this.updateFile.bind(this);
   }
 
   componentDidMount() {
