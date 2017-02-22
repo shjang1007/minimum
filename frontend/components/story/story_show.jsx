@@ -9,8 +9,17 @@ class StoryShow extends Component {
     this.props.fetchStory(this.props.params.storyId);
   }
 
+  renderImage() {
+    if (this.props.story) {
+      return (<img src={story.image_url} className="story-show-image" />);
+    } else {
+      return (<div className="no-picture-tag"></div>);
+    }
+  }
+
   render() {
     const { story } = this.props;
+
 
     if (story) {
       const author = story.author;
@@ -47,7 +56,7 @@ class StoryShow extends Component {
               <h3 className="story-show-subtitle">
                 { story.sub_title }
               </h3>
-              <img src={story.image_url} className="story-show-image" />
+              { this.renderImage() }
               <p className="story-show-content">
                 { story.content }
               </p>

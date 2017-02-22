@@ -106,4 +106,13 @@ ActiveRecord::Base.transaction do
     author_id: user3.id,
     parent_id: story1.id
   )
+
+  story9 = Story.create(
+    title: Faker::Food.ingredient,
+    sub_title: Faker::Color.color_name,
+    content: "And God said, “Let there be light,” and there was light. 4 God saw that the light was good, and he separated the light from the darkness. 5 God called the light “day,” and the darkness he called “night.” And there was evening, and there was morning—the first day.",
+    published: false,
+    author_id: user2.id,
+    parent_id: story1.id
+  )
 end
