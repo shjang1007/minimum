@@ -55,7 +55,7 @@ class MainNav extends Component {
   renderComposeButton() {
     const storyId = this.props.params.storyId;
     const { currentUser } = this.props;
-    
+
     if (currentUser.stories && Object.keys(currentUser.stories).includes(storyId)) {
       return (<Link to={`/${storyId}/edit-story`}
           className="write-story-button green-button">
@@ -128,7 +128,7 @@ class MainNav extends Component {
       return (
         <ul className="right-nav-menu">
           <li>
-            <a onClick={this.props.openModal}
+            <a onClick={this.props.openAuthModal}
                 className="write-story-button gray-button">
               Write a story
             </a>

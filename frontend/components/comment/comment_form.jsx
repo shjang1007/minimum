@@ -14,7 +14,7 @@ class CommentForm extends Component {
     this.state = ({
       content: "",
       parent_id: props.params.storyId,
-      author_id: this.props.currentUser.id,
+      author_id: null,
       update: false,
       showCommentForm: false
     });
@@ -35,9 +35,12 @@ class CommentForm extends Component {
           updateComment(comment);
         } else {
           this.setState({ update: true });
-          const comment = ({ content, parent_id, author_id });
+          const comment = ({ content, parent_id, author_id: this.props.currentUser.id });
           createStory(comment).then(action => {
-            this.setState({id: action.story.id});
+            this.setState({
+              id: action.story.id,
+              author_id: this.props.currentUser.id
+            });
           });
         }
       });
