@@ -14,11 +14,10 @@ const CommentIndex = ({ comments }) => {
     ));
 
     return (
-      <div className="">
-        <ul className="story-index">
-          {commentList}
-        </ul>
-      </div>
+      <ul className="comment-list-container">
+        {commentList}
+      </ul>
+
     );
   } else {
     return(<div className="loading"></div>);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
-import { createStory, updateComment, fetchStory }
+import { createStory, updateComment }
   from "../../actions/story_actions";
 
 class CommentForm extends Component {
@@ -18,6 +18,7 @@ class CommentForm extends Component {
 
     this.handlePublish = this.handlePublish.bind(this);
     this.toggleShowCommentForm = this.toggleShowCommentForm.bind(this);
+    this.handleFullScreen = this.handleFullScreen.bind(this);
   }
 
   update(field) {
@@ -27,16 +28,16 @@ class CommentForm extends Component {
     return (e) => {
       this.setState({[field]: e.target.value}, () => {
         if (!update) {
+          const comment = ({ content, parent_id, author_id,
+            id: this.state.id
+          });
+          updateComment(comment);
+        } else {
           this.setState({ update: true});
           const comment = ({ content, parent_id, author_id });
           createStory(comment).then(action => {
             this.setState({id: action.story.id});
           });
-        } else {
-          const comment = ({ content, parent_id, author_id,
-            id: this.state.id
-          });
-          updateComment(comment);
         }
       });
     };
@@ -73,7 +74,25 @@ class CommentForm extends Component {
   }
 
   handleFullScreen(e) {
+    e.preventDefault();
 
+    const { content, parent_id, author_id, update } = this.state;
+    const { updateComment, createStory, router } = this.props;
+
+    if (update) {
+      const comment = ({ content, parent_id, author_id,
+        id: this.state.id
+      });
+      updateComment(comment).then(
+        action => {
+          router.push(`/${action.story.id}/edit-story`);
+      });
+    } else {
+      const comment = ({ content, parent_id, author_id });
+      createStory(comment).then(action => {
+        router.push(`/${action.story.id}/edit-story`);
+      });
+    }
   }
 
   render() {
@@ -82,9 +101,8 @@ class CommentForm extends Component {
 
     if (showCommentForm) {
       return (
-        <main className="index-item">
-          <header className="index-item-profile">
-            <ul className="index-item-author-info">
+        <main className="index-item comment-form">
+          <header className="index-item-profile comment-profile">
               <Link to={`/@${currentUser.username}`}>
                 <img src={ currentUser.avatar_url }
                   className="story-avatar avatar" />
@@ -95,27 +113,35 @@ class CommentForm extends Component {
                   {currentUser.name}
                 </Link>
               </div>
-            </ul>
           </header>
 
           <form className="index-item-content">
             <textarea onChange={this.update("content")}
-              className="form-content"
-              value={ content }/>
-
-            <button onClick={ this.handlePublish }>Publish</button>
-            <button>Go Full Screen</button>
+                className="form-content"
+                value={ content }/>
+            <div className="form-buttons">
+              <button className="green-button button green-form-button"
+                onClick={ this.handlePublish }>
+                Publish
+              </button>
+              <button className="gray-button button"
+                onClick={ this.handleFullScreen }>
+                Go Full Screen
+              </button>
+            </div>
           </form>
         </main>
       );
     } else {
       return (
-        <main className="index-item">
-          <button onClick={ this.toggleShowCommentForm }>
-            <img src={ currentUser.avatar_url }
-              className="story-avatar avatar" />
-          </button>
-        </main>
+        <div className = "index-item pre-comment-form"
+            onClick={ this.toggleShowCommentForm }>
+          <img src={ currentUser.avatar_url }
+            className="story-avatar avatar" />
+          <div className="placeholder-comment">
+            Write a response...
+          </div>
+        </div>
       );
     }
   }
@@ -132,3 +158,18 @@ export default withRouter(connect(
   null,
   mapDispatchToProps
 )(CommentForm));
+
+// Auto Size text area?
+// let textarea = document.querySelector('textarea');
+//
+// textarea.addEventListener('keydown', autosize);
+//
+// const autosize = () => {
+//   let el = this;
+//   setTimeout(function(){
+//     el.style.cssText = 'height:auto; padding:0';
+//     // for box-sizing other than "content-box" use:
+//     // el.style.cssText = '-moz-box-sizing:content-box';
+//     el.style.cssText = 'height:' + el.scrollHeight + 'px';
+//   },0);
+// };

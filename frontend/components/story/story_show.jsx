@@ -85,6 +85,7 @@ class StoryShow extends Component {
           </section>
           <section className="response-container">
             <div className="response-contents">
+              <div className="response-text">Responses</div>
               <CommentForm currentUser={ currentUser }/>
               <CommentIndex comments={ story.comments }/>
             </div>

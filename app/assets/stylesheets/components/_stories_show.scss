@@ -96,7 +96,13 @@
 .response-contents {
   border: 1px solid green;
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 640px;
   padding-right: 20px;
   padding-left: 20px;
+}
+
+.response-text {
+  font-size: 14px;
+  color: rgba(0,0,0,.6);
+  font-weight: 600;
 }
