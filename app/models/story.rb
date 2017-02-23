@@ -2,16 +2,20 @@
 #
 # Table name: stories
 #
-#  id           :integer          not null, primary key
-#  title        :string           not null
-#  sub_title    :string
-#  content      :text             not null
-#  published    :boolean          default("false")
-#  published_at :date
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  parent_id    :integer
-#  author_id    :integer
+#  id                 :integer          not null, primary key
+#  title              :string
+#  sub_title          :string
+#  content            :text
+#  published          :boolean          default("false")
+#  published_at       :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  parent_id          :integer
+#  author_id          :integer
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 class Story < ActiveRecord::Base
