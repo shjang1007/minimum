@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { isEmpty } from "lodash";
 import { Link, withRouter } from "react-router";
 import { createStory, updateComment } from "../../actions/story_actions";
-import { openModal, closeModal } from "../../actions/modal_actions";
-import AuthModal from "../modal/auth_modal";
 
 
 class CommentForm extends Component {
@@ -18,7 +16,7 @@ class CommentForm extends Component {
       update: false,
       showCommentForm: false
     });
-
+    debugger
     this.handlePublish = this.handlePublish.bind(this);
     this.toggleShowCommentForm = this.toggleShowCommentForm.bind(this);
     this.handleFullScreen = this.handleFullScreen.bind(this);
@@ -74,11 +72,7 @@ class CommentForm extends Component {
   }
 
   toggleShowCommentForm() {
-    if (isEmpty(this.props.currentUser)) {
-
-    } else {
-      this.setState({showCommentForm: true});
-    }
+    this.setState({showCommentForm: true});
   }
 
   handleFullScreen(e) {
@@ -116,8 +110,6 @@ class CommentForm extends Component {
           <div className="placeholder-comment">
             Write a response...
           </div>
-
-          <AuthModal />
         </div>
       );
     }
@@ -173,9 +165,7 @@ class CommentForm extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
     createStory: (comment) => (dispatch(createStory(comment))),
-    updateComment: (comment) => (dispatch(updateComment(comment))),
-    openAuthModal: () => (dispatch(openModal("authIsOpen"))),
-    closeAuthModal: () => (dispatch(closeModal("authIsOpen"))),
+    updateComment: (comment) => (dispatch(updateComment(comment)))
   });
 };
 

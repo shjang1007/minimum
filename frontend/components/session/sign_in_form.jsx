@@ -71,10 +71,10 @@ class SignInForm extends Component {
             placeholder="******"
             value={password} />
 
-          <button className="toggle-sign-up-in"
+          <div className="toggle-sign-up-in"
               onClick={this.props.togglePage}>
             Or create an account on Minimum
-          </button>
+          </div>
 
           <button className="sign-button">
             Sign me in to Minimum

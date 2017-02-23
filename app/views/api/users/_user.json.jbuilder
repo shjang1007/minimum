@@ -10,3 +10,11 @@ if user.stories
     end
   end
 end
+
+json.liked_stories do
+  user.liked_stories.each do |story|
+    json.set! story.id do
+      json.extract! story, :id, :title, :sub_title, :published_at
+    end
+  end
+end

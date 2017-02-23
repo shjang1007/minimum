@@ -60,7 +60,8 @@ class Story < ActiveRecord::Base
 
   has_many(
    :liked_users,
-   through: :likes
+   through: :likes,
+   source: :user
   )
 
 end

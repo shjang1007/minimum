@@ -11,7 +11,7 @@
 
 class Like < ActiveRecord::Base
   validates :user, :story, presence: true
-  validates :user, uniquenss: { scope: :story }
+  validates :user, uniqueness: { scope: :story }
 
   belongs_to(
     :user,

@@ -12,11 +12,18 @@ end
 #   end
 # end
 
-
 json.set! :comments do
   story.comments.each do |comment|
     json.set! comment.id do
       json.partial! "api/stories/story", story: comment
+    end
+  end
+end
+
+json.liked_users do
+  story.liked_users.each do |user|
+    json.set! user.id do
+      json.extract! user, :id, :name
     end
   end
 end

@@ -1,17 +1,22 @@
 class LikesController < ApplicationController
   def create
-    @like = Like.new(like_params)
+    like = Like.new(like_params)
 
-    if @like.save
-      render json: ["saved"]
+    if like.save
+      @story = like.story
+      render "/api/stories/show"
     else
       render json: @story.errors.full_messages, status: 422
     end
   end
 
   def destroy
-    @like = Like.find(params[:id])
-    @like.destroy
+    like = Like.find(params[:id])
+    like.destroy
+
+    @story = like.story
+
+    render "/api/stories/show"
   end
 
   def like_params

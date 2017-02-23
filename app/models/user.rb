@@ -52,7 +52,8 @@ class User < ActiveRecord::Base
 
   has_many(
    :liked_stories,
-   through: :likes
+   through: :likes,
+   source: :story
   )
 
   attr_reader :password

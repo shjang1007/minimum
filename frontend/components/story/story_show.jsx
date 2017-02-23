@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { fetchStory } from "../../actions/story_actions";
+import { createLike, deleteLike } from "../../actions/like_actions";
 import CommentIndex from "../comment/comment_index";
 import CommentForm from "../comment/comment_form";
+import { openModal } from "../../actions/modal_actions";
+import AuthModal from "../modal/auth_modal";
 
 class StoryShow extends Component {
   componentDidMount() {
@@ -16,6 +19,22 @@ class StoryShow extends Component {
       return (<img src={story.image_url} className="story-show-image" />);
     } else {
       return (<div className="no-picture-tag"></div>);
+    }
+  }
+
+  renderLikeButton() {
+    const { story, currentUser } = this.props;
+
+    if (currentUser === null) {
+      return (
+        <button onClick={ this.props.openAuthModal }>
+          <img src={ window.images.likeEmpty } />
+        </button>
+      );
+    } else if (Object.keys(story.liked_users).includes(currentUser.id)) {
+
+    } {
+
     }
   }
 
@@ -62,6 +81,9 @@ class StoryShow extends Component {
                 { story.content }
               </p>
             </section>
+            <div className="post-story-actions">
+              { this.renderLikeButton() }
+            </div>
             <footer className="story-show-footer">
                 <div>
                   <Link to={`/@${author.username}`}>
@@ -86,10 +108,13 @@ class StoryShow extends Component {
           <section className="response-container">
             <div className="response-contents">
               <div className="response-text">Responses</div>
-              <CommentForm currentUser={ currentUser }/>
+              <CommentForm currentUser={ currentUser }
+                  openAuthModal={this.props.openAuthModal}/>
               <CommentIndex comments={ story.comments }/>
             </div>
           </section>
+
+          <AuthModal />
         </main>
       );
     } else {
@@ -107,7 +132,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    fetchStory: (id) => (dispatch(fetchStory(id)))
+    fetchStory: (id) => (dispatch(fetchStory(id))),
+    createLike: (like) => (dispatch(createLike(like))),
+    deleteLike: (id) => (dispatch(deleteLike(id))),
+    openAuthModal: () => (dispatch(openModal("authIsOpen")))
   });
 };
 
