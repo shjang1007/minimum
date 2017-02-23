@@ -1,8 +1,8 @@
-class LikesController < ApplicationController
+class Api::LikesController < ApplicationController
   def create
     like = Like.new(like_params)
-
-    if like.save
+    # debugger
+    if like.save!
       @story = like.story
       render "/api/stories/show"
     else
@@ -11,10 +11,13 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    like = Like.find(params[:id])
-    like.destroy
-
+    like = Like.find_by(
+      user_id: params[:like][:user_id],
+      story_id: params[:like][:story_id]
+    )
+    
     @story = like.story
+    like.destroy
 
     render "/api/stories/show"
   end

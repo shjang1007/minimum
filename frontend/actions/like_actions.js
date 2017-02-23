@@ -9,9 +9,9 @@ export const createLike = (like) => (dispatch) => {
   );
 };
 
-export const deleteLike = (id) => (dispatch) => {
-  return likeApiUtil.deleteLike(id).then(
-    (story) => (dispatch(removeStory(story)))
+export const deleteLike = (like) => (dispatch) => {
+  return likeApiUtil.deleteLike(like).then(
+    (story) => (dispatch(receiveStory(story)))
   );
 };
 

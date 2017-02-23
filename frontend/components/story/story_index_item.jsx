@@ -1,10 +1,49 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router";
+import { values } from "lodash";
+import { createLike, deleteLike } from "../../actions/like_actions";
 
 // Props has story info
 class StoryIndexItem extends Component {
+  toggleLike(method) {
+    const { story, currentUser } = this.props;
+    const likeInfo = { user_id: currentUser.id, story_id: story.id };
+    return (e) => {
+      if (method === "delete") {
+        this.props.deleteLike(likeInfo);
+      } else {
+        this.props.createLike(likeInfo);
+      }
+    };
+  }
+  renderLikeButton() {
+    const { story, currentUser } = this.props;
+
+    if (currentUser === null) {
+      return (
+        <button onClick={ this.props.openAuthModal }>
+          <img src={ window.images.likeEmpty } />
+        </button>
+      );
+    } else if (story.liked_users &&
+        Object.keys(story.liked_users).includes(currentUser.id.toString())) {
+      return (
+        <button onClick={ this.toggleLike("delete") }>
+          <img src={ window.images.likeFilled } />
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={ this.toggleLike("create") }>
+          <img src={ window.images.likeEmpty } />
+        </button>
+      );
+    }
+  }
+
   render() {
-    const { id, title, sub_title, content, author, published_at, image_url } =
+    const { id, title, sub_title, content, author, published_at, image_url, liked_users } =
       this.props.story;
 
     return(
@@ -50,9 +89,23 @@ class StoryIndexItem extends Component {
             className="story-index-readmore">
           Read more...
         </Link>
+        <div className="post-story-actions">
+          { this.renderLikeButton() }
+          <div className="num-likes">{ values(liked_users).length }</div>
+        </div>
       </li>
     );
   }
 }
 
-export default StoryIndexItem;
+const mapDispatchToProps = (dispatch) => {
+  return({
+    createLike: (like) => (dispatch(createLike(like))),
+    deleteLike: (id) => (dispatch(deleteLike(id)))
+  });
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(StoryIndexItem);

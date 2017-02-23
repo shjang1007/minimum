@@ -16,7 +16,7 @@ class CommentForm extends Component {
       update: false,
       showCommentForm: false
     });
-    debugger
+
     this.handlePublish = this.handlePublish.bind(this);
     this.toggleShowCommentForm = this.toggleShowCommentForm.bind(this);
     this.handleFullScreen = this.handleFullScreen.bind(this);

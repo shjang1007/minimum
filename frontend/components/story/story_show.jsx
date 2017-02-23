@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { values } from "lodash";
 import { Link, withRouter } from "react-router";
 import { fetchStory } from "../../actions/story_actions";
 import { createLike, deleteLike } from "../../actions/like_actions";
@@ -11,6 +12,18 @@ import AuthModal from "../modal/auth_modal";
 class StoryShow extends Component {
   componentDidMount() {
     this.props.fetchStory(this.props.params.storyId);
+  }
+
+  toggleLike(method) {
+    const { story, currentUser } = this.props;
+    const likeInfo = { user_id: currentUser.id, story_id: story.id };
+    return (e) => {
+      if (method === "delete") {
+        this.props.deleteLike(likeInfo);
+      } else {
+        this.props.createLike(likeInfo);
+      }
+    };
   }
 
   renderImage() {
@@ -31,10 +44,19 @@ class StoryShow extends Component {
           <img src={ window.images.likeEmpty } />
         </button>
       );
-    } else if (Object.keys(story.liked_users).includes(currentUser.id)) {
-
-    } {
-
+    } else if (story.liked_users &&
+        Object.keys(story.liked_users).includes(currentUser.id.toString())) {
+      return (
+        <button onClick={ this.toggleLike("delete") }>
+          <img src={ window.images.likeFilled } />
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={ this.toggleLike("create") }>
+          <img src={ window.images.likeEmpty } />
+        </button>
+      );
     }
   }
 
@@ -83,6 +105,7 @@ class StoryShow extends Component {
             </section>
             <div className="post-story-actions">
               { this.renderLikeButton() }
+              <div className="num-likes">{ values(story.liked_users).length }</div>
             </div>
             <footer className="story-show-footer">
                 <div>

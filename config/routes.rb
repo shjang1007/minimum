@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :users, only: :create
     resource :session, only: [:create, :destroy]
     resources :stories, except: [:new, :edit]
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: :create
+
+    delete :likes, to: "likes#destroy"
   end
 end

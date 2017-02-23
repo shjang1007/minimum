@@ -15,7 +15,7 @@ class StoryIndex extends Component {
 
     if (stories) {
       const storyList = stories.map( (story) => (
-        <StoryIndexItem key={story.id} story={ story } />
+        <StoryIndexItem key={story.id} story={ story } currentUser={ currentUser } />
       ));
 
       return (
@@ -30,7 +30,10 @@ class StoryIndex extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { stories: selectPublishedStories(state) };
+  return ({
+    stories: selectPublishedStories(state),
+    currentUser: state.session.currentUser
+  });
 };
 
 const mapDispatchToProps = (dispatch) => {
