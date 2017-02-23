@@ -16,9 +16,9 @@ class StoryForm extends Component {
   componentDidMount() {
     if (this.props.params.storyId) {
       this.props.fetchStory(this.props.params.storyId).then(
-        (story) => {
-          this.setState(story);
-          this.setState({image_preview_url: story.image_url});
+        (action) => {
+          this.setState(action.story);
+          this.setState({image_preview_url: action.story.image_url});
         }
       );
     }
