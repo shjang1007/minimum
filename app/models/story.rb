@@ -50,4 +50,17 @@ class Story < ActiveRecord::Base
     foreign_key: :parent_id,
     primary_key: :id
   )
+
+  has_many(
+    :likes,
+    class_name: "Like",
+    foreign_key: :story_id,
+    primary_key: :id
+  )
+
+  has_many(
+   :liked_users,
+   through: :likes
+  )
+
 end
