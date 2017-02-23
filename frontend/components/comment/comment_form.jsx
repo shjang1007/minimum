@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isEmpty } from "lodash";
 import { Link, withRouter } from "react-router";
-import { createStory, updateComment }
-  from "../../actions/story_actions";
+import { createStory, updateComment } from "../../actions/story_actions";
+import { openModal, closeModal } from "../../actions/modal_actions";
+import AuthModal from "../modal/auth_modal";
+
 
 class CommentForm extends Component {
   constructor(props) {
@@ -104,7 +106,22 @@ class CommentForm extends Component {
     const { currentUser } = this.props;
     const { content, showCommentForm } = this.state;
 
-    if (showCommentForm && !isEmpty(currentUser)) {
+    if (isEmpty(currentUser)) {
+      return (
+        <div className = "index-item pre-comment-form"
+          onClick={ this.props.openAuthModal }>
+          <img src={window.images.bubble}
+              className="icon" />
+          <div className="placeholder-comment">
+            Write a response...
+          </div>
+
+          <AuthModal />
+        </div>
+      );
+    }
+
+    if (showCommentForm) {
       return (
         <main className="index-item comment-form">
           <header className="index-item-profile comment-profile">
@@ -138,20 +155,16 @@ class CommentForm extends Component {
         </main>
       );
     } else {
-      if (!isEmpty(currentUser)) {
-        return (
-          <div className = "index-item pre-comment-form"
-            onClick={ this.toggleShowCommentForm }>
-            <img src={ currentUser.avatar_url }
-              className="story-avatar avatar" />
-            <div className="placeholder-comment">
-              Write a response...
-            </div>
+      return (
+        <div className = "index-item pre-comment-form"
+          onClick={ this.toggleShowCommentForm }>
+          <img src={ currentUser.avatar_url }
+            className="story-avatar avatar" />
+          <div className="placeholder-comment">
+            Write a response...
           </div>
-        );
-      } else {
-        return (<div>yes</div>);
-      }
+        </div>
+      );
     }
   }
 }
@@ -159,7 +172,9 @@ class CommentForm extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
     createStory: (comment) => (dispatch(createStory(comment))),
-    updateComment: (comment) => (dispatch(updateComment(comment)))
+    updateComment: (comment) => (dispatch(updateComment(comment))),
+    openAuthModal: () => (dispatch(openModal("authIsOpen"))),
+    closeAuthModal: () => (dispatch(closeModal("authIsOpen"))),
   });
 };
 
