@@ -6,11 +6,14 @@ import CommentIndexItem from "./comment_index_item";
 
 // Comments are just another stories. Should I make another comment action reducers ... just for the sake of clarity?
 
-const CommentIndex = ({ comments }) => {
+const CommentIndex = ({ comments, openAuthModal, currentUser }) => {
 
   if (comments) {
     const commentList = values(comments).map( (comment) => (
-      <CommentIndexItem key={comment.id} comment={ comment } />
+      <CommentIndexItem key={comment.id}
+        comment={ comment }
+        openAuthModal={ openAuthModal }
+        currentUser={ currentUser } />
     ));
 
     return (

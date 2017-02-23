@@ -12,7 +12,10 @@ const storyReducer = (oldState = {}, action) => {
     case RECEIVE_STORIES:
       return merge({}, action.stories);
     case RECEIVE_STORY:
-      return merge({}, oldState, {[action.story.id]: action.story});
+      let updateLikeState = merge({}, oldState, {[action.story.id]: action.story});
+      updateLikeState[action.story.id].liked_users = action.story.liked_users;
+      updateLikeState[action.story.id].parent_story = action.story.parent_story;
+      return updateLikeState;
     case REMOVE_STORY:
       let newState = merge({}, oldState);
       delete newState[action.story.id];

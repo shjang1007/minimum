@@ -101,7 +101,7 @@ class StoryIndexItem extends Component {
 const mapDispatchToProps = (dispatch) => {
   return({
     createLike: (like) => (dispatch(createLike(like))),
-    deleteLike: (id) => (dispatch(deleteLike(id)))
+    deleteLike: (like) => (dispatch(deleteLike(like)))
   });
 };
 

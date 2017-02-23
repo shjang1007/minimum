@@ -133,7 +133,9 @@ class StoryShow extends Component {
               <div className="response-text">Responses</div>
               <CommentForm currentUser={ currentUser }
                   openAuthModal={this.props.openAuthModal}/>
-              <CommentIndex comments={ story.comments }/>
+              <CommentIndex comments={ story.comments }
+                  openAuthModal={this.props.openAuthModal}
+                  currentUser={ currentUser }/>
             </div>
           </section>
 
@@ -157,7 +159,7 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     fetchStory: (id) => (dispatch(fetchStory(id))),
     createLike: (like) => (dispatch(createLike(like))),
-    deleteLike: (id) => (dispatch(deleteLike(id))),
+    deleteLike: (like) => (dispatch(deleteLike(like))),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))
   });
 };
