@@ -31,7 +31,6 @@ class CommentForm extends Component {
           const comment = ({ content, parent_id, author_id,
             id: this.state.id
           });
-          debugger
           updateComment(comment);
         } else {
           this.setState({ update: true });
