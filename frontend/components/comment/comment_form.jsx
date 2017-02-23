@@ -87,7 +87,7 @@ class CommentForm extends Component {
       });
       updateComment(comment).then(
         action => {
-          router.push(`/${action.story.id}/edit-story`);
+          router.push(`/${action.comment.id}/edit-story`);
       });
     } else {
       const comment = ({ content, parent_id, author_id });
