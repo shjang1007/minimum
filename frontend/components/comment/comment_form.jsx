@@ -27,13 +27,14 @@ class CommentForm extends Component {
 
     return (e) => {
       this.setState({[field]: e.target.value}, () => {
-        if (!update) {
+        if (update) {
           const comment = ({ content, parent_id, author_id,
             id: this.state.id
           });
+          debugger
           updateComment(comment);
         } else {
-          this.setState({ update: true});
+          this.setState({ update: true });
           const comment = ({ content, parent_id, author_id });
           createStory(comment).then(action => {
             this.setState({id: action.story.id});
