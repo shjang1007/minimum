@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { isEmpty } from "lodash";
 import { Link, withRouter } from "react-router";
 import { createStory, updateComment }
   from "../../actions/story_actions";
@@ -11,7 +12,7 @@ class CommentForm extends Component {
     this.state = ({
       content: "",
       parent_id: props.params.storyId,
-      author_id: props.currentUser.id,
+      author_id: null,
       update: false,
       showCommentForm: false
     });
@@ -22,19 +23,19 @@ class CommentForm extends Component {
   }
 
   update(field) {
-    const { content, parent_id, author_id, update } = this.state;
+    const { content, parent_id, author_id, update, id } = this.state;
     const { updateComment, createStory } = this.props;
 
     return (e) => {
       this.setState({[field]: e.target.value}, () => {
         if (update) {
           const comment = ({ content, parent_id, author_id,
-            id: this.state.id
+            id
           });
           updateComment(comment);
         } else {
           this.setState({ update: true });
-          const comment = ({ content, parent_id, author_id });
+          const comment = ({ content, parent_id, author_id: props.currentUser.id });
           createStory(comment).then(action => {
             this.setState({id: action.story.id});
           });
@@ -70,7 +71,11 @@ class CommentForm extends Component {
   }
 
   toggleShowCommentForm() {
-    this.setState({showCommentForm: true});
+    if (isEmpty(this.props.currentUser)) {
+
+    } else {
+      this.setState({showCommentForm: true});
+    }
   }
 
   handleFullScreen(e) {
@@ -99,7 +104,7 @@ class CommentForm extends Component {
     const { currentUser } = this.props;
     const { content, showCommentForm } = this.state;
 
-    if (showCommentForm) {
+    if (showCommentForm && !isEmpty(currentUser)) {
       return (
         <main className="index-item comment-form">
           <header className="index-item-profile comment-profile">
@@ -133,16 +138,20 @@ class CommentForm extends Component {
         </main>
       );
     } else {
-      return (
-        <div className = "index-item pre-comment-form"
+      if (!isEmpty(currentUser)) {
+        return (
+          <div className = "index-item pre-comment-form"
             onClick={ this.toggleShowCommentForm }>
-          <img src={ currentUser.avatar_url }
-            className="story-avatar avatar" />
-          <div className="placeholder-comment">
-            Write a response...
+            <img src={ currentUser.avatar_url }
+              className="story-avatar avatar" />
+            <div className="placeholder-comment">
+              Write a response...
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (<div>yes</div>);
+      }
     }
   }
 }

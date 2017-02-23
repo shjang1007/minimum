@@ -3,47 +3,20 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { signOut } from "../../actions/session_actions";
 import { updateStory, deleteStory } from "../../actions/story_actions";
-import Modal from "react-modal";
-import customModalStyle from "./modal_style";
+import { openModal, closeModal } from "../../actions/modal_actions";
 import UserDropDown from "./user_drop_down";
 import SearchBar from "./search_bar";
-import AuthSets from "../session/auth_sets";
-
+import AuthModal from "../modal/auth_modal";
+import DeleteModal from "../modal/delete_modal";
 
 // move modal to here, and also create class here and use it in app
 class MainNav extends Component {
   constructor(props) {
     super(props);
 
-    this.state = ({
-      authModalOpen: false,
-      deleteModalOpen: false
-    });
-
-    this.openAuthModal = this.openAuthModal.bind(this);
-    this.closeAuthModal = this.closeAuthModal.bind(this);
-    this.openDeleteModal = this.openDeleteModal.bind(this);
-    this.closeDeleteModal = this.closeDeleteModal.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
     this.signOutUser = this.signOutUser.bind(this);
-
     // this.renderRightNav = this.renderRightNav.bind(this);
-  }
-
-  openAuthModal() {
-    this.setState({ authModalOpen: true });
-  }
-
-  closeAuthModal() {
-    this.setState({ authModalOpen: false});
-  }
-
-  openDeleteModal() {
-    this.setState({ deleteModalOpen: true });
-  }
-
-  closeDeleteModal() {
-    this.setState({ deleteModalOpen: false});
   }
 
   handlePublish() {
@@ -70,10 +43,10 @@ class MainNav extends Component {
     );
   }
 
-  deleteStory(id) {
+  deleteStory(storyId) {
     return () => {
-      this.closeDeleteModal();
-      this.props.deleteStory(id).then(
+      this.props.closeDeleteModal();
+      this.props.deleteStory(storyId).then(
         this.props.router.push("/")
       );
     };
@@ -81,6 +54,7 @@ class MainNav extends Component {
 
   renderComposeButton() {
     const storyId = this.props.params.storyId;
+    const { currentUser } = this.props;
 
     if (currentUser.stories && Object.keys(currentUser.stories).includes(storyId)) {
       return (<Link to={`/${storyId}/edit-story`}
@@ -100,7 +74,7 @@ class MainNav extends Component {
     const pathname = this.props.location.pathname;
     const deleteButton = pathname.includes("/edit-story") ?
       (<button className="gray-button button"
-          onClick={this.openDeleteModal}>
+          onClick={this.props.openDeleteModal}>
         Delete Story</button>) : <div></div>;
 
     if (currentUser) {
@@ -154,21 +128,20 @@ class MainNav extends Component {
       return (
         <ul className="right-nav-menu">
           <li>
-            <a onClick={this.openAuthModal}
+            <a onClick={this.props.openModal}
                 className="write-story-button gray-button">
               Write a story
             </a>
           </li>
           <li>
             <a className = "middle-button green-button"
-                onClick={this.openAuthModal}>
+                onClick={this.props.openAuthModal}>
               Sign In/Sign Up
             </a>
           </li>
           <li>
             <SearchBar />
           </li>
-
         </ul>);
     }
   }
@@ -217,40 +190,9 @@ class MainNav extends Component {
           { this.renderBottomBar() }
         </header>
 
-        <Modal className="login-modal"
-          isOpen={this.state.authModalOpen}
-          onRequestClose={this.closeAuthModal}
-          contentLabel="Modal"
-          style={customModalStyle}>
+        <AuthModal />
+        <DeleteModal deleteStory={this.deleteStory(storyId)} />
 
-          <AuthSets closeModal={this.closeAuthModal}/>
-        </Modal>
-
-        <Modal className="delete-modal"
-          isOpen={this.state.deleteModalOpen}
-          onRequestClose={this.closeDeleteModal}
-          contentLabel="Modal"
-          style={customModalStyle}>
-
-          <div className="delete-modal">
-            <h3 className="delete-modal-title">
-              Delete
-            </h3>
-            <div className="delete-modal-content">
-              Deleted stories are gone forever. Are you sure?
-            </div>
-            <ul className="delete-modal-buttons">
-              <button className="delete-modal-button"
-                onClick={this.deleteStory(storyId)}>
-                Delete
-              </button>
-              <button className="delete-modal-button"
-                  onClick={this.closeDeleteModal}>
-                Cancel
-              </button>
-            </ul>
-          </div>
-        </Modal>
       </section>
     );
   }
@@ -266,7 +208,11 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     signOut: () => (dispatch(signOut())),
     publishStory: (story) => (dispatch(updateStory(story))),
-    deleteStory: (id) => (dispatch(deleteStory(id)))
+    deleteStory: (id) => (dispatch(deleteStory(id))),
+    openAuthModal: () => (dispatch(openModal("authIsOpen"))),
+    closeAuthModal: () => (dispatch(closeModal("authIsOpen"))),
+    openDeleteModal: () => (dispatch(openModal("deleteIsOpen"))),
+    closeDeleteModal: () => (dispatch(closeModal("deleteIsOpen")))
   });
 };
 
