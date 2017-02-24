@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
-import customModalStyle from "../nav/modal_style";
+import customModalStyle from "./delete_modal_style";
 import { openModal, closeModal } from "../../actions/modal_actions";
 
 const AuthModal = ({ deleteIsOpen, openModal, closeModal, deleteStory }) => {
@@ -19,12 +19,12 @@ const AuthModal = ({ deleteIsOpen, openModal, closeModal, deleteStory }) => {
         <div className="delete-modal-content">
           Deleted stories are gone forever. Are you sure?
         </div>
-        <ul className="delete-modal-buttons">
-          <button className="delete-modal-button"
+        <ul className="delete-buttons">
+          <button className="grey-button delete-button"
             onClick={ deleteStory }>
             Delete
           </button>
-          <button className="delete-modal-button"
+          <button className="grey-button delete-button"
               onClick={ closeModal }>
             Cancel
           </button>

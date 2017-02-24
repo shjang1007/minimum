@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import AuthSets from "../session/auth_sets";
-import customModalStyle from "../nav/modal_style";
+import customModalStyle from "./auth_modal_style";
 
 import { openModal, closeModal } from "../../actions/modal_actions";
 

@@ -1,0 +1,30 @@
+.delete-modal-title {
+  margin-bottom: 10px;
+}
+
+.delete-modal-content {
+  margin-bottom: 20px;
+  color: rgba(0,0,0,.6);
+  line-height: 1.4,normal;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.delete-buttons {
+  display: flex;
+  width: 200px;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.delete-buttons > button {
+  line-height: 35px;
+  border-radius: 999em;
+  border: 1px solid rgba(0,0,0,.15);
+  padding: 0 20px;
+}
+
+.delete-buttons {
+  color: rgba(0,0,0,.44);
+  font-size: 14px;
+}
