@@ -21,11 +21,16 @@ const UserDropDown = ({ currentUser, signOutUser }) => {
               </Link>
             </li>
             <li>
-              <Link to={`/@${currentUser.username}`}>
-                Profile
+              <Link to="/me/stories/drafts">
+                Stories
               </Link>
             </li>
             <li className="separator"></li>
+            <li>
+              <Link className="gray-button" to={`/@${currentUser.username}`}>
+                Profile
+              </Link>
+            </li>
             <li>
               <a className="gray-button" onClick={signOutUser}>
                 Sign out

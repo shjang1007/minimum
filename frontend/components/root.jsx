@@ -8,6 +8,7 @@ import StoryIndex from "./story/story_index";
 import StoryForm from "./story/story_form";
 import StoryShow from "./story/story_show";
 import UserShow from "./user/user_show";
+import MyStories from "./user/my_stories"
 
 const Root = ({ store }) => {
 
@@ -37,6 +38,8 @@ const Root = ({ store }) => {
               component={ StoryForm }/>
           <Route path="/stories/:storyId" component={ StoryShow } />
           <Route path="/@:username" component={ UserShow } />
+          <Route path="/me/stories/public" component={ MyStories } onEnter={ _ensureLoggedIn }/>
+          <Route path="/me/stories/drafts" component={ MyStories } onEnter={ _ensureLoggedIn }/>
         </Route>
       </Router>
     </Provider>

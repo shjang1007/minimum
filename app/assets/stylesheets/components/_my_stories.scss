@@ -1,0 +1,32 @@
+.my-story-container {
+  padding: 0 20px;
+}
+
+.top-banner {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  height: auto;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.toggle-tab {
+  display: flex;
+  border-top: 1px solid rgba(0,0,0,.05);
+  padding-top: 15px;
+  margin-bottom: 20px;
+}
+
+.tab-first-button {
+  margin-right: 20px;
+}
+
+.story-li {
+  padding-top: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+  font-size: 20px;
+  font-weight: 600;
+}
