@@ -5,7 +5,7 @@ import { values } from "lodash";
 import { createLike, deleteLike } from "../../actions/like_actions";
 
 // Props has story info
-class StoryIndexItem extends Component {
+class UserStoryIndexItem extends Component {
   toggleLike(method) {
     const { story, currentUser } = this.props;
     const likeInfo = { user_id: currentUser.id, story_id: story.id };
@@ -19,7 +19,7 @@ class StoryIndexItem extends Component {
   }
   renderLikeButton() {
     const { story, currentUser } = this.props;
-
+    
     if (currentUser === null) {
       return (
         <button onClick={ this.props.openAuthModal }>
@@ -43,20 +43,22 @@ class StoryIndexItem extends Component {
   }
 
   render() {
-    const { id, title, sub_title, content, author, published_at, image_url, liked_users } =
+    const { id, title, sub_title, content, published_at, image_url, liked_users } =
       this.props.story;
-    
+
+    const { user } = this.props;
+
     return(
       <li className="index-item">
         <div className="index-item-profile">
           <ul className="index-item-author-info">
             <li>
-              <img src={ author.avatar_url } className="story-avatar avatar" />
+              <img src={ user.avatar_url } className="story-avatar avatar" />
             </li>
             <li className="author-date-container">
-              <Link to={ `/@${author.username}` }
+              <Link to={ `/@${user.username}` }
                   className="green-button">
-                {author.name}
+                {user.name}
               </Link>
               <Link to={ `/stories/${id}` }
                   className="gray-button">
@@ -108,4 +110,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   null,
   mapDispatchToProps
-)(StoryIndexItem);
+)(UserStoryIndexItem);

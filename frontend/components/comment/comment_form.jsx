@@ -56,6 +56,7 @@ class CommentForm extends Component {
 
     const comment = {
       id: this.state.id,
+      content: this.state.content,
       published: true,
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
     };

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { values } from "lodash";
 import { fetchUser } from "../../actions/user_actions";
+import UserStoryIndexItem from "./user_story_index_item";
 
 class UserShow extends Component {
   componentDidMount() {
@@ -10,10 +11,12 @@ class UserShow extends Component {
 
   render() {
     const { user, currentUser } = this.props;
-    const userStoryList = values(user.stories).map( (story) => (
-      <li key={ story.id }>
-        <div>{ story.title }</div>
-      </li>
+    const userStoryList = values(user.stories)
+      .filter( (story) => (
+      story.published && !story.parent_id))
+      .map( (story) => (
+      <UserStoryIndexItem key={ story.id } user={ user }
+        story={ story } currentUser={ currentUser }/>
     ));
 
     if (user) {
@@ -22,8 +25,12 @@ class UserShow extends Component {
           <section className="top-side">
             <div className="profile">
               <div className="left-side">
-                <h3>{ user.name }</h3>
-                <p>Add Descriptions later...</p>
+                <h3 className="left-side-name">
+                  { user.name }
+                </h3>
+                <p className="left-side-description">
+                  Add Descriptions later...
+                </p>
               </div>
               <div className="right-side">
                 <img src={ user.avatar_url } className="profile-avatar"/>
@@ -31,12 +38,13 @@ class UserShow extends Component {
             </div>
             <div className="mini-nav">
               <ul>
-                <li>Stories</li>
-                <li>Responses</li>
+                <li>
+                </li>
               </ul>
             </div>
           </section>
           <section className="bottom-side">
+            <div>Latest</div>
             <ul>
               { userStoryList }
             </ul>

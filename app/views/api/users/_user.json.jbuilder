@@ -5,7 +5,17 @@ if user.stories
   json.set! :stories do
     user.stories.each do |story|
       json.set! story.id do
-        json.extract! story, :id, :title, :sub_title, :content, :published, :published_at
+        json.extract! story, :id, :title, :sub_title, :content, :parent_id, :published, :published_at
+        if story.image.file?
+          json.image_url asset_path(story.image.url(:medium))
+        end
+        json.liked_users do
+          story.liked_users.each do |user|
+            json.set! user.id do
+              json.extract! user, :id, :name
+            end
+          end
+        end
       end
     end
   end
