@@ -1,0 +1,44 @@
+.user-profile-container {
+  max-width: 640px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+  .top-side {
+    display: flex;
+    flex-direction: column;
+  }
+
+    .profile {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,.44);
+    }
+
+      .left-side {
+
+      }
+
+      .right-side {
+
+      }
+
+      .profile-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+      }
+
+    .mini-nav {
+      padding-top: 10px;
+      align-self: center;
+    }
+
+    .mini-nav > ul {
+      display: flex;
+    }
+
+  .bottom-side {
+    background-color: rgba(0,0,0,.44)
+  }

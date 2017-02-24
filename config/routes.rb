@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :likes, only: :create
 
     delete :likes, to: "likes#destroy"
+    get "users/:username", to: "users#show"
   end
 end

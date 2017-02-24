@@ -11,7 +11,7 @@ class StoryIndex extends Component {
   }
 
   render() {
-    const { stories } = this.props;
+    const { stories, currentUser } = this.props;
 
     if (stories) {
       const storyList = stories.map( (story) => (
