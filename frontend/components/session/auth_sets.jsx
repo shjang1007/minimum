@@ -42,8 +42,8 @@ class AuthSets extends Component {
           <section className="authsets-container">
             <div className="overlay-title">
               <div className="auth-logo-set">
-                <img src={window.images.logo} className="auth-logo-pic" />
-                <img src={window.images.logoword} className="auth-logo-word" />
+                <img src={window.images.minimum} className="auth-logo-pic" />
+                <img src={window.images.minimumword} className="auth-logo-word" />
               </div>
             </div>
             <div className="overlay-content">

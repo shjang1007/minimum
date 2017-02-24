@@ -177,8 +177,8 @@ class MainNav extends Component {
           <div className="inner-bar top-bar">
             <nav className="left-nav">
               <a href="/" className="logo-link">
-                <img src={window.images.logo} className="logo" />
-                <img src={window.images.logoword} className="logo-word" />
+                <img src={window.images.minimum} className="logo" />
+                <img src={window.images.minimumword} className="logo-word" />
               </a>
             </nav>
 
