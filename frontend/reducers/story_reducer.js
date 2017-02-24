@@ -21,8 +21,7 @@ const storyReducer = (oldState = {}, action) => {
       delete newState[action.story.id];
       return newState;
     case RECEIVE_COMMENT:
-      let newStateComment = merge({}, oldState);
-      newStateComment[action.comment.parent_id].comments[action.comment.id] = action.comment;
+      let newStateComment = merge({}, oldState, {[action.comment.id]: action.comment});
       newStateComment[action.comment.id].liked_users = action.comment.liked_users;
       return newStateComment;
     default:
