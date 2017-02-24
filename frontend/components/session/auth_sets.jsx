@@ -67,10 +67,10 @@ class AuthSets extends Component {
 
             <div className="auth-privacy-msg">
               <div>
-                To use Minimum you must be minimalistic
+                To use Minimum you must be determined
               </div>
               <div>
-                If you sign up with Twitter or Facebook, we’ll start you off with a network by automatically importing any followers/followees or friends already on Medium. Also, we’ll never post to Twitter or Facebook without your permission. For more info, please see Login FAQ.
+                If you sign up with Twitter of Facebook, I will be surprised, because there are no options to allow users to sign up using Twitter or Facebook. However, if you do get it done, we'll never post to Twitter or Facebook without your permission. For more info, please text me.
               </div>
             </div>
           </section>
