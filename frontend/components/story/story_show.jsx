@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { values } from "lodash";
 import { Link, withRouter } from "react-router";
-import { fetchStory } from "../../actions/story_actions";
+import { fetchStoryAndComments } from "../../actions/story_actions";
+import { openModal } from "../../actions/modal_actions";
 import { createLike, deleteLike } from "../../actions/like_actions";
 import CommentIndex from "../comment/comment_index";
 import CommentForm from "../comment/comment_form";
-import { openModal } from "../../actions/modal_actions";
 import AuthModal from "../modal/auth_modal";
 
 class StoryShow extends Component {
   componentDidMount() {
-    this.props.fetchStory(this.props.params.storyId);
+    this.props.fetchStoryAndComments(this.props.params.storyId);
   }
 
   toggleLike(method) {
@@ -133,9 +133,9 @@ class StoryShow extends Component {
               <div className="response-text">Responses</div>
               <CommentForm currentUser={ currentUser }
                   openAuthModal={this.props.openAuthModal}/>
-              <CommentIndex comments={ story.comments }
-                  openAuthModal={this.props.openAuthModal}
-                  currentUser={ currentUser }/>
+              <CommentIndex currentUser={ currentUser }
+                  parentId = { this.props.params.storyId }
+                  openAuthModal={this.props.openAuthModal}/>
             </div>
           </section>
 
@@ -157,7 +157,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    fetchStory: (id) => (dispatch(fetchStory(id))),
+    fetchStoryAndComments: (parentId) => (
+      dispatch(fetchStoryAndComments(parentId))
+    ),
     createLike: (like) => (dispatch(createLike(like))),
     deleteLike: (like) => (dispatch(deleteLike(like))),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))

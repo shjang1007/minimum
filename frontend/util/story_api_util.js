@@ -12,6 +12,13 @@ export const fetchStory = (id) => {
   });
 };
 
+export const fetchStoryAndComments = (parentId) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/stories/${parentId}/comments`
+  });
+};
+
 export const createStory = (story) => {
   return $.ajax({
     method: "POST",

@@ -21,6 +21,14 @@ export const fetchStory = (id) => (dispatch) => {
   );
 };
 
+export const fetchStoryAndComments = (parentId) => (dispatch) => {
+  return storyApiUtil.fetchStoryAndComments(parentId).then(
+    (stories) => {
+      return dispatch(receiveStories(stories));
+    }
+  );
+};
+
 export const createStory = (story) => (dispatch) => {
   return storyApiUtil.createStory(story).then(
     (story) => {
@@ -32,11 +40,6 @@ export const createStory = (story) => (dispatch) => {
 export const updateStory = (story) => (dispatch) => {
   return storyApiUtil.updateStory(story).then(
     (story) => (dispatch(receiveStory(story)))
-  );
-};
-export const updateComment = (story) => (dispatch) => {
-  return storyApiUtil.updateStory(story).then(
-    (story) => (dispatch(receiveComment(story)))
   );
 };
 
@@ -63,13 +66,6 @@ export const receiveStory = (story) => {
   return ({
     type: RECEIVE_STORY,
     story
-  });
-};
-
-export const receiveComment = (comment) => {
-  return ({
-    type: RECEIVE_COMMENT,
-    comment
   });
 };
 

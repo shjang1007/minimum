@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isEmpty } from "lodash";
 import { Link, withRouter } from "react-router";
-import { createStory, updateComment } from "../../actions/story_actions";
+import { createStory, updateStory } from "../../actions/story_actions";
 
 
 class CommentForm extends Component {
@@ -24,13 +24,13 @@ class CommentForm extends Component {
 
   update(field) {
     const { content, parent_id, author_id, update, id } = this.state;
-    const { updateComment, createStory } = this.props;
+    const { updateStory, createStory } = this.props;
 
     return (e) => {
       this.setState({[field]: e.target.value}, () => {
         if (update) {
           const comment = ({ content, parent_id, author_id, id });
-          updateComment(comment);
+          updateStory(comment);
         } else {
           this.setState({ update: true });
           const comment = ({ content, parent_id, author_id: this.props.currentUser.id });
@@ -61,7 +61,7 @@ class CommentForm extends Component {
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
     };
 
-    this.props.updateComment(comment).then(
+    this.props.updateStory(comment).then(
       this.setState({
         id: null,
         content: "",
@@ -80,13 +80,13 @@ class CommentForm extends Component {
     e.preventDefault();
 
     const { content, parent_id, author_id, update } = this.state;
-    const { updateComment, createStory, router } = this.props;
+    const { updateStory, createStory, router } = this.props;
 
     if (update) {
       const comment = ({ content, parent_id, author_id,
         id: this.state.id
       });
-      updateComment(comment).then(
+      updateStory(comment).then(
         action => {
           router.push(`/${action.comment.id}/edit-story`);
       });
@@ -166,7 +166,7 @@ class CommentForm extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
     createStory: (comment) => (dispatch(createStory(comment))),
-    updateComment: (comment) => (dispatch(updateComment(comment)))
+    updateStory: (comment) => (dispatch(updateStory(comment)))
   });
 };
 

@@ -2,14 +2,20 @@ class Api::StoriesController < ApplicationController
   def index
     stories = Story.all
     # Include to make query faster
-    @stories = stories.includes(:author)
+    @stories = stories.includes(:author, :liked_users)
     render :index
   end
 
   def show
-    @story = Story.includes(:author, comments: [:author]).find(params[:id])
-
+    @story = Story.includes(:author).find(params[:id])
     render :show
+  end
+
+  def comments
+    @comments = Story.includes(:author)
+                .where("id = #{params[:id]} or parent_id = #{params[:id]}")
+
+    render :comments
   end
 
   def create

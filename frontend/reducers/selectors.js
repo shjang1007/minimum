@@ -9,9 +9,11 @@ export const selectPublishedStories = ({ stories }) => {
   ));
 };
 
-export const selectPublishedComments = ({ comments }) => {
-  const commentsArray = values(comments);
-  return commentsArray.filter( (comment) => comment.published);
+export const selectPublishedComments = (stories, parentId) => {
+  const commentsArray = values(stories);
+  return commentsArray.filter( (story) => (
+    story.published && story.parent_id === parseInt(parentId)
+  ));
 };
 
 export const selectDraftStories = ({ stories }) => {
