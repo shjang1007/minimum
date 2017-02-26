@@ -9,14 +9,12 @@ import SearchBar from "./search_bar";
 import AuthModal from "../modal/auth_modal";
 import DeleteModal from "../modal/delete_modal";
 
-// move modal to here, and also create class here and use it in app
 class MainNav extends Component {
   constructor(props) {
     super(props);
 
     this.handlePublish = this.handlePublish.bind(this);
     this.signOutUser = this.signOutUser.bind(this);
-    // this.renderRightNav = this.renderRightNav.bind(this);
   }
 
   handlePublish() {
@@ -56,7 +54,8 @@ class MainNav extends Component {
     const storyId = this.props.params.storyId;
     const { currentUser } = this.props;
 
-    if (currentUser.stories && Object.keys(currentUser.stories).includes(storyId)) {
+    if (currentUser !== null &&
+      Object.keys(currentUser.stories).includes(storyId)) {
       return (<Link to={`/${storyId}/edit-story`}
           className="write-story-button green-button">
         Edit
