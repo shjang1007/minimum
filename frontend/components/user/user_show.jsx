@@ -2,18 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { values } from "lodash";
 import { fetchUser } from "../../actions/user_actions";
+import { fetchUserStories } from "../../actions/story_actions";
+import { selectPublishedUserStories } from "../../reducers/selectors";
 import UserStoryIndexItem from "./user_story_index_item";
 
 class UserShow extends Component {
   componentDidMount() {
     this.props.fetchUser(this.props.params.username);
+    this.props.fetchUserStories(this.props.params.username);
   }
 
   render() {
-    const { user, currentUser } = this.props;
-    const userStoryList = values(user.stories)
-      .filter( (story) => (
-      story.published && !story.parent_id))
+    const { user, currentUser, userStories } = this.props;
+    const userStoryList = userStories
       .map( (story) => (
       <UserStoryIndexItem key={ story.id } user={ user }
         story={ story } currentUser={ currentUser }/>
@@ -58,15 +59,17 @@ class UserShow extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // probably need to pass down published and non-published stories
   const user = state.user;
   const currentUser = state.session.currentUser;
-
-  return ({ user, currentUser });
+  const userStories = selectPublishedUserStories(state.stories, state.user.id);
+  return ({ user, currentUser, userStories });
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { fetchUser: (username) => (dispatch(fetchUser(username)))};
+  return {
+    fetchUser: (username) => (dispatch(fetchUser(username))),
+    fetchUserStories: (username) => (dispatch(fetchUserStories(username)))
+  };
 };
 
 export default connect(

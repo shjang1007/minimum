@@ -1,4 +1,5 @@
 import * as storyApiUtil from "../util/story_api_util";
+import * as userApiUtil from "../util/user_api_util";
 
 export const RECEIVE_STORIES = "RECEIVE_STORIES";
 export const RECEIVE_STORY = "RECEIVE_STORY";
@@ -23,6 +24,14 @@ export const fetchStory = (id) => (dispatch) => {
 
 export const fetchStoryAndComments = (parentId) => (dispatch) => {
   return storyApiUtil.fetchStoryAndComments(parentId).then(
+    (stories) => {
+      return dispatch(receiveStories(stories));
+    }
+  );
+};
+
+export const fetchUserStories = (username) => (dispatch) => {
+  return userApiUtil.fetchUserStories(username).then(
     (stories) => {
       return dispatch(receiveStories(stories));
     }

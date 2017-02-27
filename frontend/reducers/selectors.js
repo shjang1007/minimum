@@ -16,6 +16,13 @@ export const selectPublishedComments = (stories, parentId) => {
   ));
 };
 
+export const selectPublishedUserStories = (stories, authorId) => {
+  const commentsArray = values(stories);
+  return commentsArray.filter( (story) => (
+    story.published && story.author.id === authorId && !story.parent_id
+  ));
+};
+
 export const selectDraftStories = ({ stories }) => {
   const storiesArray = values(stories);
   return storiesArray.filter( (story) => !story.published);

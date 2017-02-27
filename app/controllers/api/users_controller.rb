@@ -21,6 +21,12 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def stories
+    user = User.includes(:stories).find_by_username(params[:username])
+    @stories = user.stories.where(published: true).where(parent_id: nil)
+    render "api/stories/index"
+  end
+
   private
 
   def user_params
