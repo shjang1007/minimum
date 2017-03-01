@@ -1,7 +1,7 @@
 {
   "name": "Minimum",
   "version": "1.0.0",
-  "description": "== README",
+  "description": "A story CRUD full-stack project for App Academy inspired by Medium.",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -13,7 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "node_modules/.bin/webpack --watch",
-    "postinstall": "./node_modules/.bin/webpack"
+    "heroku-postbuild": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
