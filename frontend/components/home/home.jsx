@@ -14,7 +14,7 @@ const Home = (props)=> {
           <section className="sidebar">
             <div className="sidbar-content">
               <div className="welcome">
-                Welcome to medium
+                Welcome to Minimum
               </div>
               <ul className="sidebar-items">
                 <li>
