@@ -49,8 +49,7 @@ class SignInForm extends Component {
         </ul>
 
         <form className="sign-form" onSubmit={this.handleSubmit}>
-          <label className="label-form"
-              htmlFor="email">
+          <label className="label-form" htmlFor="email">
             Email address
           </label>
           <input

@@ -12,25 +12,19 @@ const style = {
     padding         : 0,
     margin          : 0,
     border          : 0,
-    justifyContent  : "center",
-    alignItems      : "center"
+    justifyContent  : "center"
   },
   content : {
     background      : "#fff",
     position        : "fixed",
-    top             : "none",
-    left            : "none",
-    right           : "none",
-    bottom          : "none",
     zIndex          : 11,
     padding         : 0,
     boxShadow       : "0 2px 6px 0 rgba(0,0,0,.44)",
     borderRadius    : "3px",
     maxWidth        : "520px",
-    textAlign       : "center",
-    display         : "flex",
-    flexDirection   : "column",
-    verticalAlign   : "middle"
+    height          : "100%",
+    width           : "100%",
+    margin          : "5px 0"
   }
 };
 

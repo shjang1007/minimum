@@ -77,7 +77,7 @@ class AuthSets extends Component {
         );
       case "SIGN_IN_FORM":
         return (
-          <section className="sign-in-form">
+          <section className="authsets-container">
             <h3 className="overlay-title">
               Enter your email address and password to sign in to Minimum
             </h3>
@@ -89,7 +89,7 @@ class AuthSets extends Component {
         );
       case "SIGN_UP_FORM":
         return (
-          <section className="sign-in-form">
+          <section className="authsets-container">
             <h3 className="overlay-title">
               Almost there, fill in the form to create an account
             </h3>

@@ -27,13 +27,14 @@
 }
 
 .toggle-sign-up-in {
-  margin-top: -5px;
+  margin-top: 10px;
   height: 44px;
   line-height: 42px;
   padding: 0 8px 0 0;
   align-self: center;
   font: 16px system-ui;
   color: rgba(0,0,0,0.4);
+  cursor: pointer;
 }
 
 .toggle-sign-up-in:hover {
