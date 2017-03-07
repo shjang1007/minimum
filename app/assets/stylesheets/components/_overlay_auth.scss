@@ -81,12 +81,17 @@
 
 
 .auth-privacy-msg {
-  text-align: left;
   margin: 40px 32px 20px 32px;
   font-size: 14px;
   color: rgba(0,0,0,0.44);
 }
 
 .close-button {
-  position: absolute;
+  position: fixed;
+  color: white;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 20px 30px;
+  top: 0;
+  right: 0;
 }
