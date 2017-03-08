@@ -13,7 +13,9 @@ const AuthModal = ({ authIsOpen, openModal, closeModal }) => {
       onRequestClose={ closeModal }
       contentLabel="Modal"
       style={ customModalStyle }>
-      <button  onClick={ closeModal } className="close-button">X</button>
+      <button type="button"  onClick={ closeModal } className="close-button">
+        X
+      </button>
       <AuthSets closeModal={ closeModal }/>
     </Modal>
   );
