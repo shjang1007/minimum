@@ -1,30 +1,41 @@
 import React from "react";
 import { Link } from "react-router";
 
-const UserDropDown = ({ currentUser, signOutUser, userDropDownOpen }) => {
+const UserDropDown = ({ currentUser,
+                        signOutUser,
+                        toggleUserDropDown,
+                        userDropDownOpen }) => {
+  const closeDropDown = (e) => {
+    if (e.target.id === "click-close") {
+      toggleUserDropDown();
+    }
+  };
+
   if (userDropDownOpen) {
     return (
-        <ul className="drop-down-container drop-down-part">
+        <ul onClick={ closeDropDown } className="drop-down-container">
           <li>
             <ul className="drop-down">
               <li>
-                <Link to="/new-story">
+                <Link id="click-close" to="/new-story">
                   New Story
                 </Link>
               </li>
               <li>
-                <Link to="/me/stories/drafts">
+                <Link id="click-close" to="/me/stories/drafts">
                   Stories
                 </Link>
               </li>
               <li className="separator"></li>
               <li>
-                <Link className="gray-button" to={`/@${currentUser.username}`}>
+                <Link id="click-close" className="gray-button"
+                      to={`/@${currentUser.username}`}>
                   Profile
                 </Link>
               </li>
               <li>
-                <a className="gray-button" onClick={signOutUser}>
+                <a id="click-close" className="gray-button"
+                    onClick={signOutUser}>
                   Sign out
                 </a>
               </li>

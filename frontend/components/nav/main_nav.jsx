@@ -80,7 +80,7 @@ class MainNav extends Component {
       if (pathname === "/new-story" || pathname.includes("/edit-story")) {
         return (
           <ul className="right-nav-menu">
-            <li>
+            <li className="nav-drop-button">
               <button className="nav-bar-button green-button"
                       onClick={ this.props.togglePublishDropDown }>
                 Publish
@@ -99,14 +99,15 @@ class MainNav extends Component {
                 <img src={window.images.bell} className="icon bell" />
               </button>
             </li>
-            <li className="nav-profile">
+            <li className="nav-drop-button">
               <button onClick={ this.props.toggleUserDropDown }>
                 <img src={ currentUser.avatar_url }
-                  className="avatar drop-down-part" />
+                  className="avatar" />
               </button>
               <UserDropDown
                   signOutUser={ this.signOutUser }
                   currentUser={ currentUser }
+                  toggleUserDropDown={ this.props.toggleUserDropDown }
                   userDropDownOpen={ this.props.userDropDownOpen}/>
             </li>
           </ul>
@@ -125,14 +126,15 @@ class MainNav extends Component {
                 <img src={window.images.bell} className="icon bell" />
               </button>
             </li>
-            <li className="nav-profile">
+            <li className="nav-drop-button">
               <button onClick={ this.props.toggleUserDropDown }>
                 <img src={ currentUser.avatar_url }
-                      className="avatar drop-down-part" />
+                      className="avatar" />
               </button>
               <UserDropDown
                   signOutUser={ this.signOutUser }
                   currentUser={ currentUser }
+                  toggleUserDropDown={ this.props.toggleUserDropDown }
                   userDropDownOpen={ this.props.userDropDownOpen}/>
             </li>
             <li>

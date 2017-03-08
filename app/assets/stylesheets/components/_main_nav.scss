@@ -84,7 +84,7 @@
 }
 
 // Navigation profile and drop-down toggle
-.nav-profile {
+.nav-drop-button {
   position: relative;
   padding-left: 8px;
 }
@@ -93,7 +93,6 @@
   min-width: 69px;
   z-index: 5;
   position: absolute;
-  line-height: 44px;
   left: 25%;
   margin-left: -122px;
   display: flex;
@@ -112,6 +111,10 @@
 
 .drop-down > li {
   padding: 7px 25px;
+}
+
+.drop-down > li > a {
+  display: block;
 }
 
 .drop-down > li:hover {

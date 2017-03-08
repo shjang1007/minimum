@@ -54,47 +54,45 @@ class PublishDropDownForm extends Component {
   render() {
     if (this.props.publishDropDownOpen) {
       return (
-        <div onClick={ this.toggleDropDown } className="drop-down-container">
-          <ul className="drop-down-container">
-            <li>
-              <div className="drop-down">
-                <h4>
-                  Ready to publish{"?"}
-                </h4>
-                <p>
-                  Choose tags so your story reaches more people:
-                </p>
-                <ul className="tag-list">
-                  <li>
-                    <button className="tag-button"
-                      onClick={ this.toggleTag("nba") }>
-                      NBA
-                    </button>
-                  </li>
-                  <li>
-                    <button className="tag-button"
-                      onClick={ this.toggleTag("lol") }>
-                      League of Legends
-                    </button>
-                  </li>
-                  <li>
-                    <button className="tag-button"
-                      onClick={ this.toggleTag("food") }>
-                      Food
-                    </button>
-                  </li>
-                  <li>
-                    <button className="tag-button"
-                      onClick={ this.toggleTag("travel") }>
-                      Travel
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li className="popover-arrow"></li>
-          </ul>
-        </div>
+        <ul className="drop-down-container">
+          <li>
+            <div className="drop-down">
+              <h4>
+                Ready to publish{"?"}
+              </h4>
+              <p>
+                Choose tags so your story reaches more people:
+              </p>
+              <ul className="tag-list">
+                <li>
+                  <button className="tag-button"
+                    onClick={ this.toggleTag("nba") }>
+                    NBA
+                  </button>
+                </li>
+                <li>
+                  <button className="tag-button"
+                    onClick={ this.toggleTag("lol") }>
+                    League of Legends
+                  </button>
+                </li>
+                <li>
+                  <button className="tag-button"
+                    onClick={ this.toggleTag("food") }>
+                    Food
+                  </button>
+                </li>
+                <li>
+                  <button className="tag-button"
+                    onClick={ this.toggleTag("travel") }>
+                    Travel
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li className="popover-arrow"></li>
+        </ul>
       );
     } else {
       return null;
