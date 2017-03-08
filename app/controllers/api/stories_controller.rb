@@ -2,12 +2,12 @@ class Api::StoriesController < ApplicationController
   def index
     stories = Story.all
     # Include to make query faster
-    @stories = stories.includes(:author, :liked_users)
+    @stories = stories.includes(:author, :liked_users, :tags)
     render :index
   end
 
   def show
-    @story = Story.includes(:author).find(params[:id])
+    @story = Story.includes(:author, :tags).find(params[:id])
     render :show
   end
 
@@ -67,7 +67,8 @@ class Api::StoriesController < ApplicationController
         :published_at,
         :parent_id,
         :author_id,
-        :image
+        :image,
+        tag_names: []
       )
   end
 end

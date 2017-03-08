@@ -30549,7 +30549,7 @@ var Home = function (_Component) {
                   null,
                   _react2.default.createElement(
                     "button",
-                    { className: "write-story-button button gray-button" },
+                    { className: "nav-bar-button button gray-button" },
                     "Write a story"
                   )
                 ),

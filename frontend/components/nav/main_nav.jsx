@@ -5,6 +5,7 @@ import { signOut } from "../../actions/session_actions";
 import { updateStory, deleteStory } from "../../actions/story_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import UserDropDown from "./user_drop_down";
+import PublishDropDownForm from "./publish_drop_down_form";
 import SearchBar from "./search_bar";
 import AuthModal from "../modal/auth_modal";
 import DeleteModal from "../modal/delete_modal";
@@ -13,27 +14,26 @@ class MainNav extends Component {
   constructor(props) {
     super(props);
 
-    this.handlePublish = this.handlePublish.bind(this);
     this.signOutUser = this.signOutUser.bind(this);
   }
 
-  handlePublish() {
-    const monthNames = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
-      "Oct", "Nov", "Dec"
-    ];
-    const date = new Date();
-
-    const story = {
-      id: this.props.params.storyId,
-      published: true,
-      published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
-    };
-
-    return this.props.publishStory(story).then(
-      this.props.router.push(`/stories/${story.id}`)
-    );
-  }
+  // handlePublish() {
+  //   const monthNames = [
+  //     "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+  //     "Oct", "Nov", "Dec"
+  //   ];
+  //   const date = new Date();
+  //
+  //   const story = {
+  //     id: this.props.params.storyId,
+  //     published: true,
+  //     published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
+  //   };
+  //
+  //   return this.props.publishStory(story).then(
+  //     this.props.router.push(`/stories/${story.id}`)
+  //   );
+  // }
 
   signOutUser() {
     this.props.signOut().then(
@@ -57,12 +57,12 @@ class MainNav extends Component {
     if (currentUser !== null &&
       Object.keys(currentUser.stories).includes(storyId)) {
       return (<Link to={`/${storyId}/edit-story`}
-          className="write-story-button green-button">
+          className="nav-bar-button green-button">
         Edit
       </Link>);
     } else {
       return (<Link to="/new-story"
-          className="write-story-button green-button">
+          className="nav-bar-button green-button">
         Write a story
       </Link>);
     }
@@ -81,10 +81,10 @@ class MainNav extends Component {
         return (
           <ul className="right-nav-menu">
             <li>
-              <button onClick={this.handlePublish}
-                  className="write-story-button green-button">
-                Publish
-              </button>
+              <PublishDropDownForm
+                publishStory={ this.publishStory}
+                storyId={this.props.params.storyId}
+                router={this.router}/>
             </li>
             <li>
               { deleteButton }
@@ -128,7 +128,7 @@ class MainNav extends Component {
         <ul className="right-nav-menu">
           <li>
             <a onClick={this.props.openAuthModal}
-                className="write-story-button gray-button">
+                className="nav-bar-button gray-button">
               Write a story
             </a>
           </li>
