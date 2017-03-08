@@ -11,6 +11,7 @@ class PublishDropDownForm extends Component {
       food: false,
       travel: false
     });
+
   }
 
   handlePublish(e) {
@@ -35,13 +36,8 @@ class PublishDropDownForm extends Component {
     );
   }
 
-  toggleDropDown(e) {
-    e.target.classList.toggle("show");
-  }
-
   toggleTag(tag) {
     return (e) => {
-      e.preventDefault();
       if (this.state[tag]) {
         this.setState({[tag]: false});
       } else {
@@ -52,6 +48,26 @@ class PublishDropDownForm extends Component {
   }
 
   render() {
+    const { state } = this;
+    const tags = Object.keys(this.state);
+    const tagList = tags.map( (tag) => {
+      if (state[tag]) {
+        return (<li key={ tag }>
+          <button className="tag-button selected"
+            onClick={ this.toggleTag(tag) }>
+            { tag }
+          </button>
+        </li>);
+      } else {
+        return (<li key={ tag }>
+          <button className="tag-button"
+            onClick={ this.toggleTag(tag) }>
+            { tag }
+          </button>
+        </li>);
+      }
+    });
+
     if (this.props.publishDropDownOpen) {
       return (
         <ul className="drop-down-container">
@@ -64,30 +80,7 @@ class PublishDropDownForm extends Component {
                 Choose tags so your story reaches more people:
               </p>
               <ul className="tag-list">
-                <li>
-                  <button className="tag-button"
-                    onClick={ this.toggleTag("nba") }>
-                    NBA
-                  </button>
-                </li>
-                <li>
-                  <button className="tag-button"
-                    onClick={ this.toggleTag("lol") }>
-                    League of Legends
-                  </button>
-                </li>
-                <li>
-                  <button className="tag-button"
-                    onClick={ this.toggleTag("food") }>
-                    Food
-                  </button>
-                </li>
-                <li>
-                  <button className="tag-button"
-                    onClick={ this.toggleTag("travel") }>
-                    Travel
-                  </button>
-                </li>
+                { tagList }
               </ul>
             </div>
           </li>
