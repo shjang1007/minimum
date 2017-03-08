@@ -10,7 +10,9 @@
 
 class Tag < ActiveRecord::Base
   validates :name, presence: true
-  validates :name, inclusion: { in: [ "basketball", "league of legends" ] }
+  validates :name, inclusion: {
+    in: [ "nba", "lol", "food", "travel" ]
+  }
 
   # Probably don't need this, since I will never call stories from tag
   has_many :taggings

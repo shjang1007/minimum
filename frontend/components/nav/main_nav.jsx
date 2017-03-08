@@ -81,7 +81,12 @@ class MainNav extends Component {
         return (
           <ul className="right-nav-menu">
             <li>
+              <button className="nav-bar-button green-button"
+                      onClick={ this.props.togglePublishDropDown }>
+                Publish
+              </button>
               <PublishDropDownForm
+                publishDropDownOpen={ this.props.publishDropDownOpen }
                 publishStory={ this.publishStory}
                 storyId={this.props.params.storyId}
                 router={this.router}/>
@@ -95,8 +100,14 @@ class MainNav extends Component {
               </button>
             </li>
             <li className="nav-profile">
-              <UserDropDown signOutUser={ this.signOutUser }
-                  currentUser={ currentUser }/>
+              <button onClick={ this.props.toggleUserDropDown }>
+                <img src={ currentUser.avatar_url }
+                  className="avatar drop-down-part" />
+              </button>
+              <UserDropDown
+                  signOutUser={ this.signOutUser }
+                  currentUser={ currentUser }
+                  userDropDownOpen={ this.props.userDropDownOpen}/>
             </li>
           </ul>
         );
@@ -115,8 +126,14 @@ class MainNav extends Component {
               </button>
             </li>
             <li className="nav-profile">
-              <UserDropDown signOutUser={ this.signOutUser }
-                  currentUser={ currentUser }/>
+              <button onClick={ this.props.toggleUserDropDown }>
+                <img src={ currentUser.avatar_url }
+                      className="avatar drop-down-part" />
+              </button>
+              <UserDropDown
+                  signOutUser={ this.signOutUser }
+                  currentUser={ currentUser }
+                  userDropDownOpen={ this.props.userDropDownOpen}/>
             </li>
             <li>
             </li>
