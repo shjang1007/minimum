@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { fetchStory, updateStory } from "../../actions/story_actions";
+import * as tagApiUtil from "../../util/tag_api_util";
 
 class PublishDropDownForm extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class PublishDropDownForm extends Component {
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`,
       tag_names: []
     };
+
     Object.keys(this.state).forEach( (tag) => {
       if (this.state[tag]) {
         story["tag_names"].push(tag);
@@ -61,7 +63,9 @@ class PublishDropDownForm extends Component {
   toggleTag(tag) {
     return (e) => {
       if (this.state.tag) {
-        this.setState({[tag]: false});
+        tagApiUtil.deleteTagging(this.props.params.storyId, tag).then(
+          this.setState({[tag]: false})
+        );
       } else {
         this.setState({[tag]: true});
       }
@@ -115,6 +119,13 @@ class PublishDropDownForm extends Component {
     }
   }
 }
+
+// const mapStateToProps = (state, ownProps) => {
+//   debugger
+//   if (ownProps.location.pathname.includes("/edit-story")) {
+//     return { story: state.stories[ownProps.params.storyId]};
+//   }
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return ({

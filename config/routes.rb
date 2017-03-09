@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resources :likes, only: :create
 
+    delete :taggings, to: "taggings#destory"
     delete :likes, to: "likes#destroy"
     get "users/:username", to: "users#show"
     get "users/:username/stories", to: "users#stories"
