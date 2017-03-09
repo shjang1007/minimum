@@ -13,7 +13,7 @@ import DeleteModal from "../modal/delete_modal";
 class MainNav extends Component {
   constructor(props) {
     super(props);
-
+    
     this.signOutUser = this.signOutUser.bind(this);
   }
 
@@ -87,9 +87,9 @@ class MainNav extends Component {
               </button>
               <PublishDropDownForm
                 publishDropDownOpen={ this.props.publishDropDownOpen }
-                publishStory={ this.publishStory}
+                publishStory={ this.props.publishStory}
                 storyId={this.props.params.storyId}
-                router={this.router}/>
+                router={this.props.router}/>
             </li>
             <li>
               { deleteButton }

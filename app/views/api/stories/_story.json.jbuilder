@@ -20,6 +20,12 @@ json.liked_users do
   end
 end
 
+json.tags do
+  story.tags.each do |tag|
+    json.extract! tag, :name
+  end
+end
+
 if story.image.file?
   json.image_url asset_path(story.image.url(:medium))
 end

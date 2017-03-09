@@ -12,24 +12,42 @@ class PublishDropDownForm extends Component {
       travel: false
     });
 
+    this.handlePublish = this.handlePublish.bind(this);
   }
 
+  // componentDidMount() {
+  //   if (this.props.params.storyId) {
+  //     this.props.fetchStory(this.props.params.storyId).then(
+  //       (action) => {
+  //         this.setState(action.story);
+  //         this.setState({image_preview_url: action.story.image_url});
+  //       }
+  //     );
+  //   }
+  // }
+
+  // This function will only be called when there is a draft saved in the database
+  // So this function will update story with publish date and tags
   handlePublish(e) {
     e.preventDefault();
-
     const monthNames = [
       "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
       "Oct", "Nov", "Dec"
     ];
     const date = new Date();
 
-    const publishInfo = {
+    const story = {
       id: this.props.storyId,
       published: true,
-      published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
+      published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`,
+      tag_names: []
     };
 
-    const story = Object.assign({}, this.state, story);
+    Object.keys(this.state).forEach( (tag) => {
+      if (this.state.tag) {
+        story["tag_names"].push(tag);
+      }
+    });
 
     return this.props.publishStory(story).then(
       this.props.router.push(`/stories/${story.id}`)
@@ -38,7 +56,7 @@ class PublishDropDownForm extends Component {
 
   toggleTag(tag) {
     return (e) => {
-      if (this.state[tag]) {
+      if (this.state.tag) {
         this.setState({[tag]: false});
       } else {
         this.setState({[tag]: true});
@@ -82,6 +100,7 @@ class PublishDropDownForm extends Component {
               <ul className="tag-list">
                 { tagList }
               </ul>
+              <button onClick={ this.handlePublish }>Publish</button>
             </div>
           </li>
           <li className="popover-arrow"></li>
