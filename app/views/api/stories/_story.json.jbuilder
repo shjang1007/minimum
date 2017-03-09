@@ -1,5 +1,5 @@
 json.extract! story, :id, :title, :sub_title, :content, :published,
-  :published_at, :parent_id
+  :published_at, :parent_id, :tags
 
 json.author do
   json.partial! "api/users/user", user: story.author
@@ -17,12 +17,6 @@ json.liked_users do
     json.set! user.id do
       json.extract! user, :id, :name
     end
-  end
-end
-
-json.tags do
-  story.tags.each do |tag|
-    json.extract! tag, :name
   end
 end
 

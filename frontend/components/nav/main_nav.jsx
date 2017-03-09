@@ -13,7 +13,7 @@ import DeleteModal from "../modal/delete_modal";
 class MainNav extends Component {
   constructor(props) {
     super(props);
-    
+
     this.signOutUser = this.signOutUser.bind(this);
   }
 
@@ -86,10 +86,7 @@ class MainNav extends Component {
                 Publish
               </button>
               <PublishDropDownForm
-                publishDropDownOpen={ this.props.publishDropDownOpen }
-                publishStory={ this.props.publishStory}
-                storyId={this.props.params.storyId}
-                router={this.props.router}/>
+                publishDropDownOpen={ this.props.publishDropDownOpen }/>
             </li>
             <li>
               { deleteButton }
@@ -225,7 +222,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     signOut: () => (dispatch(signOut())),
-    publishStory: (story) => (dispatch(updateStory(story))),
     deleteStory: (id) => (dispatch(deleteStory(id))),
     openAuthModal: () => (dispatch(openModal("authIsOpen"))),
     closeAuthModal: () => (dispatch(closeModal("authIsOpen"))),

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
+import { connect } from "react-redux";
+import { Link, withRouter } from "react-router";
+import { fetchStory, updateStory } from "../../actions/story_actions";
 
 class PublishDropDownForm extends Component {
   constructor(props) {
@@ -15,16 +17,19 @@ class PublishDropDownForm extends Component {
     this.handlePublish = this.handlePublish.bind(this);
   }
 
-  // componentDidMount() {
-  //   if (this.props.params.storyId) {
-  //     this.props.fetchStory(this.props.params.storyId).then(
-  //       (action) => {
-  //         this.setState(action.story);
-  //         this.setState({image_preview_url: action.story.image_url});
-  //       }
-  //     );
-  //   }
-  // }
+  componentDidMount() {
+    const { pathname } = this.props.location;
+
+    if (pathname.includes("/edit-story")) {
+      this.props.fetchStory(this.props.params.storyId).then(
+        (action) => {
+          action.story.tags.forEach( (tag) =>{
+            this.setState({[tag.name]: true});
+          });
+        }
+      );
+    }
+  }
 
   // This function will only be called when there is a draft saved in the database
   // So this function will update story with publish date and tags
@@ -37,14 +42,13 @@ class PublishDropDownForm extends Component {
     const date = new Date();
 
     const story = {
-      id: this.props.storyId,
+      id: this.props.params.storyId,
       published: true,
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`,
       tag_names: []
     };
-
     Object.keys(this.state).forEach( (tag) => {
-      if (this.state.tag) {
+      if (this.state[tag]) {
         story["tag_names"].push(tag);
       }
     });
@@ -112,7 +116,17 @@ class PublishDropDownForm extends Component {
   }
 }
 
-export default PublishDropDownForm;
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    publishStory: (story) => (dispatch(updateStory(story))),
+    fetchStory: (id) => (dispatch(fetchStory(id)))
+  });
+};
+
+export default withRouter(connect(
+  null,
+  mapDispatchToProps
+)(PublishDropDownForm));
 
 // After p tag
 // <li>

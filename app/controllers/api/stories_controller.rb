@@ -32,7 +32,6 @@ class Api::StoriesController < ApplicationController
   end
 
   def update
-
     @story = Story.find(params[:id])
 
     if @story.update(story_params)
