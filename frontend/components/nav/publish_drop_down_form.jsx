@@ -46,14 +46,13 @@ class PublishDropDownForm extends Component {
       id: this.props.params.storyId,
       published: true,
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`,
-      tag_names: []
     };
 
-    Object.keys(this.state).forEach( (tag) => {
-      if (this.state[tag]) {
-        story["tag_names"].push(tag);
-      }
-    });
+    // Object.keys(this.state).forEach( (tag) => {
+    //   if (this.state[tag]) {
+    //     story["tag_names"].push(tag);
+    //   }
+    // });
 
     return this.props.publishStory(story).then(
       this.props.router.push(`/stories/${story.id}`)
@@ -62,55 +61,71 @@ class PublishDropDownForm extends Component {
 
   toggleTag(tag) {
     return (e) => {
-      if (this.state.tag) {
+      e.preventDefault();
+      if (this.state[tag]) {
         tagApiUtil.deleteTagging(this.props.params.storyId, tag).then(
           this.setState({[tag]: false})
         );
       } else {
-        this.setState({[tag]: true});
+        tagApiUtil.createTagging(this.props.params.storyId, tag).then(
+          this.setState({[tag]: true})
+        );
       }
       e.currentTarget.classList.toggle("selected");
     };
   }
 
-  render() {
-    const { state } = this;
-    const tags = Object.keys(this.state);
-    const tagList = tags.map( (tag) => {
-      if (state[tag]) {
-        return (<li key={ tag }>
-          <button className="tag-button selected"
-            onClick={ this.toggleTag(tag) }>
-            { tag }
-          </button>
-        </li>);
-      } else {
-        return (<li key={ tag }>
-          <button className="tag-button"
-            onClick={ this.toggleTag(tag) }>
-            { tag }
-          </button>
-        </li>);
-      }
-    });
+  renderDropDownContent() {
+    const { pathname } = this.props.location;
+    if (pathname.includes("/edit-story")) {
+      const tags = Object.keys(this.state);
+      const tagList = tags.map( (tag) => {
+        if (this.state[tag]) {
+          return (<li key={ tag }>
+            <button className="tag-button selected"
+              onClick={ this.toggleTag(tag) }>
+              { tag }
+            </button>
+          </li>);
+        } else {
+          return (<li key={ tag }>
+            <button className="tag-button"
+              onClick={ this.toggleTag(tag) }>
+              { tag }
+            </button>
+          </li>);
+        }
+      });
+      return (
+        <li>
+          <div className="drop-down">
+            <h4>
+              Ready to publish{"?"}
+            </h4>
+            <p>
+              Choose tags so your story reaches more people:
+            </p>
+            <ul className="tag-list">
+              { tagList }
+            </ul>
+            <button onClick={ this.handlePublish }>Publish</button>
+          </div>
+        </li>
+      );
+    } else {
+      return (<li>
+        <div className="drop-down">
+          <p>Publishing will become available after you start writing</p>
+        </div>
+      </li>);
+    }
+  }
 
+  render() {
     if (this.props.publishDropDownOpen) {
       return (
         <ul className="drop-down-container">
-          <li>
-            <div className="drop-down">
-              <h4>
-                Ready to publish{"?"}
-              </h4>
-              <p>
-                Choose tags so your story reaches more people:
-              </p>
-              <ul className="tag-list">
-                { tagList }
-              </ul>
-              <button onClick={ this.handlePublish }>Publish</button>
-            </div>
-          </li>
+          { this.renderDropDownContent() }
           <li className="popover-arrow"></li>
         </ul>
       );
