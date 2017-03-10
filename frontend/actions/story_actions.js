@@ -14,6 +14,14 @@ export const fetchStories = () => (dispatch) => {
   );
 };
 
+export const fetchNbaStories = () => (dispatch) => {
+  return storyApiUtil.fetchNbaStories().then(
+    (stories) => {
+      return dispatch(receiveStories(stories));
+    }
+  );
+};
+
 export const fetchStory = (id) => (dispatch) => {
   return storyApiUtil.fetchStory(id).then(
     (story) => {

@@ -3,12 +3,12 @@ import { Provider } from "react-redux";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
 import App from "./app";
-import Home from "./home/home";
-import StoryIndex from "./story/story_index";
+import HomePage from "./pages/home_page";
+import NbaPage from "./pages/nba_page";
 import StoryForm from "./story/story_form";
 import StoryShow from "./story/story_show";
 import UserShow from "./user/user_show";
-import MyStories from "./user/my_stories"
+import MyStories from "./user/my_stories";
 
 const Root = ({ store }) => {
 
@@ -30,7 +30,8 @@ const Root = ({ store }) => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
-          <IndexRoute component={ Home } />
+          <IndexRoute component={ HomePage } />
+          <Route path="/stories/nba" component={ NbaPage } />
           <Route path="/new-story"
               component={ StoryForm }
               onEnter={ _ensureLoggedIn }/>

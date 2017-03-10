@@ -17,24 +17,6 @@ class MainNav extends Component {
     this.signOutUser = this.signOutUser.bind(this);
   }
 
-  // handlePublish() {
-  //   const monthNames = [
-  //     "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
-  //     "Oct", "Nov", "Dec"
-  //   ];
-  //   const date = new Date();
-  //
-  //   const story = {
-  //     id: this.props.params.storyId,
-  //     published: true,
-  //     published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
-  //   };
-  //
-  //   return this.props.publishStory(story).then(
-  //     this.props.router.push(`/stories/${story.id}`)
-  //   );
-  // }
-
   signOutUser() {
     this.props.signOut().then(
       this.props.router.push("/")
@@ -164,18 +146,17 @@ class MainNav extends Component {
 
   renderBottomBar() {
     const pathname = this.props.location.pathname;
-    const editorSection = "Editors' picks";
     if (pathname === "/") {
       return (
         <div className="inner-bar bottom-bar">
           <ul>
             <li><button className="gray-button category">Home</button></li>
             <li><button className="gray-button category">Top stories</button></li>
-            <li><button className="gray-button category">{editorSection}</button></li>
-            <li><button className="gray-button category">Politics</button></li>
-            <li><button className="gray-button category">Technology</button></li>
-            <li><button className="gray-button category">Humans</button></li>
-            <li><button className="gray-button category">Culture</button></li>
+            <li><button className="gray-button category">Brian's picks</button></li>
+            <li><button className="gray-button category">NBA</button></li>
+            <li><button className="gray-button category">League of Legends</button></li>
+            <li><button className="gray-button category">Food</button></li>
+            <li><button className="gray-button category">Travel</button></li>
             <li><button className="gray-button category">Business</button></li>
             <li><button className="gray-button category">Entertainment</button></li>
             <li><button className="gray-button category">Bookmarks</button></li>

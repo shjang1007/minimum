@@ -1,14 +1,14 @@
 import React from "react";
 import AuthSets from "../session/auth_sets";
-import StoryIndex from "../story/story_index";
+import NbaStoryContainer from "../story/nba_story_container";
 
-const Home = (props)=> {
+const NbaPage = (props)=> {
   return (
     <main className="site-main surface-container">
       <section className="home-container">
         <section className="home-content">
           <div className="home-stories">
-            <StoryIndex />
+            <NbaStoryContainer />
           </div>
 
           <section className="sidebar">
@@ -74,4 +74,4 @@ const Home = (props)=> {
   );
 };
 
-export default Home;
+export default NbaPage;

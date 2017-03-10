@@ -6,13 +6,19 @@ class Api::StoriesController < ApplicationController
     render :index
   end
 
+  def nba
+    stories = Tag.includes(:stories).where(name: "nba").first.stories
+    @stories = stories.includes(:author, :liked_users, :tags)
+    render :index
+  end
+
   def show
     @story = Story.includes(:author, :tags).find(params[:id])
     render :show
   end
 
   def comments
-    @comments = Story.includes(:author)
+    @comments = Story.includes(:author, :liked_users)
                 .where("id = #{params[:id]} or parent_id = #{params[:id]}")
 
     render :comments

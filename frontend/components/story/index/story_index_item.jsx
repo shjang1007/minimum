@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { values } from "lodash";
-import { createLike, deleteLike } from "../../actions/like_actions";
+import { createLike, deleteLike } from "../../../actions/like_actions";
 
 // Props has story info
 class StoryIndexItem extends Component {
@@ -45,7 +45,7 @@ class StoryIndexItem extends Component {
   render() {
     const { id, title, sub_title, content, author, published_at, image_url, liked_users } =
       this.props.story;
-    
+
     return(
       <li className="index-item">
         <div className="index-item-profile">

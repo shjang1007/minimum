@@ -5,6 +5,13 @@ export const fetchStories = () => {
   });
 };
 
+export const fetchNbaStories = () => {
+  return $.ajax({
+    method: "GET",
+    url: "api/stories/nba"
+  });
+};
+
 export const fetchStory = (id) => {
   return $.ajax({
     method: "GET",
