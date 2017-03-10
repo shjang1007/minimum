@@ -10,9 +10,9 @@ class PublishDropDownForm extends Component {
 
     this.state = ({
       nba: false,
-      lol: false,
+      travel: false,
       food: false,
-      travel: false
+      lol: false
     });
 
     this.handlePublish = this.handlePublish.bind(this);
@@ -48,12 +48,6 @@ class PublishDropDownForm extends Component {
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`,
     };
 
-    // Object.keys(this.state).forEach( (tag) => {
-    //   if (this.state[tag]) {
-    //     story["tag_names"].push(tag);
-    //   }
-    // });
-
     return this.props.publishStory(story).then(
       this.props.router.push(`/stories/${story.id}`)
     );
@@ -76,71 +70,72 @@ class PublishDropDownForm extends Component {
   }
 
   renderDropDownContent() {
-    const { pathname } = this.props.location;
-    if (pathname.includes("/edit-story")) {
-      const tags = Object.keys(this.state);
-      const tagList = tags.map( (tag) => {
-        if (this.state[tag]) {
-          return (<li key={ tag }>
-            <button className="tag-button selected"
-              onClick={ this.toggleTag(tag) }>
-              { tag }
-            </button>
-          </li>);
-        } else {
-          return (<li key={ tag }>
-            <button className="tag-button"
-              onClick={ this.toggleTag(tag) }>
-              { tag }
-            </button>
-          </li>);
-        }
-      });
-      return (
-        <li>
-          <div className="drop-down">
-            <h4>
-              Ready to publish{"?"}
-            </h4>
-            <p>
-              Choose tags so your story reaches more people:
-            </p>
-            <ul className="tag-list">
-              { tagList }
-            </ul>
-            <button onClick={ this.handlePublish }>Publish</button>
-          </div>
-        </li>
-      );
-    } else {
-      return (<li>
-        <div className="drop-down">
-          <p>Publishing will become available after you start writing</p>
-        </div>
-      </li>);
-    }
+
   }
 
   render() {
     if (this.props.publishDropDownOpen) {
-      return (
-        <ul className="drop-down-container">
-          { this.renderDropDownContent() }
-          <li className="popover-arrow"></li>
-        </ul>
-      );
+      const { pathname } = this.props.location;
+      if (pathname.includes("/edit-story")) {
+        const tags = Object.keys(this.state);
+        const tagList = tags.map( (tag) => {
+          if (this.state[tag]) {
+            return (
+            <li key={ tag }>
+              <button className="tag-button selected"
+                onClick={ this.toggleTag(tag) }>
+                { tag }
+              </button>
+            </li>);
+          } else {
+            return (
+            <li key={ tag }>
+              <button className="tag-button"
+                onClick={ this.toggleTag(tag) }>
+                { tag }
+              </button>
+            </li>);
+          }
+        });
+        return (
+          <ul className="drop-down-container">
+            <li className="drop-down tags-drop-down">
+              <div className="drop-down-contents">
+                <h4>
+                  Ready to publish{"?"}
+                </h4>
+                <p>
+                  Choose tags so your story reaches more people:
+                </p>
+                <ul className="tag-list">
+                  { tagList }
+                </ul>
+                <button className="publish-button"
+                        onClick={ this.handlePublish }>
+                  Publish
+                </button>
+              </div>
+            </li>
+            <li className="popover-arrow"></li>
+          </ul>
+        );
+      } else {
+        return (
+          <ul className="drop-down-container">
+            <li className="drop-down black-background">
+              <div>
+                <p>Publishing will become available after you start writing</p>
+              </div>
+            </li>
+            <li className="popover-arrow black-background"></li>
+          </ul>
+        );
+      }
     } else {
       return null;
     }
   }
 }
-
-// const mapStateToProps = (state, ownProps) => {
-//   debugger
-//   if (ownProps.location.pathname.includes("/edit-story")) {
-//     return { story: state.stories[ownProps.params.storyId]};
-//   }
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return ({
@@ -153,16 +148,3 @@ export default withRouter(connect(
   null,
   mapDispatchToProps
 )(PublishDropDownForm));
-
-// After p tag
-// <li>
-//   <Link to="/new-story">
-//     New Story
-//   </Link>
-// </li>
-// <li>
-//   <Link to="/me/stories/drafts">
-//     Stories
-//   </Link>
-// </li>
-// <li className="separator"></li>

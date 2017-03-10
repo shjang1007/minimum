@@ -100,8 +100,8 @@
 }
 
 .drop-down {
-  width: 230px;
-  padding: 8px 0;
+  min-width: 230px;
+  padding: 8px 15px;
   box-shadow: 0 1px 2px rgba(0,0,0,.25),0 0 1px rgba(0,0,0,.35);
   border-radius: 3px;
   font-size: 16px;
@@ -129,7 +129,7 @@
 }
 
 .drop-down-container {
-  padding: 15px;
+  padding: 15px 0;
 }
 
 .popover-arrow {
@@ -145,11 +145,52 @@
   background: #fff;
 }
 
+.black-background {
+  background-color: black;
+  color: white;
+  font-size: 13px;
+  text-align: center;
+}
+
 // Publish Drop Down Form
+.drop-down-contents {
+  display: flex;
+  flex-direction: column;
+}
+
+.tags-drop-down {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-button {
+  background: #fafafa;
+  padding: 8px 20px;
+  margin: 5px;
+  border-radius: 3px;
+  font-size: 14px;
+  align-self: flex-end;
+}
+
 .selected {
   color: red;
 }
 
+.publish-button {
+  color: #00ab6b;
+  border: 1px solid #00ab6b;
+  border-radius: 999em;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 300;
+
+}
 
 // Logos/Icons/Avatar
 .logo-link {
