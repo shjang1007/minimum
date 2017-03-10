@@ -1,14 +1,8 @@
-export const fetchStories = () => {
+export const fetchStories = (tag_name) => {
   return $.ajax({
     method: "GET",
-    url: "api/stories"
-  });
-};
-
-export const fetchNbaStories = () => {
-  return $.ajax({
-    method: "GET",
-    url: "api/stories/nba"
+    url: "api/stories",
+    data: { tag_name }
   });
 };
 

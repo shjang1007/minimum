@@ -146,20 +146,60 @@ class MainNav extends Component {
 
   renderBottomBar() {
     const pathname = this.props.location.pathname;
-    if (pathname === "/") {
+    if (pathname === "/" || pathname.includes("tags")) {
       return (
         <div className="inner-bar bottom-bar">
           <ul>
-            <li><button className="gray-button category">Home</button></li>
-            <li><button className="gray-button category">Top stories</button></li>
-            <li><button className="gray-button category">Brian's picks</button></li>
-            <li><button className="gray-button category">NBA</button></li>
-            <li><button className="gray-button category">League of Legends</button></li>
-            <li><button className="gray-button category">Food</button></li>
-            <li><button className="gray-button category">Travel</button></li>
-            <li><button className="gray-button category">Business</button></li>
-            <li><button className="gray-button category">Entertainment</button></li>
-            <li><button className="gray-button category">Bookmarks</button></li>
+            <li>
+              <Link to="/" className="gray-button category">
+                Home
+              </Link>
+          </li>
+            <li>
+              <Link to="tags/top-stories" className="gray-button category">
+                Top stories
+              </Link>
+          </li>
+            <li>
+              <Link to="tags/brian-picks" className="gray-button category">
+                Brian's picks
+              </Link>
+            </li>
+            <li>
+              <Link to="tags/nba" className="gray-button category">
+                NBA
+              </Link>
+            </li>
+            <li>
+              <Link to="tags/lol" className="gray-button category">
+                League of Legends
+              </Link>
+            </li>
+            <li>
+              <Link to="tags/food" className="gray-button category">
+                Food
+              </Link>
+            </li>
+            <li>
+              <Link to="tags/travel" className="gray-button category">
+                Travel
+              </Link>
+            </li>
+            <li>
+              <Link className="gray-button category">
+                Business
+              </Link>
+            </li>
+            <li>
+              <Link className="gray-button category">
+                Entertainment
+              </Link>
+            </li>
+            <li>
+              <Link className="gray-button category">
+                Bookmarks
+              </Link>
+            </li>
           </ul>
         </div>
       );

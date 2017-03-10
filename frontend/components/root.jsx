@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
 import App from "./app";
 import HomePage from "./pages/home_page";
-import NbaPage from "./pages/nba_page";
+import TagPage from "./pages/tag_page";
 import StoryForm from "./story/story_form";
 import StoryShow from "./story/story_show";
 import UserShow from "./user/user_show";
@@ -31,7 +31,10 @@ const Root = ({ store }) => {
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
           <IndexRoute component={ HomePage } />
-          <Route path="/stories/nba" component={ NbaPage } />
+          <Route path="/tags/nba" component={ TagPage } />
+          <Route path="/tags/lol" component={ TagPage } />
+          <Route path="/tags/food" component={ TagPage } />
+          <Route path="/tags/travel" component={ TagPage } />
           <Route path="/new-story"
               component={ StoryForm }
               onEnter={ _ensureLoggedIn }/>
@@ -39,8 +42,10 @@ const Root = ({ store }) => {
               component={ StoryForm }/>
           <Route path="/stories/:storyId" component={ StoryShow } />
           <Route path="/@:username" component={ UserShow } />
-          <Route path="/me/stories/public" component={ MyStories } onEnter={ _ensureLoggedIn }/>
-          <Route path="/me/stories/drafts" component={ MyStories } onEnter={ _ensureLoggedIn }/>
+          <Route path="/me/stories/public" component={ MyStories }
+                onEnter={ _ensureLoggedIn }/>
+          <Route path="/me/stories/drafts" component={ MyStories }
+                  onEnter={ _ensureLoggedIn }/>
         </Route>
       </Router>
     </Provider>

@@ -1,13 +1,18 @@
 class Api::StoriesController < ApplicationController
   def index
-    stories = Story.all
+    case params[:tag_name]
+    when "nba"
+      stories = Tag.includes(:stories).where(name: "nba").first.stories
+    when "lol"
+      stories = Tag.includes(:stories).where(name: "lol").first.stories
+    when "food"
+      stories = Tag.includes(:stories).where(name: "food").first.stories
+    when "travel"
+      stories = Tag.includes(:stories).where(name: "travel").first.stories
+    else
+      stories = Story.all
+    end
     # Include to make query faster
-    @stories = stories.includes(:author, :liked_users, :tags)
-    render :index
-  end
-
-  def nba
-    stories = Tag.includes(:stories).where(name: "nba").first.stories
     @stories = stories.includes(:author, :liked_users, :tags)
     render :index
   end

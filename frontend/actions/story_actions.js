@@ -6,16 +6,8 @@ export const RECEIVE_STORY = "RECEIVE_STORY";
 export const REMOVE_STORY = "REMOVE_STORY";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 
-export const fetchStories = () => (dispatch) => {
-  return storyApiUtil.fetchStories().then(
-    (stories) => {
-      return dispatch(receiveStories(stories));
-    }
-  );
-};
-
-export const fetchNbaStories = () => (dispatch) => {
-  return storyApiUtil.fetchNbaStories().then(
+export const fetchStories = (tag_name) => (dispatch) => {
+  return storyApiUtil.fetchStories(tag_name).then(
     (stories) => {
       return dispatch(receiveStories(stories));
     }

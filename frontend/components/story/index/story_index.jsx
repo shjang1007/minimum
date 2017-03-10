@@ -5,7 +5,17 @@ import AuthModal from "../../modal/auth_modal";
 
 class StoryIndex extends Component {
   componentDidMount() {
-    this.props.fetchStories();
+    if (this.props.tagName) {
+      this.props.fetchStories(this.props.tagName);
+    } else {
+      this.props.fetchStories();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+      if (this.props.tagName !== nextProps.tagName) {
+        this.props.fetchStories(nextProps.tagName);
+      }
   }
 
   render() {

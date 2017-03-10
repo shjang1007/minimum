@@ -1,14 +1,16 @@
 import React from "react";
 import AuthSets from "../session/auth_sets";
-import NbaStoryContainer from "../story/nba_story_container";
+import TagStoryContainer from "../story/tag_story_container";
 
-const NbaPage = (props)=> {
+const TagPage = (props)=> {
+  const { pathname } = props.location;
+  const tagName = pathname[0] === "/" ? pathname.slice(6) : pathname.slice(5);
   return (
     <main className="site-main surface-container">
       <section className="home-container">
         <section className="home-content">
           <div className="home-stories">
-            <NbaStoryContainer />
+            <TagStoryContainer tagName={ tagName } />
           </div>
 
           <section className="sidebar">
@@ -74,4 +76,4 @@ const NbaPage = (props)=> {
   );
 };
 
-export default NbaPage;
+export default TagPage;
