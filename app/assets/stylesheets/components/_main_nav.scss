@@ -94,7 +94,7 @@
   z-index: 5;
   position: absolute;
   left: 25%;
-  margin-left: -122px;
+  margin-left: -130px;
   display: flex;
   flex-direction: column;
 }
@@ -175,7 +175,6 @@
   margin: 5px;
   border-radius: 3px;
   font-size: 14px;
-  align-self: flex-end;
 }
 
 .selected {
@@ -189,7 +188,7 @@
   padding: 8px 18px;
   font-size: 13px;
   font-weight: 300;
-
+  align-self: flex-end;
 }
 
 // Logos/Icons/Avatar

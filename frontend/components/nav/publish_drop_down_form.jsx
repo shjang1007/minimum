@@ -48,6 +48,7 @@ class PublishDropDownForm extends Component {
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`,
     };
 
+    this.props.togglePublishDropDown();
     return this.props.publishStory(story).then(
       this.props.router.push(`/stories/${story.id}`)
     );
@@ -67,10 +68,6 @@ class PublishDropDownForm extends Component {
       }
       e.currentTarget.classList.toggle("selected");
     };
-  }
-
-  renderDropDownContent() {
-
   }
 
   render() {

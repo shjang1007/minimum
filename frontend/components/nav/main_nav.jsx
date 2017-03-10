@@ -86,6 +86,7 @@ class MainNav extends Component {
                 Publish
               </button>
               <PublishDropDownForm
+                togglePublishDropDown={ this.props.togglePublishDropDown }
                 publishDropDownOpen={ this.props.publishDropDownOpen }/>
             </li>
             <li>

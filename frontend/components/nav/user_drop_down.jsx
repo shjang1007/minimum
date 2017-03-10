@@ -5,6 +5,7 @@ const UserDropDown = ({ currentUser,
                         signOutUser,
                         toggleUserDropDown,
                         userDropDownOpen }) => {
+
   const closeDropDown = (e) => {
     if (e.target.id === "click-close") {
       toggleUserDropDown();
