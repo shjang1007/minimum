@@ -14,7 +14,7 @@ const UserDropDown = ({ currentUser,
 
   if (userDropDownOpen) {
     return (
-        <ul onClick={ closeDropDown } className="drop-down-container">
+        <ul onClick={ closeDropDown } className="user-drop-down-container">
           <li>
             <ul className="drop-down">
               <li>

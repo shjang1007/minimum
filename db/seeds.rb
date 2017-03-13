@@ -10,6 +10,8 @@ User.destroy_all
 Story.destroy_all
 
 ActiveRecord::Base.transaction do
+  admin = User.create(email:"brian@jang.com", password: "briansjang", username: "BekGu", name: "Brian Jang")
+
   user1 = User.create(email:"guest@example.com", password: "123456", username: "guest123", name: "Guest Account")
 
   user2 = User.create(email: "a@a.com", password:"123456", username: "babyshark", name: "Daniel Kim")

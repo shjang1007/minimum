@@ -10,19 +10,17 @@ class StorySideIndex extends Component {
     const { stories, currentUser } = this.props;
     if (stories) {
       const storyList = stories.map( (story) => (
-        <ul key={ story.id } className="story-side-container">
+        <ul key={ story.id } className="item-preview">
           <li>
             <Link to={`/@${story.author.username}`}>
               <img src={ story.author.avatar_url }
                 className="story-avatar avatar"/>
             </Link>
           </li>
-          <li>
+          <li className="item-preview-text">
             <Link to={`/stories/${story.id}`}>
               { story.title }
             </Link>
-          </li>
-          <li>
             <Link to={`/@${story.author.username}`}>
               { story.author.name }
             </Link>

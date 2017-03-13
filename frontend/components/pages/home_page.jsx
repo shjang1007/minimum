@@ -22,37 +22,29 @@ const HomePage = (props)=> {
                   <section className="sidebar-header">
                     <div>Top Stories</div>
                   </section>
-                  <div className="item-preview">
-                    <StorySideIndex type="top-stories"/>
-                  </div>
+                  <StorySideIndex type="top-stories"/>
                 </li>
                 <li>
                   <section className="sidebar-header">
                     <div>Brian's Picks</div>
                   </section>
-                  <div>
-                    <ul className="item-preview">
-                      <li>Item 1</li>
-                      <li>Item 2</li>
-                      <li>Item 3</li>
-                    </ul>
-                  </div>
+                  <ul className="item-preview">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                  </ul>
                 </li>
                 <li>
                   <section className="sidebar-header">
                     <div>NBA</div>
                   </section>
-                  <div className="item-preview">
-                    <StorySideIndex tagName="nba"/>
-                  </div>
+                  <StorySideIndex tagName="nba"/>
                 </li>
                 <li>
                   <section className="sidebar-header">
                     <div>League of Legends</div>
                   </section>
-                  <div className="item-preview">
-                    <StorySideIndex tagName="lol"/>
-                  </div>
+                  <StorySideIndex tagName="lol"/>
                 </li>
               </ul>
             </div>

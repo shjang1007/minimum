@@ -26,7 +26,29 @@
   padding-top: 2px;
 }
 
-.item-preview > li {
+.item-preview {
+  display: flex;
   margin: 20px;
-  font-size: 12px;
+  font-size: 14px;
+}
+
+.item-preview > li:first-child {
+  padding-right: 15px;
+}
+
+.item-preview-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-preview-text > a:hover {
+  color: rgba(0,0,0,1);
+}
+
+.item-preview-text > a:last-child {
+  color: rgba(0,0,0,.44);
+}
+
+.item-preview-text > a:last-child:hover {
+  color: rgba(0,0,0,.6);
 }
