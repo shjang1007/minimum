@@ -14,6 +14,14 @@ export const fetchStories = (tag_name) => (dispatch) => {
   );
 };
 
+export const fetchTopStories = () => (dispatch) => {
+  return storyApiUtil.fetchTopStories().then(
+    (stories) => {
+      return dispatch(receiveStories(stories));
+    }
+  );
+};
+
 export const fetchStory = (id) => (dispatch) => {
   return storyApiUtil.fetchStory(id).then(
     (story) => {

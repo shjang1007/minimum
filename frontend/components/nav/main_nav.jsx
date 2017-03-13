@@ -156,7 +156,7 @@ class MainNav extends Component {
               </Link>
           </li>
             <li>
-              <Link to="tags/top-stories" className="gray-button category">
+              <Link to="/top-stories" className="gray-button category">
                 Top stories
               </Link>
           </li>

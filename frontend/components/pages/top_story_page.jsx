@@ -1,16 +1,14 @@
 import React from "react";
 import AuthSets from "../session/auth_sets";
-import TagStoryContainer from "../story/tag_story_container";
+import TopStoryContainer from "../story/top_story_container";
 
-const TagPage = (props)=> {
-  const { pathname } = props.location;
-  const tagName = pathname[0] === "/" ? pathname.slice(6) : pathname.slice(5);
+const TopStoryPage = (props)=> {
   return (
     <main className="site-main surface-container">
       <section className="home-container">
         <section className="home-content">
           <div className="home-stories">
-            <TagStoryContainer tagName={ tagName } />
+            <TopStoryContainer />
           </div>
         </section>
       </section>
@@ -18,4 +16,4 @@ const TagPage = (props)=> {
   );
 };
 
-export default TagPage;
+export default TopStoryPage;

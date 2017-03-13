@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import App from "./app";
 import HomePage from "./pages/home_page";
 import TagPage from "./pages/tag_page";
+import TopStoryPage from "./pages/top_story_page";
 import StoryForm from "./story/story_form";
 import StoryShow from "./story/story_show";
 import UserShow from "./user/user_show";
@@ -31,6 +32,7 @@ const Root = ({ store }) => {
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
           <IndexRoute component={ HomePage } />
+          <Route path="/top-stories" component={ TopStoryPage } />
           <Route path="/tags/nba" component={ TagPage } />
           <Route path="/tags/lol" component={ TagPage } />
           <Route path="/tags/food" component={ TagPage } />

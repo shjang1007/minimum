@@ -6,11 +6,10 @@ export const fetchStories = (tag_name) => {
   });
 };
 
-export const fetchThreeStories = (tag_name) => {
+export const fetchTopStories = () => {
   return $.ajax({
     method: "GET",
-    url: "api/stories/three_stories",
-    data: { tag_name }
+    url: "api/stories/top"
   });
 };
 
