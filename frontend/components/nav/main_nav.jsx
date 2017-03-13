@@ -146,7 +146,9 @@ class MainNav extends Component {
 
   renderBottomBar() {
     const pathname = this.props.location.pathname;
-    if (pathname === "/" || pathname.includes("tags")) {
+    if (pathname === "/" ||
+        pathname.includes("tags") ||
+        pathname.includes("top-stories")) {
       return (
         <div className="inner-bar bottom-bar">
           <ul>

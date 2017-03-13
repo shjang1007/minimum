@@ -27,6 +27,15 @@ export const selectTagStories = (stories, tagName) => {
   return tagStories.slice(0, 3);
 };
 
+export const selectTopStories = ({ stories }) => {
+  const tagStories = [];
+  const storiesArray = values(stories).sort((x, y) => (y.likes - x.likes));
+
+  return storiesArray.filter( (story) =>
+    story.published && !story.parent_id
+  ).slice(0, 3);
+};
+
 export const selectPublishedComments = (stories, parentId) => {
   const commentsArray = values(stories);
   return commentsArray.filter( (story) => (

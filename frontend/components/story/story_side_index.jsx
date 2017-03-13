@@ -3,7 +3,7 @@ import { isEmpty } from "lodash";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { fetchStories } from "../../actions/story_actions";
-import { selectTagStories } from "../../reducers/selectors";
+import { selectTagStories, selectTopStories } from "../../reducers/selectors";
 
 class StorySideIndex extends Component {
   render() {
@@ -42,9 +42,10 @@ class StorySideIndex extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let stories = null;
-
-  if (!isEmpty(state.stories)) {
+  let stories;
+  if (ownProps.type === "top-stories") {
+    stories = selectTopStories(state);
+  } else {
     stories = selectTagStories(state.stories, ownProps.tagName);
   }
 

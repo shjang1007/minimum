@@ -12,6 +12,8 @@ end
 #   end
 # end
 
+json.likes story.likes.length
+
 json.liked_users do
   story.liked_users.each do |user|
     json.set! user.id do
