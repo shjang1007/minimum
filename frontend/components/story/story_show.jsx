@@ -60,6 +60,22 @@ class StoryShow extends Component {
     }
   }
 
+  renderTagList() {
+    const { story } = this.props;
+    const tagList = story.tags.map( (tag) => (
+      <li key={ tag.id }>
+        <Link to={`tags/${tag.name}`}>
+          { tag.name }
+        </Link>
+      </li>
+    ));
+    return(
+      <ul className="tag-list">
+        { tagList }
+      </ul>
+    );
+  }
+
   render() {
     const { story, currentUser } = this.props;
 
@@ -103,10 +119,17 @@ class StoryShow extends Component {
                 { story.content }
               </p>
             </section>
-            <div className="post-story-actions">
-              { this.renderLikeButton() }
-              <div className="num-likes">{ values(story.liked_users).length }</div>
-            </div>
+            <ul className="post-story-actions">
+              <li>
+                { this.renderTagList() }
+              </li>
+              <li>
+                { this.renderLikeButton() }
+                <div className="num-likes">
+                  { values(story.liked_users).length }
+                </div>
+              </li>
+            </ul>
             <footer className="story-show-footer">
                 <div>
                   <Link to={`/@${author.username}`}>
