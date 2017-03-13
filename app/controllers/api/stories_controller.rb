@@ -10,6 +10,15 @@ class Api::StoriesController < ApplicationController
     render :index
   end
 
+  def three_stories
+    if params[:tag_name]
+      stories = Tag.find_three_stories_by_tag_name(params[:tag_name])
+    end
+
+    @stories = stories.includes(:author, :tags)
+    render :index
+  end
+
   def show
     @story = Story.includes(:author, :tags).find(params[:id])
     render :show

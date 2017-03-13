@@ -1,6 +1,7 @@
 import React from "react";
 import AuthSets from "../session/auth_sets";
 import StoryIndexContainer from "../story/story_index_container";
+import StorySideIndex from "../story/story_side_index";
 
 const HomePage = (props)=> {
   return (
@@ -31,7 +32,7 @@ const HomePage = (props)=> {
                 </li>
                 <li>
                   <section className="sidebar-header">
-                    <div>My stories</div>
+                    <div>Brian's Picks</div>
                   </section>
                   <div>
                     <ul className="item-preview">
@@ -43,25 +44,21 @@ const HomePage = (props)=> {
                 </li>
                 <li>
                   <section className="sidebar-header">
-                    <div>Super Stories</div>
+                    <div>NBA</div>
                   </section>
-                  <div>
+                  <div className="item-preview">
                     <ul className="item-preview">
-                      <li>Item 1</li>
-                      <li>Item 2</li>
-                      <li>Item 3</li>
+                      <StorySideIndex tagName="nba"/>
                     </ul>
                   </div>
                 </li>
                 <li>
                   <section className="sidebar-header">
-                    <div>Babyshark Stories</div>
+                    <div>League of Legends</div>
                   </section>
-                  <div>
+                  <div className="item-preview">
                     <ul className="item-preview">
-                      <li>Item 1</li>
-                      <li>Item 2</li>
-                      <li>Item 3</li>
+                      <StorySideIndex tagName="lol"/>
                     </ul>
                   </div>
                 </li>

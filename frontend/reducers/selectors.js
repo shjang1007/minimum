@@ -9,6 +9,23 @@ export const selectPublishedStories = ({ stories }) => {
   )).sort((x, y) => (y.id - x.id));
 };
 
+export const selectTagStories = (stories, tagName) => {
+  const tagStories = [];
+  const storiesArray = values(stories).sort((x, y) => (y.id - x.id));
+  let i = 0;
+  while (storiesArray.length > 0 && tagStories.length < 3) {
+    let story = storiesArray[i];
+    let tagNames = story.tags.map((tag) => tag.name);
+    if (story.published && !story.parent_id && tagNames.includes(tagName)) {
+      tagStories.push(story);
+    }
+
+    i++;
+  }
+
+  return tagStories;
+};
+
 export const selectPublishedComments = (stories, parentId) => {
   const commentsArray = values(stories);
   return commentsArray.filter( (story) => (

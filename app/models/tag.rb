@@ -18,6 +18,13 @@ class Tag < ActiveRecord::Base
     self.includes(:stories).where(name: tag_name).first.stories
   end
 
+  def self.find_three_stories_by_tag_name(tag_name)
+    self.includes(:stories).where(name: tag_name).first.stories
+      .where(published: true)
+      .order(id: :desc)
+      .limit(3)
+  end
+
   # Probably don't need this, since I will never call stories from tag
   has_many :taggings
   has_many :stories, through: :taggings

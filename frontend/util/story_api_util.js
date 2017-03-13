@@ -6,6 +6,14 @@ export const fetchStories = (tag_name) => {
   });
 };
 
+export const fetchThreeStories = (tag_name) => {
+  return $.ajax({
+    method: "GET",
+    url: "api/stories/three_stories",
+    data: { tag_name }
+  });
+};
+
 export const fetchStory = (id) => {
   return $.ajax({
     method: "GET",
