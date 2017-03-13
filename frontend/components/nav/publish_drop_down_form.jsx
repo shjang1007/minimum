@@ -82,6 +82,7 @@ class PublishDropDownForm extends Component {
               <button className="tag-button selected"
                 onClick={ this.toggleTag(tag) }>
                 { tag }
+                <div>x</div>
               </button>
             </li>);
           } else {

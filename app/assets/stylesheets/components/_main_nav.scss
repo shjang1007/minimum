@@ -175,6 +175,7 @@
 .tag-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .tag-button {
@@ -185,9 +186,27 @@
   font-size: 14px;
 }
 
-.selected {
-  color: red;
+.tag-button:hover {
+  background: #f0f0f0;
 }
+
+.selected {
+  position: relative;
+  background: #f0f0f0;
+}
+
+.selected > div {
+  position: absolute;
+  top: 0;
+  right: 4.5px;
+  font-size: 10px;
+}
+
+.selected > div:hover {
+  color: black;
+}
+
+
 
 .publish-button {
   color: #00ab6b;
@@ -197,6 +216,13 @@
   font-size: 13px;
   font-weight: 300;
   align-self: flex-end;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+.publish-button:hover {
+  color: #008855;
+  border: 1px solid #008855;
 }
 
 // Logos/Icons/Avatar
