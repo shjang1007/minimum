@@ -1,14 +1,7 @@
 class Api::StoriesController < ApplicationController
   def index
-    case params[:tag_name]
-    when "nba"
-      stories = Tag.includes(:stories).where(name: "nba").first.stories
-    when "lol"
-      stories = Tag.includes(:stories).where(name: "lol").first.stories
-    when "food"
-      stories = Tag.includes(:stories).where(name: "food").first.stories
-    when "travel"
-      stories = Tag.includes(:stories).where(name: "travel").first.stories
+    if params[:tag_name]
+      stories = Tag.find_stories_by_tag_name(params[:tag_name])
     else
       stories = Story.all
     end

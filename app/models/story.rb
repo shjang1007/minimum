@@ -16,7 +16,6 @@
 #  image_content_type :string
 #  image_file_size    :integer
 #  image_updated_at   :datetime
-#
 
 class Story < ActiveRecord::Base
   validates :author, presence: true

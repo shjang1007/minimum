@@ -6,26 +6,27 @@ export const selectPublishedStories = ({ stories }) => {
   const storiesArray = values(stories);
   return storiesArray.filter( (story) => (
     story.published && !story.parent_id
-  ));
+  )).sort((x, y) => (y.id - x.id));
 };
 
 export const selectPublishedComments = (stories, parentId) => {
   const commentsArray = values(stories);
   return commentsArray.filter( (story) => (
     story.published && story.parent_id === parseInt(parentId)
-  ));
+  )).sort((x, y) => (x.id - y.id));
 };
 
 export const selectPublishedUserStories = (stories, authorId) => {
   const commentsArray = values(stories);
   return commentsArray.filter( (story) => (
     story.published && story.author.id === authorId && !story.parent_id
-  ));
+  )).sort((x, y) => (x.id - y.id));
 };
 
 export const selectDraftStories = ({ stories }) => {
   const storiesArray = values(stories);
-  return storiesArray.filter( (story) => !story.published);
+  return storiesArray.filter( (story) => !story.published)
+  .sort((x, y) => (x.id - y.id));
 };
 
 
@@ -33,12 +34,12 @@ export const selectMyPublishedStories = (stories, author_id) => {
   const storiesArray = values(stories);
   return storiesArray.filter( (story) => (
     story.published && story.author.id === author_id
-  ));
+  )).sort((x, y) => (x.id - y.id));
 };
 
 export const selectMyDraftStories = (stories, author_id) => {
   const storiesArray = values(stories);
   return storiesArray.filter( (story) => (
     !story.published && story.author.id === author_id
-  ));
+  )).sort((x, y) => (x.id - y.id));
 };

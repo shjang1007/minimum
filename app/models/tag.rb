@@ -14,6 +14,10 @@ class Tag < ActiveRecord::Base
     in: [ "nba", "lol", "food", "travel" ]
   }
 
+  def self.find_stories_by_tag_name(tag_name)
+    self.includes(:stories).where(name: tag_name).first.stories
+  end
+
   # Probably don't need this, since I will never call stories from tag
   has_many :taggings
   has_many :stories, through: :taggings

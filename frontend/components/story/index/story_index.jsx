@@ -20,7 +20,6 @@ class StoryIndex extends Component {
 
   render() {
     const { stories, currentUser } = this.props;
-
     if (stories) {
       const storyList = stories.map( (story) => (
         <StoryIndexItem key={story.id}
