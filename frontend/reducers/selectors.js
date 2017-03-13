@@ -1,4 +1,4 @@
-import { values } from 'lodash';
+import { values, isEmpty } from 'lodash';
 
 export const selectAllStories = ({ stories }) => values(stories);
 
@@ -12,8 +12,9 @@ export const selectPublishedStories = ({ stories }) => {
 export const selectTagStories = (stories, tagName) => {
   const tagStories = [];
   const storiesArray = values(stories).sort((x, y) => (y.id - x.id));
+
   let i = 0;
-  while (storiesArray.length > 0 && tagStories.length < 3) {
+  while (storiesArray.length > 0 && i < storiesArray.length) {
     let story = storiesArray[i];
     let tagNames = story.tags.map((tag) => tag.name);
     if (story.published && !story.parent_id && tagNames.includes(tagName)) {
@@ -23,7 +24,7 @@ export const selectTagStories = (stories, tagName) => {
     i++;
   }
 
-  return tagStories;
+  return tagStories.slice(0, 3);
 };
 
 export const selectPublishedComments = (stories, parentId) => {

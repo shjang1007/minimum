@@ -13,9 +13,9 @@ class StoryIndex extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      if (this.props.tagName !== nextProps.tagName) {
-        this.props.fetchStories(nextProps.tagName);
-      }
+    if (this.props.tagName !== nextProps.tagName) {
+      this.props.fetchStories(nextProps.tagName);
+    }
   }
 
   render() {

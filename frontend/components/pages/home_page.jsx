@@ -9,7 +9,7 @@ const HomePage = (props)=> {
       <section className="home-container">
         <section className="home-content">
           <div className="home-stories">
-            <StoryIndexContainer />
+            <StoryIndexContainer pathname={ props.location.pathname } />
           </div>
 
           <section className="sidebar">

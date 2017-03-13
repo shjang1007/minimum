@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { isEmpty } from "lodash";
 import { connect } from "react-redux";
 import { Link } from "react-router";
-import { fetchThreeStories } from "../../actions/story_actions";
+import { fetchStories } from "../../actions/story_actions";
 import { selectTagStories } from "../../reducers/selectors";
 
 class StorySideIndex extends Component {
@@ -41,9 +42,13 @@ class StorySideIndex extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return ({
-    stories: selectTagStories(state.stories, ownProps.tagName),
-  });
+  let stories = null;
+
+  if (!isEmpty(state.stories)) {
+    stories = selectTagStories(state.stories, ownProps.tagName);
+  }
+
+  return { stories };
 };
 
 export default connect(
