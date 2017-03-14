@@ -62,7 +62,6 @@ class StoryShow extends Component {
 
   renderParentSummary() {
     const { story } = this.props;
-    debugger
     if (story.parentId) {
         return(<li></li>);
     }

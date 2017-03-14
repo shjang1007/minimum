@@ -23,7 +23,7 @@ json.liked_users do
 end
 
 if story.image.file?
-  json.image_url asset_path(story.image.url(:medium))
+  json.image_url asset_path(story.image.url)
 end
 
 # json.comments do

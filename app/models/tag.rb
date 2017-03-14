@@ -11,7 +11,7 @@
 class Tag < ActiveRecord::Base
   validates :name, presence: true
   validates :name, inclusion: {
-    in: [ "nba", "lol", "food", "travel" ]
+    in: ["nba", "lol", "food", "travel", "cartoon"]
   }
 
   def self.find_stories_by_tag_name(tag_name)

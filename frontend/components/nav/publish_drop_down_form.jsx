@@ -12,7 +12,8 @@ class PublishDropDownForm extends Component {
       nba: false,
       travel: false,
       food: false,
-      lol: false
+      lol: false,
+      cartoon: false
     });
 
     this.handlePublish = this.handlePublish.bind(this);
