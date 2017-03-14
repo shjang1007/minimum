@@ -6,6 +6,7 @@ const TopStoryPage = (props)=> {
     <main className="site-main surface-container">
       <section className="home-container">
         <section className="home-content">
+          <p>Brian's Awesome Stories</p>
           <div className="home-stories">
             <BrianStoryContainer />
           </div>
