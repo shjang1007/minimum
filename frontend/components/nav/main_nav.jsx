@@ -32,6 +32,16 @@ class MainNav extends Component {
     };
   }
 
+  renderNotificationBell() {
+    return (
+      <li>
+        <button className="gray-button">
+          <img src={window.images.bell} className="icon bell" />
+        </button>
+      </li>
+    );
+  }
+
   renderComposeButton() {
     const storyId = this.props.params.storyId;
     const { currentUser } = this.props;
@@ -75,9 +85,7 @@ class MainNav extends Component {
               { deleteButton }
             </li>
             <li>
-              <button className="gray-button">
-                <img src={window.images.bell} className="icon bell" />
-              </button>
+              { this.renderNotificationBell }
             </li>
             <li className="nav-drop-button">
               <button onClick={ this.props.toggleUserDropDown }>
@@ -99,12 +107,10 @@ class MainNav extends Component {
               { this.renderComposeButton() }
             </li>
             <li className="searchBar">
-              <SearchBar />
+              { this.searchBar }
             </li>
             <li>
-              <button className="gray-button">
-                <img src={window.images.bell} className="icon bell" />
-              </button>
+              { this.renderNotificationBell }
             </li>
             <li className="nav-drop-button">
               <button onClick={ this.props.toggleUserDropDown }>
