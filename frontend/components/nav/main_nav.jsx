@@ -154,7 +154,9 @@ class MainNav extends Component {
     const pathname = this.props.location.pathname;
     if (pathname === "/" ||
         pathname.includes("tags") ||
-        pathname.includes("top-stories")) {
+        pathname.includes("top-stories") ||
+        pathname.includes("brian-stories")
+    ) {
       return (
         <div className="inner-bar bottom-bar">
           <ul>
@@ -169,7 +171,7 @@ class MainNav extends Component {
               </Link>
           </li>
             <li>
-              <Link to="tags/brian-picks" className="gray-button category">
+              <Link to="/brian-stories" className="gray-button category">
                 Brian's picks
               </Link>
             </li>
@@ -194,18 +196,8 @@ class MainNav extends Component {
               </Link>
             </li>
             <li>
-              <Link className="gray-button category">
-                Business
-              </Link>
-            </li>
-            <li>
-              <Link className="gray-button category">
-                Entertainment
-              </Link>
-            </li>
-            <li>
-              <Link className="gray-button category">
-                Bookmarks
+              <Link to="tags/cartoon" className="gray-button category">
+                Cartoon
               </Link>
             </li>
           </ul>

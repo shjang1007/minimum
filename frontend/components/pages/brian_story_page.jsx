@@ -1,5 +1,5 @@
 import React from "react";
-import TopStoryContainer from "../story/top_story_container";
+import BrianStoryContainer from "../story/brian_story_container";
 
 const TopStoryPage = (props)=> {
   return (
@@ -7,7 +7,7 @@ const TopStoryPage = (props)=> {
       <section className="home-container">
         <section className="home-content">
           <div className="home-stories">
-            <TopStoryContainer />
+            <BrianStoryContainer />
           </div>
         </section>
       </section>

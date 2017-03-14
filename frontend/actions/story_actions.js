@@ -22,6 +22,14 @@ export const fetchTopStories = () => (dispatch) => {
   );
 };
 
+export const fetchBrianStories = () => (dispatch) => {
+  return storyApiUtil.fetchBrianStories().then(
+    (stories) => {
+      return dispatch(receiveStories(stories));
+    }
+  );
+};
+
 export const fetchStory = (id) => (dispatch) => {
   return storyApiUtil.fetchStory(id).then(
     (story) => {

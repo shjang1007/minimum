@@ -28,11 +28,18 @@ export const selectTagStories = (stories, tagName) => {
 };
 
 export const selectTopStories = ({ stories }) => {
-  const tagStories = [];
   const storiesArray = values(stories).sort((x, y) => (y.likes - x.likes));
 
   return storiesArray.filter( (story) =>
     story.published && !story.parent_id
+  ).slice(0, 3);
+};
+
+export const selectBrianStories = ({ stories }) => {
+  const storiesArray = values(stories).sort((x, y) => (x.id - y.id));
+
+  return storiesArray.filter( (story) =>
+    story.published && !story.parent_id && story.author.username === "BekGu"
   ).slice(0, 3);
 };
 

@@ -13,6 +13,13 @@ export const fetchTopStories = () => {
   });
 };
 
+export const fetchBrianStories = () => {
+  return $.ajax({
+    method: "GET",
+    url: "api/stories/brian"
+  });
+};
+
 export const fetchStory = (id) => {
   return $.ajax({
     method: "GET",

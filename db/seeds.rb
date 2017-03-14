@@ -11,11 +11,11 @@ User.destroy_all
 Like.destroy_all
 
 ActiveRecord::Base.transaction do
-  admin = User.create(email:"brian@jang.com", password: "briansjang", username: "BekGu", name: "Brian Jang")
+  admin = User.create(email:"brian@jang.com", password: "briansjang", username: "BekGu", name: "Brian Jang", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/brianjang.jpg")
 
   user1 = User.create(email:"guest@example.com", password: "123456", username: "guest123", name: "Guest Account")
 
-  user2 = User.create(email: "irene@kwak.com", password:"irenekwak", username: "Ireneji", name: "Irene Kwak")
+  user2 = User.create(email: "irene@kwak.com", password:"irenekwak", username: "Ireneji", name: "Irene Kwak", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/elsa.jpeg")
 
   user3 = User.create(email: "b@b.com", password:"123456", username: "drunkentiger", name: "Nick Kimchi")
 

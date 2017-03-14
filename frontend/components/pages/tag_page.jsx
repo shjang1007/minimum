@@ -1,5 +1,4 @@
 import React from "react";
-import AuthSets from "../session/auth_sets";
 import TagStoryContainer from "../story/tag_story_container";
 
 const TagPage = (props)=> {

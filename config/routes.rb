@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :stories, except: [:new, :edit] do
       get :comments, on: :member
       get :top, on: :collection
+      get :brian, on: :collection
       get :nba, on: :collection
       get :lol, on: :collection
       get :food, on: :collection

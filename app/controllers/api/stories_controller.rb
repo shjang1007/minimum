@@ -21,6 +21,17 @@ class Api::StoriesController < ApplicationController
     render :index
   end
 
+  def brian
+    brian_id = User.find_by(username: "BekGu").id
+    stories = Story.where({published: true, parent_id: nil, author_id: brian_id})
+                    .includes(:author, :tags)
+                    .sort_by { |story| story.id }
+                    .reverse
+
+    @stories = stories[0..9]
+    render :index
+  end
+
   def show
     @story = Story.includes(:author, :tags).find(params[:id])
     render :show

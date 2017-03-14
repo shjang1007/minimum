@@ -6,6 +6,7 @@ import App from "./app";
 import HomePage from "./pages/home_page";
 import TagPage from "./pages/tag_page";
 import TopStoryPage from "./pages/top_story_page";
+import BrianStoryPage from "./pages/brian_story_page";
 import StoryForm from "./story/story_form";
 import StoryShow from "./story/story_show";
 import UserShow from "./user/user_show";
@@ -33,10 +34,12 @@ const Root = ({ store }) => {
         <Route path="/" component={ App }>
           <IndexRoute component={ HomePage } />
           <Route path="/top-stories" component={ TopStoryPage } />
+          <Route path="/brian-stories" component={ BrianStoryPage } />
           <Route path="/tags/nba" component={ TagPage } />
           <Route path="/tags/lol" component={ TagPage } />
           <Route path="/tags/food" component={ TagPage } />
           <Route path="/tags/travel" component={ TagPage } />
+          <Route path="/tags/cartoon" component={ TagPage } />
           <Route path="/new-story"
               component={ StoryForm }
               onEnter={ _ensureLoggedIn }/>
