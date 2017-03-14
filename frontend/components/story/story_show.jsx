@@ -60,11 +60,19 @@ class StoryShow extends Component {
     }
   }
 
+  renderParentSummary() {
+    const { story } = this.props;
+    debugger
+    if (story.parentId) {
+        return(<li></li>);
+    }
+  }
+
   renderTagList() {
     const { story } = this.props;
     const tagList = story.tags.map( (tag) => (
       <li key={ tag.id }>
-        <Link to={`tags/${tag.name}`}>
+        <Link to={`tags/${tag.name}`} className="tag-button">
           { tag.name }
         </Link>
       </li>
@@ -108,6 +116,7 @@ class StoryShow extends Component {
               </div>
             </header>
             <section className="story-show-details">
+              { this.renderParentSummary() }
               <h1 className="story-show-title">
                 { story.title }
               </h1>
@@ -119,11 +128,11 @@ class StoryShow extends Component {
                 { story.content }
               </p>
             </section>
-            <ul className="post-story-actions">
+            <ul className="post-story-actions flex-tag-like">
               <li>
                 { this.renderTagList() }
               </li>
-              <li>
+              <li className="like-info">
                 { this.renderLikeButton() }
                 <div className="num-likes">
                   { values(story.liked_users).length }

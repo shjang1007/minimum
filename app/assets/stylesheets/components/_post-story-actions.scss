@@ -1,13 +1,17 @@
 .post-story-actions {
   padding-top: 10px;
-  display: flex;
-  flex-direction: column;
   padding-bottom: 10px;
+  display: flex;
 }
 
 .post-story-actions > button {
   width: 21px;
   height: 21px;
+}
+
+.flex-tag-like {
+  display: flex;
+  flex-direction: column;
 }
 
 .tag-list {
