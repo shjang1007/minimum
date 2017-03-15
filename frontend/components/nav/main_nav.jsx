@@ -144,7 +144,7 @@ class MainNav extends Component {
             </a>
           </li>
           <li>
-            <SearchBar />
+            { this.renderSearch }
           </li>
         </ul>);
     }
