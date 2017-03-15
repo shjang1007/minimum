@@ -46,3 +46,68 @@
   In Minimum, everything is a story. Comments are just a story that have parent story associated with `parent_id` foreign key. Therefore, comments share same database as stories.
 
   - To write comments, you can either choose to write your comments in the comment section, or to get fancy and go full screen mode:
+
+  <img src="./screenshots/comment.gif" alt="comment"/>
+
+### Likes and Tags
+
+  For Likes and Tags, Minimum uses join tables (`likes` for Likes and `taggings` for Tags). Each join table has two foreign keys with `belongs_to` associations. Then the tables that have `has_many` associations to the join table use `has_many :through` associations to create Likes and Tags.
+
+- Like join table with `user_id` and `story_id` foreign keys
+```Ruby
+class Like < ActiveRecord::Base
+  validates :user, :story, presence: true
+  validates :user, uniqueness: { scope: :story }
+
+  belongs_to(
+    :user,
+    class_name: "User",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
+  belongs_to(
+    :story,
+    class_name: "Story",
+    foreign_key: :story_id,
+    primary_key: :id
+  )
+end
+```
+
+- With the Like join table, Story can now create `has_many :through` associations to `users`
+
+  ```Ruby
+  class Story < ActiveRecord::Base
+
+    has_many(
+      :likes,
+      class_name: "Like",
+      foreign_key: :story_id,
+      primary_key: :id
+    )
+
+    has_many(
+     :liked_users,
+     through: :likes,
+     source: :user
+    )
+  end
+  ```
+
+- Tag pages:
+
+  <img src="./screenshots/tag-pages.gif" alt="tag-pages"/>
+
+- Toggle likes:
+
+  <img src="./screenshots/toggle-likes.gif" alt="toggle-likes"/>
+
+#### Future Features
+
+- [ ] Bookmarks
+- [ ] Annotations
+- [ ] Enrich Text Editing
+- [ ] Infinite Scroll
+- [ ] Add two-step sign up process
+- [ ] Add p tags for each paragraphs
