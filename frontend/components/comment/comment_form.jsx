@@ -79,16 +79,14 @@ class CommentForm extends Component {
   handleFullScreen(e) {
     e.preventDefault();
 
-    const { content, parent_id, author_id, update } = this.state;
+    const { content, parent_id, author_id, update, id } = this.state;
     const { updateStory, createStory, router } = this.props;
 
     if (update) {
-      const comment = ({ content, parent_id, author_id,
-        id: this.state.id
-      });
+      const comment = ({ content, parent_id, author_id, id });
       updateStory(comment).then(
         action => {
-          router.push(`/${action.comment.id}/edit-story`);
+          router.push(`/${id}/edit-story`);
       });
     } else {
       const comment = ({ content, parent_id, author_id: this.props.currentUser.id });
@@ -174,18 +172,3 @@ export default withRouter(connect(
   null,
   mapDispatchToProps
 )(CommentForm));
-
-// Auto Size text area?
-// let textarea = document.querySelector('textarea');
-//
-// textarea.addEventListener('keydown', autosize);
-//
-// const autosize = () => {
-//   let el = this;
-//   setTimeout(function(){
-//     el.style.cssText = 'height:auto; padding:0';
-//     // for box-sizing other than "content-box" use:
-//     // el.style.cssText = '-moz-box-sizing:content-box';
-//     el.style.cssText = 'height:' + el.scrollHeight + 'px';
-//   },0);
-// };
