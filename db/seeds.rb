@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 Story.destroy_all
 User.destroy_all
 Like.destroy_all
@@ -17,13 +9,13 @@ ActiveRecord::Base.transaction do
 
   user2 = User.create(email: "irene@kwak.com", password:"irenekwak", username: "Ireneji", name: "Irene Kwak", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/elsa.jpeg")
 
-  user3 = User.create(email: "b@b.com", password:"123456", username: "drunkentiger", name: "Nick Kimchi")
+  user3 = User.create(email: "b@b.com", password:"123456", username: "drunkentiger", name: "Nick Kimchi", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/kimchi.png")
 
-  user4 = User.create(email: "c@c.com", password:"123456", username: "tablo", name: "Kyle Saurus")
+  user4 = User.create(email: "c@c.com", password:"123456", username: "tablo", name: "Kyle Saurus", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/saurus.jpg")
 
-  user5 = User.create(email: "d@d.com", password:"123456", username: "rhythmpower", name: "Matthew Silverman")
+  user5 = User.create(email: "d@d.com", password:"123456", username: "rhythmpower", name: "Matthew Silverman", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/silverman.png")
 
-  user6 = User.create(email: "e@e.com", password:"123456", username: "dynamicduo", name: "Sharfid Zetman")
+  user6 = User.create(email: "e@e.com", password:"123456", username: "dynamicduo", name: "Sharfid Zetman", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/tails.png")
 
 
   ("f".."z").each do |letter|
@@ -137,7 +129,7 @@ Seizing momentum from this victory, Darius led his now fiercely loyal troops in 
 'A united Noxus could control the world - and would deserve to.'",
     published: true,
     published_at: Date.new(2017, 3, 3).strftime("%b %-d"),
-    author_id: admin.id,
+    author_id: user6.id,
     image: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/darius.jpg",
     tag_names: ["lol"]
   )
@@ -173,7 +165,7 @@ When Vi finally crawled out of the ruins, the battered enforcer found no trace o
 A lonely and melancholy soul from ancient Shurima, Amumu roams the world in search of a friend. Cursed by an ancient spell, he is doomed to remain alone forever, as his touch is death and his affection ruin. Those who claim to have seen him describe Amumu as a living cadaver, small in stature and covered in bandages the color of lichen. Amumu has inspired myths, folklore, and legends told and retold for generations - such that it is impossible to separate truth from fiction.",
     published: true,
     published_at: Date.new(2017, 3, 5).strftime("%b %-d"),
-    author_id: admin.id,
+    author_id: user6.id,
     image: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/amumu.jpg",
     tag_names: ["lol"]
   )
@@ -265,7 +257,7 @@ A lonely and melancholy soul from ancient Shurima, Amumu roams the world in sear
     content: "Just a must go to place. This one sentence does it all.",
     published: true,
     published_at: Date.new(2017, 3, 13).strftime("%b %-d"),
-    author_id: user1.id,
+    author_id: user5.id,
     image: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/jeju.jpg",
     tag_names: ["travel"]
   )
@@ -276,7 +268,7 @@ A lonely and melancholy soul from ancient Shurima, Amumu roams the world in sear
     content: "Kyung Ju is a city where the old Korean dynasty called 'Shin-la' built its empire on. Therefore, it has a lot of historical architectures. Go to Kyung Ju if you want a little taste of what Korea was like back in the days.",
     published: true,
     published_at: Date.new(2017, 3, 14).strftime("%b %-d"),
-    author_id: user1.id,
+    author_id: user6.id,
     image: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/kyungju.jpg",
     tag_names: ["travel"]
   )
@@ -431,7 +423,7 @@ Mysterious as the dark side of the moon",
 
   # Comments
 
-  50.times do
+  60.times do
     parent_id = ((Story.first.id)..(Story.last.id)).to_a.sample
     author_id = ((User.first.id)..(User.last.id)).to_a.sample
 
@@ -449,7 +441,7 @@ Mysterious as the dark side of the moon",
   # Likes
 
   User.all.each do |user|
-    story_ids = (((nba1.id)..(story5.id)).to_a.shuffle)[0..9]
+    story_ids = (((nba1.id)..(story5.id)).to_a.shuffle)[0..13]
     story_ids.each do |story_id|
       Like.create(user_id: user.id, story_id: story_id)
     end

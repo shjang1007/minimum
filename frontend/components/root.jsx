@@ -23,7 +23,8 @@ const Root = ({ store }) => {
 
   const _ensureSameAuthor = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
-    if (currentUser.id !== nextState.params.storyId) {
+    if (!currentUser ||
+        !Object.keys(currentUser.stories).includes(nextState.params.storyId)) {
       replace('/');
     }
   };
@@ -44,7 +45,8 @@ const Root = ({ store }) => {
               component={ StoryForm }
               onEnter={ _ensureLoggedIn }/>
           <Route path="/:storyId/edit-story"
-              component={ StoryForm }/>
+              component={ StoryForm }
+              onEnter={ _ensureSameAuthor }/>
           <Route path="/stories/:storyId" component={ StoryShow } />
           <Route path="/@:username" component={ UserShow } />
           <Route path="/me/stories/public" component={ MyStories }
