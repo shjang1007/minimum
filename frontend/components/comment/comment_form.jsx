@@ -10,6 +10,8 @@ class CommentForm extends Component {
     super(props);
 
     this.state = ({
+      title: "",
+      sub_title: "",
       content: "",
       parent_id: props.params.storyId,
       author_id: null,
@@ -23,17 +25,22 @@ class CommentForm extends Component {
   }
 
   update(field) {
-    const { content, parent_id, author_id, update, id } = this.state;
+    const { title, sub_title, content, parent_id, author_id, update, id }
+      = this.state;
     const { updateStory, createStory } = this.props;
 
     return (e) => {
       this.setState({[field]: e.target.value}, () => {
         if (update) {
-          const comment = ({ content, parent_id, author_id, id });
+          const comment =
+            ({ title, sub_title,content, parent_id, author_id, id });
           updateStory(comment);
         } else {
           this.setState({ update: true });
-          const comment = ({ content, parent_id, author_id: this.props.currentUser.id });
+          const comment = (
+            { title, sub_title, content, parent_id,
+              author_id: this.props.currentUser.id }
+          );
           createStory(comment).then(action => {
             this.setState({
               id: action.story.id,
@@ -56,6 +63,8 @@ class CommentForm extends Component {
 
     const comment = {
       id: this.state.id,
+      title: this.state.title,
+      sub_title: this.state.sub_title,
       content: this.state.content,
       published: true,
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
@@ -79,17 +88,21 @@ class CommentForm extends Component {
   handleFullScreen(e) {
     e.preventDefault();
 
-    const { content, parent_id, author_id, update, id } = this.state;
+    const { title, sub_title, content, parent_id, author_id, update, id }
+      = this.state;
     const { updateStory, createStory, router } = this.props;
 
     if (update) {
-      const comment = ({ content, parent_id, author_id, id });
+      const comment = ({ title, sub_title, content, parent_id, author_id, id });
       updateStory(comment).then(
         action => {
           router.push(`/${id}/edit-story`);
       });
     } else {
-      const comment = ({ content, parent_id, author_id: this.props.currentUser.id });
+      const comment = (
+        { title, sub_title, content, parent_id,
+          author_id: this.props.currentUser.id }
+      );
       createStory(comment).then(action => {
         router.push(`/${action.story.id}/edit-story`);
       });

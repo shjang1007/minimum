@@ -61,18 +61,41 @@ class StoryForm extends Component {
       fileReader.readAsDataURL(file);
       let formData = new FormData();
       formData.id = this.state.id;
+      // Append empty string contents to avoid error
       formData.append("story[author_id]", this.state.author_id);
       formData.append("story[title]", this.state.title);
       formData.append("story[sub_title]", this.state.sub_title);
       formData.append("story[content]", this.state.content);
       formData.append("story[image]", file);
       if (formType === "new") {
+        // Disable input buttons while saving picture
+        this.toggleForm(true);
         imageProcessForm(formData).then( (action) => {
+          this.toggleForm(false);
           router.push(`/${action.story.id}/edit-story`);
         });
       } else {
         imageProcessForm(formData);
       }
+    }
+  }
+
+  toggleForm(disable) {
+    const title = document.getElementById("title");
+    const subTitle = document.getElementById("sub-title");
+    const content = document.getElementById("content");
+    const fileInput = document.getElementById("file-input");
+
+    if (disable) {
+      title.setAttribute("disabled", disable);
+      subTitle.setAttribute("disabled", disable);
+      content.setAttribute("disabled", disable);
+      fileInput.setAttribute("disabled", disable);
+    } else {
+      title.removeAttribute("disabled");
+      subTitle.removeAttribute("disabled");
+      content.removeAttribute("disabled");
+      fileInput.removeAttribute("disabled");
     }
   }
 
@@ -108,17 +131,20 @@ class StoryForm extends Component {
             </div>
             <input onChange={this.update("title")}
               type="text"
+              id="title"
               className="form-title"
               placeholder="Title"
               value={ title } />
             <input onChange={this.update("sub_title")}
               type="text"
+              id="sub-title"
               className="form-subtitle"
               placeholder="Subtitle"
               value={ sub_title } />
             <img src={ this.state.image_preview_url }/>
             <textarea onChange={this.update("content")}
               placeholder="Tell your story..."
+              id="content"
               className="form-content"
               value={ content }/>
           </form>

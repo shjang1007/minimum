@@ -19,11 +19,11 @@ class MyStories extends Component {
         if (location.includes("/draft")) {
           link = `/${story.id}/edit-story`;
         }
-        if (story.parent_id) {
+        if (!story.title) {
           return (
             <li key={story.id} className="story-li">
               <Link to={ link } >
-                <div>{ story.content }</div>
+                <div>Untitled story</div>
               </Link>
             </li>
           );
