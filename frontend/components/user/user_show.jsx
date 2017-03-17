@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { values } from "lodash";
 import { fetchUser } from "../../actions/user_actions";
 import { fetchUserStories } from "../../actions/story_actions";
+import { openModal } from "../../actions/modal_actions";
 import { selectPublishedUserStories } from "../../reducers/selectors";
 import UserStoryIndexItem from "./user_story_index_item";
+import AuthModal from "../modal/auth_modal";
 
 class UserShow extends Component {
   componentDidMount() {
@@ -17,7 +19,9 @@ class UserShow extends Component {
     const userStoryList = userStories
       .map( (story) => (
       <UserStoryIndexItem key={ story.id } user={ user }
-        story={ story } currentUser={ currentUser }/>
+        story={ story }
+        currentUser={ currentUser }
+        openAuthModal={ this.props.openAuthModal }/>
     ));
 
     if (user) {
@@ -30,7 +34,7 @@ class UserShow extends Component {
                   { user.name }
                 </h3>
                 <p className="left-side-description">
-                  Add Descriptions later...
+                  Hello! Welcome to { user.name} page.
                 </p>
               </div>
               <div className="right-side">
@@ -49,6 +53,7 @@ class UserShow extends Component {
             <ul>
               { userStoryList }
             </ul>
+            <AuthModal />
           </section>
         </main>
       );
@@ -68,7 +73,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUser: (username) => (dispatch(fetchUser(username))),
-    fetchUserStories: (username) => (dispatch(fetchUserStories(username)))
+    fetchUserStories: (username) => (dispatch(fetchUserStories(username))),
+    openAuthModal: () => (dispatch(openModal("authIsOpen")))
   };
 };
 

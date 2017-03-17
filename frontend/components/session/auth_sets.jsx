@@ -67,10 +67,10 @@ class AuthSets extends Component {
 
             <div className="auth-privacy-msg">
               <div>
-                To use Minimum you must be determined
+                Welcome to Minimum!
               </div>
               <div>
-                If you sign up with Twitter of Facebook, I will be surprised, because there are no options to allow users to sign up using Twitter or Facebook. However, if you do get it done, we'll never post to Twitter or Facebook without your permission. For more info, please text me.
+                Minimum is a single page web app inspired by Medium, hence the name "Minimum". One of the cool feature of Minimum is real time draft saving. Please do check it out. You will see that your url will change on your first input! Thank you for your visit to the site, and have a wonderful day!
               </div>
             </div>
           </section>

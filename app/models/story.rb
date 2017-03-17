@@ -19,8 +19,6 @@
 
 class Story < ActiveRecord::Base
   validates :author, presence: true
-  # Maybe I can remove this later?
-  # validates :title, uniqueness: { scope: :author, message: "Already exist" }
   validates :published, inclusion: { in: [ true, false ] }
 
   has_attached_file :image,

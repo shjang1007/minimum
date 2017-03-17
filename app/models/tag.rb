@@ -25,7 +25,6 @@ class Tag < ActiveRecord::Base
       .limit(3)
   end
 
-  # Probably don't need this, since I will never call stories from tag
   has_many :taggings
   has_many :stories, through: :taggings
 end

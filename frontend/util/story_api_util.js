@@ -49,6 +49,17 @@ export const createStory = (story) => {
   });
 };
 
+export const createStoryImage = (formData) => {
+  return $.ajax({
+    method: "POST",
+    url: "api/stories",
+    contentType: false,
+    processData: false,
+    data: formData,
+    dataType: "json"
+  });
+};
+
 export const updateStory = (story) => {
   return $.ajax({
     method: "PATCH",
@@ -64,7 +75,7 @@ export const updateStoryImage = (formData) => {
     contentType: false,
     processData: false,
     data: formData,
-    dataType: 'json'
+    dataType: "json"
   });
 };
 

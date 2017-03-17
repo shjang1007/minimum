@@ -19,12 +19,21 @@ const HomePage = (props)=> {
                   <section className="sidebar-header">
                     <div>Welcome to Minimum</div>
                   </section>
-                  <p className="item-preview">
-                    Hello there! My name is Brian Jang.
-                    Minimum is a single page web application inspired by Medium.
-                    Minimum is built using Ruby on Rails and React/Redux.
-                    Hope you enjoy navigating around!
-                  </p>
+                  <ul className="welcome-message">
+                    <li>
+                      Hello there! My name is Brian Jang.
+                    </li>
+                    <li>
+                      Minimum is a single page web application inspired by Medium.
+                    </li>
+                    <li>
+                      Minimum is built using Ruby on Rails and React/Redux.
+                    </li>
+                    <li>
+                      Hope you enjoy navigating around!
+                    </li>
+                  </ul>
+
                 </li>
                 <li>
                   <section className="sidebar-header">

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
-import { createStory, updateStory, fetchStory, updateStoryImage }
+import { createStory, updateStory, fetchStory, createStoryImage,
+          updateStoryImage }
   from "../../actions/story_actions";
 
 class StoryForm extends Component {
@@ -39,13 +40,17 @@ class StoryForm extends Component {
             router.push(`/${action.story.id}/edit-story`);
           });
         } else {
-          processForm(this.state);
+          const { id, title, sub_title, content } = this.state;
+          let form = { id, title, sub_title, content };
+          processForm(form);
         }
       });
     };
   }
 
   updateFile(e) {
+    const { router, imageProcessForm, formType } = this.props;
+
     let fileReader = new FileReader();
     let file = e.currentTarget.files[0];
     fileReader.onloadend = () => {
@@ -56,8 +61,18 @@ class StoryForm extends Component {
       fileReader.readAsDataURL(file);
       let formData = new FormData();
       formData.id = this.state.id;
+      formData.append("story[author_id]", this.state.author_id);
+      formData.append("story[title]", this.state.title);
+      formData.append("story[sub_title]", this.state.sub_title);
+      formData.append("story[content]", this.state.content);
       formData.append("story[image]", file);
-      this.props.updateStoryImage(formData);
+      if (formType === "new") {
+        imageProcessForm(formData).then( (action) => {
+          router.push(`/${action.story.id}/edit-story`);
+        });
+      } else {
+        imageProcessForm(formData);
+      }
     }
   }
 
@@ -144,9 +159,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const processForm = ownProps.location.pathname === "/new-story" ?
     createStory : updateStory;
 
+  const imageProcessForm = ownProps.location.pathname === "/new-story" ?
+    createStoryImage : updateStoryImage;
+
   return ({
     processForm: (story) => (dispatch(processForm(story))),
-    updateStoryImage: (formData) => (dispatch(updateStoryImage(formData))),
+    imageProcessForm: (formData) => (dispatch(imageProcessForm(formData))),
     fetchStory: (id) => (dispatch(fetchStory(id)))
   });
 };

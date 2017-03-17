@@ -110,43 +110,44 @@ class SignUpForm extends Component {
     );
   }
 
-  renderSecondPage() {
-    const { username, name } = this.state;
-    return (
-      <section className="form-container">
-        <ul>
-          {this.renderErrors()}
-        </ul>
-
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="username"
-            onChange={this.update("username")}
-            placeholder="Enter your username"
-            value={username} />
-
-          <label htmlFor="name">Name</label>
-          <input
-            type="name"
-            onChange={this.update("name")}
-            placeholder="Enter your name"
-            value={name} />
-
-
-          <button>Sign up</button>
-        </form>
-      </section>
-    );
-  }
+// Currently I am no using this function, but in the future
+// Use this function to implemenent two page signup page
+  // renderSecondPage() {
+  //   const { username, name } = this.state;
+  //   return (
+  //     <section className="form-container">
+  //       <ul>
+  //         {this.renderErrors()}
+  //       </ul>
+  //
+  //       <form onSubmit={this.handleSubmit}>
+  //         <label htmlFor="username">Username</label>
+  //         <input
+  //           type="username"
+  //           onChange={this.update("username")}
+  //           placeholder="Enter your username"
+  //           value={username} />
+  //
+  //         <label htmlFor="name">Name</label>
+  //         <input
+  //           type="name"
+  //           onChange={this.update("name")}
+  //           placeholder="Enter your name"
+  //           value={name} />
+  //
+  //
+  //         <button>Sign up</button>
+  //       </form>
+  //     </section>
+  //   );
+  // }
 
   render() {
-    const { signUp, errors } = this.props;
     switch (this.state.page) {
       case "first":
         return this.renderFirstPage();
-      case "second":
-        return this.renderSecondPage();
+      // case "second":
+      //   return this.renderSecondPage();
       default:
         return this.renderFirstPage();
     }

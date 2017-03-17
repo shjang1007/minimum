@@ -27,6 +27,13 @@
   font-size: 14px;
 }
 
+.welcome-message {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  font-size: 14px;
+}
+
 .item-preview > li:first-child {
   padding-right: 15px;
 }

@@ -22,8 +22,9 @@ const style = {
     boxShadow       : "0 2px 6px 0 rgba(0,0,0,.44)",
     borderRadius    : "3px",
     maxWidth        : "520px",
-    height          : "100%",
+    height          : "85%",
     width           : "100%",
+    top             : "70px",
     margin          : "5px 0"
   }
 };

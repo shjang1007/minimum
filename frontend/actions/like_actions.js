@@ -27,17 +27,3 @@ export const removeStory = (story) => {
     story
   });
 };
-
-// export const receiveLike = (likeInfo) => {
-//   return ({
-//     type: RECEIVE_LIKE,
-//     likeInfo
-//   });
-// };
-//
-// export const removeLike = (likeInfo) => {
-//   return ({
-//     type: REMOVE_LIKE,
-//     likeInfo
-//   });
-// };

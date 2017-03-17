@@ -62,6 +62,12 @@ export const createStory = (story) => (dispatch) => {
   );
 };
 
+export const createStoryImage = (formData) => (dispatch) => {
+  return storyApiUtil.createStoryImage(formData).then(
+    (story) => (dispatch(receiveStory(story)))
+  );
+};
+
 export const updateStory = (story) => (dispatch) => {
   return storyApiUtil.updateStory(story).then(
     (story) => (dispatch(receiveStory(story)))
