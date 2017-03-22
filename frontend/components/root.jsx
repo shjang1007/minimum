@@ -23,8 +23,11 @@ const Root = ({ store }) => {
 
   const _ensureSameAuthor = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
-    if (!currentUser ||
-        !Object.keys(currentUser.stories).includes(nextState.params.storyId)) {
+    const storyIds = Object.keys(store.getState().stories);
+    const lastStoryId = storyIds[storyIds.length - 1];
+    const currentStory = store.getState().stories[lastStoryId];
+    
+    if (!currentUser || currentUser.id !== currentStory.author.id) {
       replace('/');
     }
   };
