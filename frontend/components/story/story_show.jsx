@@ -62,8 +62,16 @@ class StoryShow extends Component {
 
   renderParentSummary() {
     const { story } = this.props;
-    if (story.parentId) {
-        return(<li></li>);
+    if (story.parent_story) {
+      const { parent_story } = story;
+        return(
+          <Link to={ `/stories/${parent_story.id}` }>
+            <ul>
+              <li>{ parent_story.title }</li>
+              <li>{ parent_story.author.name }</li>
+            </ul>
+          </Link>
+        );
     }
   }
 

@@ -5,12 +5,12 @@ json.author do
   json.partial! "api/users/user", user: story.author
 end
 
-# Probably do not need this, becuase I will always write comment in parent story
-# if story.parent_id
-#   json.set! :parent_story do
-#     json.extract! story.parent_story, :id, :title, :author
-#   end
-# end
+# I need this to display parent story on comments
+if story.parent_id
+  json.set! :parent_story do
+    json.extract! story.parent_story, :id, :title, :author
+  end
+end
 
 json.likes story.likes.length
 
