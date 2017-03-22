@@ -175,7 +175,7 @@ A lonely and melancholy soul from ancient Shurima, Amumu roams the world in sear
   food1 = Story.create(
     title: "Sashimi",
     sub_title: "Haein Restaurant in Flushing Queens",
-    content: "It's not just the decoration, but look at the beautiful sashimi pieces.",
+    content: "This is a Korean sushi place in Flushing. I usually go to a different spot, but decided to give this place a try. The decoration was awesome as you can see in the picture. However, it wasn't just the decoration, those sashimi pieces were fresh!",
     published: true,
     published_at: Date.new(2017, 3, 6).strftime("%b %-d"),
     author_id: user2.id,
@@ -186,7 +186,7 @@ A lonely and melancholy soul from ancient Shurima, Amumu roams the world in sear
   food2 = Story.create(
     title: "Hamburger with rare beef and Tartare",
     sub_title: "The best restaurant from Firenze!",
-    content: "When I was in Firenze, my aunt, who currently lives in Firenze, took me to this retaurant. Situated right by the Arno river, this resturant is fantastic.",
+    content: "When I was in Firenze, my girlfriend's aunt, who currently lives in Firenze, took us to this retaurant. Situated right by the Arno river, this resturant was fantastic.",
     published: true,
     published_at: Date.new(2017, 3, 7).strftime("%b %-d"),
     author_id: user2.id,
