@@ -51,7 +51,9 @@ class StoryIndexItem extends Component {
         <div className="index-item-profile">
           <ul className="index-item-author-info">
             <li>
-              <img src={ author.avatar_url } className="story-avatar avatar" />
+              <Link to={ `/@${author.username}` }>
+                <img src={ author.avatar_url } className="story-avatar avatar" />
+              </Link>
             </li>
             <li className="author-date-container">
               <Link to={ `/@${author.username}` }
