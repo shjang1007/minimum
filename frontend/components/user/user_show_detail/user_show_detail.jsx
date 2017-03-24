@@ -1,6 +1,11 @@
 import React from "react";
 
-const TopSideUserShowDetail = ({ user }) => {
+const UserShowDetail = ({ user, currentUser, toggleForm }) => {
+  let editButton = null;
+  if (user.id === currentUser.id) {
+    editButton = <button type="button" onClick={ toggleForm }>Edit</button>;
+  }
+
   return (
     <section className="top-side">
       <div className="profile">
@@ -11,6 +16,7 @@ const TopSideUserShowDetail = ({ user }) => {
           <p className="left-side-description">
             Hello! Welcome to { user.name } page.
           </p>
+          { editButton }
         </div>
         <div className="right-side">
           <img src={ user.avatar_url } className="profile-avatar"/>
@@ -26,4 +32,4 @@ const TopSideUserShowDetail = ({ user }) => {
   );
 };
 
-export default TopSideUserShowDetail;
+export default UserShowDetail;

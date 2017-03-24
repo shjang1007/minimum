@@ -6,14 +6,34 @@ import { fetchUserStories } from "../../actions/story_actions";
 import { openModal } from "../../actions/modal_actions";
 import { selectPublishedUserStories } from "../../reducers/selectors";
 import UserStoryIndexItem from "./user_story_index_item";
-import TopSideUserShowDetail from
-  "./user_show_detail/top_side_user_show_detail";
+import UserShowDetail from "./user_show_detail/user_show_detail";
+import UserShowEditForm from "./user_show_detail/user_show_edit_form";
 import AuthModal from "../modal/auth_modal";
 
 class UserShow extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { toggleForm: false };
+
+    this.toggleForm = this.toggleForm.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchUser(this.props.params.username);
     this.props.fetchUserStories(this.props.params.username);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.user.id !== this.props.user.id) {
+      newProps.fetchUser(newProps.params.username);
+      newProps.fetchUserStories(newProps.params.username);
+    }
+  }
+
+  toggleForm() {
+    const toggleForm = this.state.toggleForm ? false : true;
+    this.setState({ toggleForm });
   }
 
   render() {
@@ -26,10 +46,16 @@ class UserShow extends Component {
         openAuthModal={ this.props.openAuthModal }/>
     ));
 
+    const topSide = this.state.toggleForm ?
+                    <UserShowEditForm user={ user }
+                                      currentUser={ currentUser }/>:
+                    <UserShowDetail user={ user } currentUser={ currentUser }
+                      toggleForm= { this.toggleForm }/>;
+
     if (user) {
       return (
         <main className="user-profile-container">
-          <TopSideUserShowDetail user={ user } />
+          { topSide }
           <section className="bottom-side">
             <div>Latest</div>
             <ul>
