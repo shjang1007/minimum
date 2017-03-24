@@ -6,6 +6,8 @@ import { fetchUserStories } from "../../actions/story_actions";
 import { openModal } from "../../actions/modal_actions";
 import { selectPublishedUserStories } from "../../reducers/selectors";
 import UserStoryIndexItem from "./user_story_index_item";
+import TopSideUserShowDetail from
+  "./user_show_detail/top_side_user_show_detail";
 import AuthModal from "../modal/auth_modal";
 
 class UserShow extends Component {
@@ -27,27 +29,7 @@ class UserShow extends Component {
     if (user) {
       return (
         <main className="user-profile-container">
-          <section className="top-side">
-            <div className="profile">
-              <div className="left-side">
-                <h3 className="left-side-name">
-                  { user.name }
-                </h3>
-                <p className="left-side-description">
-                  Hello! Welcome to { user.name} page.
-                </p>
-              </div>
-              <div className="right-side">
-                <img src={ user.avatar_url } className="profile-avatar"/>
-              </div>
-            </div>
-            <div className="mini-nav">
-              <ul>
-                <li>
-                </li>
-              </ul>
-            </div>
-          </section>
+          <TopSideUserShowDetail user={ user } />
           <section className="bottom-side">
             <div>Latest</div>
             <ul>
