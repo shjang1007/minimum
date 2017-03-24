@@ -2,8 +2,6 @@ class Api::StoriesController < ApplicationController
   def index
     if params[:tag_name]
       stories = Tag.find_stories_by_tag_name(params[:tag_name])
-    elsif params[:top_stories]
-
     else
       stories = Story.all
     end
@@ -14,7 +12,7 @@ class Api::StoriesController < ApplicationController
 
   def top
     stories = Story.where({published: true, parent_id: nil})
-                    .includes(:author, :tags)
+                    .includes(:author, :tags, :likes)
                     .sort_by { |story| story.likes.count }
                     .reverse
     @stories = stories[0..9]
@@ -33,7 +31,7 @@ class Api::StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.includes(:author, :tags).find(params[:id])
+    @story = Story.includes(:author, :tags, :liked_users).find(params[:id])
     render :show
   end
 
