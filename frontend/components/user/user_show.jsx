@@ -25,7 +25,7 @@ class UserShow extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.user.id !== this.props.user.id) {
+    if (newProps.params.username !== this.props.params.username) {
       newProps.fetchUser(newProps.params.username);
       newProps.fetchUserStories(newProps.params.username);
     }
