@@ -13,7 +13,7 @@ const HomePage = (props)=> {
           </div>
 
           <section className="sidebar">
-            <div className="sidbar-content">
+            <div className="sidebar-content">
               <ul className="sidebar-items">
                 <li>
                   <section className="sidebar-header">
