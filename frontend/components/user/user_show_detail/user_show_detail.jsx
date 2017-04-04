@@ -6,7 +6,7 @@ const UserShowDetail = ({ user, currentUser, toggleForm }) => {
     editButton = <button type="button" onClick={ toggleForm }>Edit</button>;
   }
   // Add {editButton} in between line 19 and 20. For production pushing without it
-
+  // Need to add user profile add too.
   return (
     <section className="top-side">
       <div className="profile">
