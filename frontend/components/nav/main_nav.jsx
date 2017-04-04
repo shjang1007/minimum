@@ -45,8 +45,7 @@ class MainNav extends Component {
   renderComposeButton() {
     const storyId = this.props.params.storyId;
     const { currentUser } = this.props;
-
-    if (currentUser !== null &&
+    if (currentUser !== null && currentUser.stories &&
       Object.keys(currentUser.stories).includes(storyId)) {
       return (<Link to={`/${storyId}/edit-story`}
           className="nav-bar-button green-button">

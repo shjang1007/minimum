@@ -5,6 +5,7 @@ const UserShowDetail = ({ user, currentUser, toggleForm }) => {
   if (user.id === currentUser.id) {
     editButton = <button type="button" onClick={ toggleForm }>Edit</button>;
   }
+  // Add {editButton} in between line 19 and 20. For production pushing without it
 
   return (
     <section className="top-side">
@@ -16,7 +17,6 @@ const UserShowDetail = ({ user, currentUser, toggleForm }) => {
           <p className="left-side-description">
             Hello! Welcome to { user.name } page.
           </p>
-          { editButton }
         </div>
         <div className="right-side">
           <img src={ user.avatar_url } className="profile-avatar"/>
