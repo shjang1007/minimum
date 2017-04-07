@@ -14,6 +14,13 @@ class StoryShow extends Component {
     this.props.fetchStoryAndComments(this.props.params.storyId);
   }
 
+  componentWillReceiveProps(newProps) {
+    // When you are accessing from comment to the story fetch story and comments
+    if (!newProps.story) {
+      newProps.fetchStoryAndComments(newProps.params.storyId);
+    }
+  }
+
   toggleLike(method) {
     const { story, currentUser } = this.props;
     const likeInfo = { user_id: currentUser.id, story_id: story.id };
