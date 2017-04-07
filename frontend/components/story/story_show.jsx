@@ -66,7 +66,7 @@ class StoryShow extends Component {
       const { parent_story } = story;
         return(
           <Link to={ `/stories/${parent_story.id}` }>
-            <ul>
+            <ul className="parent-story-container">
               <li>{ parent_story.title }</li>
               <li>{ parent_story.author.name }</li>
             </ul>

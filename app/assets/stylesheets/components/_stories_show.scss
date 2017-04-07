@@ -35,6 +35,23 @@
   font-family: sans-serif;
 }
 
+.parent-story-container {
+  font-size: 14px;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  padding: 14px;
+  margin: 10px 0 20px 0;
+
+  &:hover {
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  li:last-child {
+    color: rgba(0,0,0,.44);
+  }
+}
+
 .story-show-title {
   font-weight: 700;
   font-size: 40px;
