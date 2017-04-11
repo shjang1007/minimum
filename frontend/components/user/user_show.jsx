@@ -26,6 +26,7 @@ class UserShow extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    window.scrollTo(0, 0);
     if (newProps.params.username !== this.props.params.username) {
       newProps.fetchUser(newProps.params.username);
       newProps.fetchUserStories(newProps.params.username);

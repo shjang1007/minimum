@@ -16,6 +16,7 @@ class StoryShow extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    window.scrollTo(0, 0);
     // When you are accessing from comment to the story fetch story and comments
     if (!newProps.story) {
       newProps.fetchStoryAndComments(newProps.params.storyId);
