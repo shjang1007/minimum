@@ -162,7 +162,8 @@ class MainNav extends Component {
         <div className="inner-bar bottom-bar">
           <ul>
             <li>
-              <Link to="/" className="gray-button category">
+              <Link to="/" onClick= { clearStory }
+                    className="gray-button category">
                 Home
               </Link>
           </li>
