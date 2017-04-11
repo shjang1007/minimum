@@ -1,4 +1,4 @@
-json.extract! user, :id, :email, :username, :name
+json.extract! user, :id, :email, :username, :name, :description
 json.avatar_url asset_path(user.avatar.url(:default))
 
 if user.stories

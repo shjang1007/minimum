@@ -50,7 +50,8 @@ class UserShow extends Component {
 
     const topSide = this.state.toggleForm ?
                     <UserShowEditForm user={ user }
-                                      currentUser={ currentUser }/>:
+                                      currentUser={ currentUser }
+                                      toggleForm= { this.toggleForm }/>:
                     <UserShowDetail user={ user } currentUser={ currentUser }
                       toggleForm= { this.toggleForm }/>;
 

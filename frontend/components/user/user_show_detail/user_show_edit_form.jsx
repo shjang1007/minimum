@@ -3,10 +3,30 @@ import React, { Component } from "react";
 class UserShowEditForm extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      name: this.props.user.name,
+      description: this.props.user.description,
+      avatar_url: this.props.avatar_url
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    this.props.toggleForm();
   }
 
   render() {
-    return ( <div>Hello!</div>);
+    const { toggleForm } = this.props;
+    return (
+      <form>
+        <div className="submit-buttons">
+          <button type="button" onClick={ this.handleSubmit }>Save</button>
+          <button type="button" onClick={ toggleForm }>Cancel</button>
+        </div>
+      </form>
+    );
   }
 }
 

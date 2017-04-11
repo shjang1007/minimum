@@ -3,19 +3,19 @@ User.destroy_all
 Like.destroy_all
 
 ActiveRecord::Base.transaction do
-  admin = User.create(email:"brian@jang.com", password: "briansjang", username: "BekGu", name: "Brian Jang", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/brianjang.jpg")
+  admin = User.create(email:"brian@jang.com", password: "briansjang", username: "BekGu", name: "Brian Jang", description: "I am a software developer with experience in Ruby, Ruby on Rails, JavaScript, React.js, and AngularJS.", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/brianjang.jpg")
 
   user1 = User.create(email:"guest@example.com", password: "123456", username: "guest123", name: "Guest Account")
 
-  user2 = User.create(email: "irene@kwak.com", password:"irenekwak", username: "Ireneji", name: "Irene Kwak", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/elsa.jpeg")
+  user2 = User.create(email: "irene@kwak.com", password:"irenekwak", username: "Ireneji", name: "Irene Kwak", description: "Love trying different restaurants!", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/elsa.jpeg")
 
-  user3 = User.create(email: "b@b.com", password:"123456", username: "drunkentiger", name: "Nick Kimchi", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/kimchi.png")
+  user3 = User.create(email: "b@b.com", password:"123456", username: "drunkentiger", name: "Nick Kimchi", description: "The infamous Kimchi Man", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/kimchi.png")
 
-  user4 = User.create(email: "c@c.com", password:"123456", username: "tablo", name: "Kyle Saurus", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/saurus.jpg")
+  user4 = User.create(email: "c@c.com", password:"123456", username: "tablo", name: "Kyle Saurus", description: "You probably guessed it right, my last was inspired by Dinosaurs", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/saurus.jpg")
 
-  user5 = User.create(email: "d@d.com", password:"123456", username: "rhythmpower", name: "Matthew Silverman", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/silverman.png")
+  user5 = User.create(email: "d@d.com", password:"123456", username: "rhythmpower", name: "Matthew Silverman", description: "Love is color blind.", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/silverman.png")
 
-  user6 = User.create(email: "e@e.com", password:"123456", username: "dynamicduo", name: "Sharfid Zetman", avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/tails.png")
+  user6 = User.create(email: "e@e.com", password:"123456", username: "dynamicduo", name: "Sharfid Zetman",  avatar: "https://s3.amazonaws.com/minimum-dev/minimum-static-images/tails.png")
 
 
   ("f".."z").each do |letter|
