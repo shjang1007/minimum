@@ -59,7 +59,7 @@ class StoryForm extends Component {
 
     if (file) {
       fileReader.readAsDataURL(file);
-      let formData = new FormData();
+      const formData = new FormData();
       formData.id = this.state.id;
       // Append empty string contents to avoid error
       formData.append("story[author_id]", this.state.author_id);

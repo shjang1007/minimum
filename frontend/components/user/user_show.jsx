@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { values } from "lodash";
-import { fetchUser } from "../../actions/user_actions";
+import { fetchUser, updateUserInfo } from "../../actions/user_actions";
 import { fetchUserStories } from "../../actions/story_actions";
 import { openModal } from "../../actions/modal_actions";
 import { selectPublishedUserStories } from "../../reducers/selectors";
@@ -47,13 +47,14 @@ class UserShow extends Component {
         currentUser={ currentUser }
         openAuthModal={ this.props.openAuthModal }/>
     ));
-
+    
     const topSide = this.state.toggleForm ?
                     <UserShowEditForm user={ user }
-                                      currentUser={ currentUser }
-                                      toggleForm= { this.toggleForm }/>:
+                      currentUser={ currentUser }
+                      toggleForm={ this.toggleForm }
+                      updateUserInfo={ this.props.updateUserInfo }/>:
                     <UserShowDetail user={ user } currentUser={ currentUser }
-                      toggleForm= { this.toggleForm }/>;
+                      toggleForm={ this.toggleForm }/>;
 
     if (user) {
       return (
@@ -84,6 +85,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUser: (username) => (dispatch(fetchUser(username))),
+    updateUserInfo: (formData) => (dispatch(updateUserInfo(formData))),
     fetchUserStories: (username) => (dispatch(fetchUserStories(username))),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))
   };

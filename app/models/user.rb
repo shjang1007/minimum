@@ -85,7 +85,8 @@ class User < ActiveRecord::Base
   end
 
   def ensure_session_token_uniqueness
-    while User.find_by_session_token(self.session_token)
+    while !User.find_by_password_digest(self.password_digest) &&
+          User.find_by_session_token(self.session_token)
       self.session_token = generate_session_token
     end
   end

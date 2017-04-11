@@ -4,15 +4,19 @@ class UserShowEditForm extends Component {
   constructor(props) {
     super(props);
 
+    const description = props.user.description ? props.user.description : "";
+
     this.state = {
-      name: this.props.user.name,
-      description: this.props.user.description,
-      avatar_url: this.props.avatar_url
+      name: props.user.name,
+      description,
+      imageFile: null,
+      imageUrl: props.user.avatar_url
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.update = this.update.bind(this);
+
   }
 
   updateFile(e) {
@@ -24,8 +28,6 @@ class UserShowEditForm extends Component {
 
     if (file) {
       fileReader.readAsDataURL(file);
-    } else {
-      this.setState({ imageUrl: "", imageFile: null });
     }
   }
 
@@ -36,12 +38,23 @@ class UserShowEditForm extends Component {
   }
 
   handleSubmit(e) {
-    this.props.toggleForm();
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.username = this.props.user.username;
+    formData.append("user[name]", this.state.name);
+    formData.append("user[description]", this.state.description);
+    formData.append("user[image]", this.state.imageFile);
+
+    this.props.updateUserInfo(formData).then( () => {
+      this.props.toggleForm();
+    });
   }
 
   render() {
     const { toggleForm } = this.props;
     const { name, description } = this.state;
+
     return (
       <form className="top-side">
         <div className="profile">
@@ -54,7 +67,7 @@ class UserShowEditForm extends Component {
               className="left-side-description"
               type="text" value={ description }/>
             <div className="submit-buttons">
-              <button type="button" onClick={ this.handleSubmit }>Save</button>
+              <button type="submit" onClick={ this.handleSubmit }>Save</button>
               <button type="button" onClick={ toggleForm }>Cancel</button>
             </div>
           </div>
