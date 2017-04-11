@@ -3,7 +3,11 @@ import React from "react";
 const UserShowDetail = ({ user, currentUser, toggleForm }) => {
   let editButton = null;
   if (currentUser && user.id === currentUser.id) {
-    editButton = <button type="button" onClick={ toggleForm }>Edit</button>;
+    editButton =
+      <button type="button" onClick={ toggleForm }
+              className="">
+        Edit
+      </button>;
   }
 
   return (
