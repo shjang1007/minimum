@@ -20,10 +20,10 @@ class UserShowEditForm extends Component {
   }
 
   updateFile(e) {
-    let fileReader = new FileReader();
-    let file = e.currentTarget.files[0];
-    fileReader.onloadened = () => {
-      this.setState({ image_file: file, image_preview_url: fileReader.result });
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      return this.setState({ imageFile: file, imageUrl: fileReader.result});
     };
 
     if (file) {
@@ -44,7 +44,7 @@ class UserShowEditForm extends Component {
     formData.username = this.props.user.username;
     formData.append("user[name]", this.state.name);
     formData.append("user[description]", this.state.description);
-    formData.append("user[image]", this.state.imageFile);
+    formData.append("user[avatar]", this.state.imageFile);
 
     this.props.updateUserInfo(formData).then( () => {
       this.props.toggleForm();
@@ -72,7 +72,14 @@ class UserShowEditForm extends Component {
             </div>
           </div>
           <div className="right-side">
-            <img src={this.props.user.avatar_url} className="profile-avatar"/>
+            <div className="image-upload">
+              <label htmlFor="file-input">
+                <img src={this.state.imageUrl} className="profile-avatar"/>
+              </label>
+              <input type="file"
+                id="file-input"
+                onChange={this.updateFile}/>
+            </div>
           </div>
         </div>
       </form>
