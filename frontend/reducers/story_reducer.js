@@ -1,7 +1,12 @@
 import React from "react";
 import { merge } from "lodash";
 
-import { RECEIVE_STORIES, RECEIVE_STORY, REMOVE_STORY, RECEIVE_COMMENT }
+import { RECEIVE_STORIES,
+          RECEIVE_STORY,
+          REMOVE_STORY,
+          RECEIVE_COMMENT,
+          CLEAR_STORY
+        }
   from "../actions/story_actions";
 
 const storyReducer = (oldState = {}, action) => {
@@ -19,6 +24,8 @@ const storyReducer = (oldState = {}, action) => {
       let newState = merge({}, oldState);
       delete newState[action.story.id];
       return newState;
+    case CLEAR_STORY:
+      return {};
     default:
       return oldState;
   }

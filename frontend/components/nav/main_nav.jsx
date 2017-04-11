@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { signOut } from "../../actions/session_actions";
-import { updateStory, deleteStory } from "../../actions/story_actions";
+import { updateStory, deleteStory, clearStory } from "../../actions/story_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import UserDropDown from "./user_drop_down";
 import PublishDropDownForm from "./publish_drop_down_form";
@@ -151,6 +151,8 @@ class MainNav extends Component {
 
   renderBottomBar() {
     const pathname = this.props.location.pathname;
+    const { clearStory } = this.props;
+
     if (pathname === "/" ||
         pathname.includes("tags") ||
         pathname.includes("top-stories") ||
@@ -165,37 +167,44 @@ class MainNav extends Component {
               </Link>
           </li>
             <li>
-              <Link to="/top-stories" className="gray-button category">
+              <Link to="/top-stories" onClick={ clearStory }
+                    className="gray-button category">
                 Top stories
               </Link>
           </li>
             <li>
-              <Link to="/brian-stories" className="gray-button category">
+              <Link to="/brian-stories" onClick= { clearStory }
+                    className="gray-button category">
                 Brian's picks
               </Link>
             </li>
             <li>
-              <Link to="tags/nba" className="gray-button category">
+              <Link to="tags/nba" onClick= { clearStory }
+                    className="gray-button category">
                 NBA
               </Link>
             </li>
             <li>
-              <Link to="tags/lol" className="gray-button category">
+              <Link to="tags/lol" onClick= { clearStory }
+                    className="gray-button category">
                 League of Legends
               </Link>
             </li>
             <li>
-              <Link to="tags/food" className="gray-button category">
+              <Link to="tags/food" onClick= { clearStory }
+                    className="gray-button category">
                 Food
               </Link>
             </li>
             <li>
-              <Link to="tags/travel" className="gray-button category">
+              <Link to="tags/travel" onClick= { clearStory }
+                    className="gray-button category">
                 Travel
               </Link>
             </li>
             <li>
-              <Link to="tags/cartoon" className="gray-button category">
+              <Link to="tags/cartoon" onClick= { clearStory }
+                    className="gray-button category">
                 Cartoon
               </Link>
             </li>
@@ -244,6 +253,7 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     signOut: () => (dispatch(signOut())),
     deleteStory: (id) => (dispatch(deleteStory(id))),
+    clearStory: () => (dispatch(clearStory())),
     openAuthModal: () => (dispatch(openModal("authIsOpen"))),
     closeAuthModal: () => (dispatch(closeModal("authIsOpen"))),
     openDeleteModal: () => (dispatch(openModal("deleteIsOpen"))),

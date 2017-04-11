@@ -9,7 +9,7 @@ export const selectPublishedStories = ({ stories }) => {
   )).sort((x, y) => (y.id - x.id));
 };
 
-export const selectTagStories = (stories, tagName) => {
+export const selectTopTagStories = (stories, tagName) => {
   const tagStories = [];
   const storiesArray = values(stories).sort((x, y) => (y.id - x.id));
 

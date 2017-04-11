@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { openModal } from "../../actions/modal_actions";
 import { fetchBrianStories } from "../../actions/story_actions";
-import { values } from 'lodash';
+import { values, isEqual } from 'lodash';
 import StoryIndex from "./index/story_index";
 
 const mapStateToProps = (state, ownProps) => {

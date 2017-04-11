@@ -3,7 +3,7 @@ import { isEmpty } from "lodash";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { fetchStories } from "../../actions/story_actions";
-import { selectTagStories, selectTopStories, selectBrianStories }
+import { selectTopTagStories, selectTopStories, selectBrianStories }
   from "../../reducers/selectors";
 
 class StorySideIndex extends Component {
@@ -47,7 +47,7 @@ const mapStateToProps = (state, ownProps) => {
   } else if (ownProps.type === "brian-stories") {
     stories = selectBrianStories(state);
   } else {
-    stories = selectTagStories(state.stories, ownProps.tagName);
+    stories = selectTopTagStories(state.stories, ownProps.tagName);
   }
 
   return { stories };
