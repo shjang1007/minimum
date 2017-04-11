@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     delete :likes, to: "likes#destroy"
 
     get "users/:username", to: "users#show"
+    patch "users/:username", to: "users#update"
     get "users/:username/stories", to: "users#stories"
   end
 end

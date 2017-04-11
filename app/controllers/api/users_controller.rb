@@ -21,6 +21,16 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:username])
+
+    if @user.update(user_params)
+      render :show
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
+  end
+
   def stories
     user = User.includes(:stories).find_by_username(params[:username])
     @stories = user.stories.where(published: true).where(parent_id: nil)

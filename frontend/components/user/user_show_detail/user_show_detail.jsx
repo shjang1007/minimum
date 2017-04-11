@@ -22,12 +22,6 @@ const UserShowDetail = ({ user, currentUser, toggleForm }) => {
           <img src={ user.avatar_url } className="profile-avatar"/>
         </div>
       </div>
-      <div className="mini-nav">
-        <ul>
-          <li>
-          </li>
-        </ul>
-      </div>
     </section>
   );
 };
