@@ -5,6 +5,7 @@ import AuthModal from "../../modal/auth_modal";
 
 class StoryIndex extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     if (this.props.tagName) {
       this.props.fetchStories(this.props.tagName);
     } else {

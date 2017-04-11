@@ -7,6 +7,7 @@ import { selectMyPublishedStories, selectMyDraftStories } from "../../reducers/s
 
 class MyStories extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.fetchStories();
   }
 

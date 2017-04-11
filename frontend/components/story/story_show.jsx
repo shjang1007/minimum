@@ -11,6 +11,7 @@ import AuthModal from "../modal/auth_modal";
 
 class StoryShow extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.fetchStoryAndComments(this.props.params.storyId);
   }
 
