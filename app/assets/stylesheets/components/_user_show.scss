@@ -4,54 +4,107 @@
   margin: auto;
 }
 
-  .top-side {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,.05);
-    margin-bottom: 40px;
+.top-side {
+display: flex;
+flex-direction: column;
+box-shadow: 0 4px 2px -2px rgba(0,0,0,.05);
+margin-bottom: 40px;
+}
+
+.profile {
+display: flex;
+justify-content: space-between;
+padding-bottom: 30px;
+// border-bottom: 1px solid rgba(0,0,0,.44);
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    align-self: flex-start;
   }
+}
 
-    .profile {
-      display: flex;
-      justify-content: space-between;
-      padding-bottom: 20px;
-      // border-bottom: 1px solid rgba(0,0,0,.44);
+.left-side-name {
+  font-size: 32px;
+  margin-bottom: 5px;
+  margin-top: 32px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.left-side-description {
+  font-size: 16px;
+  line-height: 1.4;
+  color: rgba(0,0,0,.6);
+}
+
+.right-side {
+  margin-top: 32px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.profile-upload {
+  label {
+    position: inherit;
+    margin: 0;
+    cursor: pointer;
+
+    div {
+      position: relative;
+      i {
+        position: absolute;
+        left: 31%;
+        top: 29%;
+        color: white;
+        font-size: 40px;
+      }
     }
-
-      .left-side {
-
-      }
-
-      .left-side-name {
-        font-size: 32px;
-      }
-
-      .left-side-description {
-        font-size: 16px;
-        color: rgba(0,0,0,.6);
-      }
-
-      .right-side {
-
-      }
-
-      .profile-avatar {
-        width: 100px;
-        height: 100px;
-        border-radius: 100%;
-      }
-
-    .mini-nav {
-      padding-top: 10px;
-      align-self: center;
-    }
-
-    .mini-nav > ul {
-      display: flex;
-    }
-
-  .bottom-side > div {
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 600;
   }
+}
+
+.mini-nav {
+padding-top: 10px;
+align-self: center;
+}
+
+.mini-nav > ul {
+display: flex;
+}
+
+.bottom-side > div {
+margin-bottom: 20px;
+font-size: 16px;
+font-weight: 600;
+}
+
+.profile-btn {
+  margin-top: 18px;
+  font-size: 15px;
+  height: 44px;
+  color: rgba(0,0,0,.44);
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 999em;
+  padding: 0 20px;
+
+  &:hover {
+    border-color: rgba(0,0,0,.44);
+  }
+}
+
+.green-btn {
+  margin-right: 10px;
+  color: #00ab6b;
+  border-color: #00ab6b;
+
+  &:hover {
+    border-color: #00774a;
+  }
+}

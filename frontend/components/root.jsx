@@ -26,7 +26,7 @@ const Root = ({ store }) => {
     const storyIds = Object.keys(store.getState().stories);
     const lastStoryId = storyIds[storyIds.length - 1];
     const currentStory = store.getState().stories[lastStoryId];
-    
+    debugger
     if (!currentUser || currentUser.id !== currentStory.author.id) {
       replace('/');
     }

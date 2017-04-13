@@ -5,7 +5,7 @@ const UserShowDetail = ({ user, currentUser, toggleForm }) => {
   if (currentUser && user.id === currentUser.id) {
     editButton =
       <button type="button" onClick={ toggleForm }
-              className="">
+              className="profile-btn">
         Edit
       </button>;
   }

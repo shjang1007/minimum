@@ -15,6 +15,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+button,
+a {
+	transition: all 0.5s;
+}
+
 .site-main {
   height: 100%;
   background: #fff;

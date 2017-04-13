@@ -44,7 +44,9 @@ class UserShowEditForm extends Component {
     formData.username = this.props.user.username;
     formData.append("user[name]", this.state.name);
     formData.append("user[description]", this.state.description);
-    formData.append("user[avatar]", this.state.imageFile);
+    if (this.state.imageFile) {
+      formData.append("user[avatar]", this.state.imageFile);
+    }
 
     this.props.updateUserInfo(formData).then( () => {
       this.props.toggleForm();
@@ -59,22 +61,29 @@ class UserShowEditForm extends Component {
       <form className="top-side">
         <div className="profile">
           <div className="left-side">
-            <h3 className="left-side-name">
-              <input onChange={this.update("name")}
-                type="text" value={ name }/>
-            </h3>
+            <input onChange={this.update("name")}
+                type="text" value={ name }
+                autoFocus="autofocus"
+                className="left-side-name"
+                placeholder="Enter your name"/>
             <input onChange={this.update("description")}
               className="left-side-description"
-              type="text" value={ description }/>
+              type="text" value={ description }
+              placeholder="Enter a short bio"/>
             <div className="submit-buttons">
-              <button type="submit" onClick={ this.handleSubmit }>Save</button>
-              <button type="button" onClick={ toggleForm }>Cancel</button>
+              <button type="submit" onClick={ this.handleSubmit }
+                      className="profile-btn green-btn">Save</button>
+              <button type="button" onClick={ toggleForm }
+                      className="profile-btn">Cancel</button>
             </div>
           </div>
           <div className="right-side">
-            <div className="image-upload">
+            <div className="image-upload profile-upload">
               <label htmlFor="file-input">
-                <img src={this.state.imageUrl} className="profile-avatar"/>
+                <div>
+                  <img src={this.state.imageUrl} className="profile-avatar"/>
+                  <i className="fa fa-camera" aria-hidden="true"></i>
+                </div>
               </label>
               <input type="file"
                 id="file-input"
