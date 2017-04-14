@@ -67,6 +67,7 @@ class StoryForm extends Component {
       formData.append("story[sub_title]", this.state.sub_title);
       formData.append("story[content]", this.state.content);
       formData.append("story[image]", file);
+
       if (formType === "new") {
         // Disable input buttons while saving picture
         this.toggleForm(true);
@@ -75,6 +76,7 @@ class StoryForm extends Component {
           router.push(`/${action.story.id}/edit-story`);
         });
       } else {
+        formData.append("story[author_id]", this.state.author.id);
         imageProcessForm(formData);
       }
     }
