@@ -106,7 +106,7 @@ class MainNav extends Component {
               { this.renderComposeButton() }
             </li>
             <li className="searchBar">
-              { this.searchBar }
+              <SearchBar />
             </li>
             <li>
               { this.renderNotificationBell }
@@ -143,7 +143,7 @@ class MainNav extends Component {
             </a>
           </li>
           <li>
-            { this.renderSearch }
+            <SearchBar />
           </li>
         </ul>);
     }
