@@ -73,16 +73,19 @@
 .search-container {
   display: flex;
 
-  & input {
+  form {
     display: none;
   }
 }
 
-.show + input {
+.show + form {
   display: flex;
-  color: black;
-  font-size: 14px;
-  font-weight: 200;
+
+  input {
+    color: black;
+    font-size: 14px;
+    font-weight: 200;
+  }
 }
 
 // Navigation profile and drop-down toggle
