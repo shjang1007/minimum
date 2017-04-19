@@ -21,6 +21,9 @@ class SearchForm extends Component {
     const { fetchSearchStories, router } = this.props;
 
     e.preventDefault();
+    const toggleElement = e.currentTarget.parentElement.previousSibling;
+    toggleElement.classList.toggle("show");
+
     fetchSearchStories(this.state.searchTerm).then(
       (action) => {
         router.push("/search");
