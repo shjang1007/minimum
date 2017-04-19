@@ -7,6 +7,7 @@ import HomePage from "./pages/home_page";
 import TagPage from "./pages/tag_page";
 import TopStoryPage from "./pages/top_story_page";
 import BrianStoryPage from "./pages/brian_story_page";
+import SearchPage from "./pages/search_page";
 import StoryForm from "./story/story_form";
 import StoryShow from "./story/story_show";
 import UserShow from "./user/user_show";
@@ -59,6 +60,7 @@ const Root = ({ store }) => {
                 onEnter={ _ensureLoggedIn }/>
           <Route path="/me/stories/drafts" component={ MyStories }
                   onEnter={ _ensureLoggedIn }/>
+                <Route path="/search" component={ SearchPage }/>
         </Route>
       </Router>
     </Provider>

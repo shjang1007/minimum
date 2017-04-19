@@ -16,7 +16,7 @@ export const fetchStories = (tag_name) => (dispatch) => {
 };
 
 export const fetchSearchStories = (search) => (dispatch) => {
-  return storyApiUtil.fetchStories(search).then(
+  return storyApiUtil.fetchSearchStories(search).then(
     (stories) => {
       return dispatch(receiveStories(stories));
     }

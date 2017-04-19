@@ -1,33 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import TopStoryContainer from "../story/top_story_container";
+import React from "react";
+import SearchForm from "../search/search_form";
 
-class SearchPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { searchTerm: "" };
-  }
-
-  render() {
-    return(
-      <main className="site-main surface-container">
-        <section className="home-container">
-          <section className="home-content">
-            <SearchForm />
-            <Tabs />
-            <div className="home-stories">
-              <SearchIndex />
-            </div>
-          </section>
+const SearchPage = (props) => {
+  return(
+    <main className="site-main surface-container">
+      <section className="home-container">
+        <section className="home-content">
+          <SearchForm/>
+          <div>This will be tab component</div>
+          <div className="home-stories">
+            <div>This will be info index</div>
+          </div>
         </section>
-      </main>
-    );
-  }
-}
+      </section>
+    </main>
+  );
+};
 
 
-export default connect(
-  null,
-  null
-)(SearchPage);
+export default SearchPage;

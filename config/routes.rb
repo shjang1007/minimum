@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :stories, except: [:new, :edit] do
       get :comments, on: :member
+      get :search, on: :collection
       get :top, on: :collection
       get :brian, on: :collection
       get :nba, on: :collection
