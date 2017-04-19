@@ -3,7 +3,8 @@ import TagStoryContainer from "../story/tag_story_container";
 
 const TagPage = (props)=> {
   const { pathname } = props.location;
-  const tagName = pathname[0] === "/" ? pathname.slice(6) : pathname.slice(5);
+
+  const tagName = props.params.tagName;
   let topDescription;
 
   if (tagName === "lol") {
