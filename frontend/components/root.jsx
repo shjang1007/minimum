@@ -46,11 +46,7 @@ const Root = ({ store }) => {
           <IndexRoute component={ HomePage } />
           <Route path="/top-stories" component={ TopStoryPage } />
           <Route path="/brian-stories" component={ BrianStoryPage } />
-          <Route path="/tags/nba" component={ TagPage } />
-          <Route path="/tags/lol" component={ TagPage } />
-          <Route path="/tags/food" component={ TagPage } />
-          <Route path="/tags/travel" component={ TagPage } />
-          <Route path="/tags/cartoon" component={ TagPage } />
+          <Route path="/tags/:tagName" component={ TagPage } />
           <Route path="/new-story"
               component={ StoryForm }
               onEnter={ _ensureLoggedIn }/>
