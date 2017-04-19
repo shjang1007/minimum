@@ -2,8 +2,11 @@ class Api::StoriesController < ApplicationController
   def index
     if params[:tag_name]
       stories = Tag.find_stories_by_tag_name(params[:tag_name])
+    elsif params[:search]
+      # where search string (title, subtitle, content)
+      # Have this for user as well, then we good
     else
-      stories = Story.all
+      stories = Story.where(published: true, parent_id: nil)
     end
     # Include to make query faster
     @stories = stories.includes(:author, :liked_users, :tags)

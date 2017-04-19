@@ -9,6 +9,10 @@ export const selectPublishedStories = ({ stories }) => {
   )).sort((x, y) => (y.id - x.id));
 };
 
+export const orderStories = ({ stories }) => {
+  return values(stories).sort((x, y) => (y.id - x.id));
+};
+
 export const selectTopTagStories = (stories, tagName) => {
   const tagStories = [];
   const storiesArray = values(stories).sort((x, y) => (y.id - x.id));

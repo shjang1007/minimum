@@ -14,7 +14,7 @@ const SearchBar = (props) => {
       </button>
       <input className="search-bar"
         type="text"
-        placeholder="Search Minimum" />
+        placeholder="Search Minimum"/>
   </form>
   );
 };

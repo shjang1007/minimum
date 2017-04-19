@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import { openModal } from "../../actions/modal_actions";
 import { fetchStories } from "../../actions/story_actions";
-import { selectPublishedStories } from "../../reducers/selectors";
+import { orderStories } from "../../reducers/selectors";
 import StoryIndex from "./index/story_index";
 
 const mapStateToProps = (state) => {
   return ({
-    stories: selectPublishedStories(state),
+    stories: orderStories(state),
     currentUser: state.session.currentUser
   });
 };
