@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { fetchSearchedItems } from "../../actions/search_actions";
 
 class SearchForm extends Component {
   constructor(props) {
@@ -28,20 +27,19 @@ class SearchForm extends Component {
   }
 
   handleSubmit(e) {
-    const { fetchSearchedItems, router } = this.props;
-    const { searchTerm } = this.state
+    const { router } = this.props;
+    const { searchTerm } = this.state;
 
     e.preventDefault();
+
     const toggleElement = e.currentTarget.parentElement.previousSibling;
     toggleElement.classList.toggle("show");
 
-    fetchSearchedItems(searchTerm).then(
-      (action) => {
-        router.push(`/search/${searchTerm}`);
-      }
-    );
-    // Make sure to clear search input after submitting
-    // Fetch and ship to search page
+    if (searchTerm === "") {
+      router.push("/search/=q");
+    } else {
+      router.push(`/search/${searchTerm}`);
+    }
   }
 
   render() {
@@ -58,14 +56,4 @@ class SearchForm extends Component {
   }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchSearchedItems: (searchTerm) => (dispatch(fetchSearchedItems(searchTerm)))
-  };
-};
-
-export default withRouter(connect(
-  null,
-  mapDispatchToProps
-)(SearchForm));
+export default withRouter((SearchForm));
