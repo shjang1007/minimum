@@ -5,7 +5,6 @@ export const RECEIVE_ITEMS = "RECEIVE_ITEMS";
 export const fetchSearchedItems = (searchTerm) => (dispatch) => {
   return searchApiUtil.fetchSearchedItems(searchTerm).then(
     (items) => {
-      debugger
       return dispatch(receiveItems(items));
     }
   );

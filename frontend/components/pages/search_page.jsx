@@ -6,7 +6,7 @@ const SearchPage = (props) => {
     <main className="site-main surface-container">
       <section className="home-container">
         <section className="home-content">
-          <SearchForm/>
+          <SearchForm searchTerm={ props.params.searchTerm }/>
           <div>This will be tab component</div>
           <div className="home-stories">
             <div>This will be info index</div>
