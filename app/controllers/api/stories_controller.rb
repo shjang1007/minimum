@@ -10,22 +10,6 @@ class Api::StoriesController < ApplicationController
     render :index
   end
 
-  def search
-    if params[:search_term].empty?
-      stories = []
-    else
-      term = params[:search_term].downcase
-      stories = Story
-        .where("lower(title) like ? or lower(sub_title) like ? or lower(content) like ?",
-                "%#{term}%", "%#{term}%", "%#{term}%")
-        .where(published: true)
-        .includes(:author, :liked_users, :tags)
-    end
-
-    @stories = stories
-    render :index
-  end
-
   def top
     stories = Story.where({published: true, parent_id: nil})
                     .includes(:author, :tags, :likes)

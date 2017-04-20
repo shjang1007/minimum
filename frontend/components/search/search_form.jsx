@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { fetchSearchStories } from "../../actions/story_actions";
+import { fetchSearchedItems } from "../../actions/search_actions";
 
 class SearchForm extends Component {
   constructor(props) {
@@ -18,13 +18,13 @@ class SearchForm extends Component {
   }
 
   handleSubmit(e) {
-    const { fetchSearchStories, router } = this.props;
+    const { fetchSearchedItems, router } = this.props;
 
     e.preventDefault();
     const toggleElement = e.currentTarget.parentElement.previousSibling;
     toggleElement.classList.toggle("show");
 
-    fetchSearchStories(this.state.searchTerm).then(
+    fetchSearchedItems(this.state.searchTerm).then(
       (action) => {
         router.push("/search");
       }
@@ -49,7 +49,7 @@ class SearchForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSearchStories: (search) => (dispatch(fetchSearchStories(search)))
+    fetchSearchedItems: (searchTerm) => (dispatch(fetchSearchedItems(searchTerm)))
   };
 };
 

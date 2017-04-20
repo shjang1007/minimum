@@ -6,14 +6,6 @@ export const fetchStories = (tag_name) => {
   });
 };
 
-export const fetchSearchStories = (search_term) => {
-  return $.ajax({
-    method: "GET",
-    url: "api/stories/search",
-    data: { search_term }
-  });
-};
-
 export const fetchTopStories = () => {
   return $.ajax({
     method: "GET",

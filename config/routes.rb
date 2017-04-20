@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :stories, except: [:new, :edit] do
       get :comments, on: :member
-      get :search, on: :collection
       get :top, on: :collection
       get :brian, on: :collection
       get :nba, on: :collection
@@ -14,6 +13,8 @@ Rails.application.routes.draw do
       get :food, on: :collection
       get :travel, on: :collection
     end
+
+    resources :searches, only: :index
 
     resources :taggings, only: :create
     delete :taggings, to: "taggings#destroy"
