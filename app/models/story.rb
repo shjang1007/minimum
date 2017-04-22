@@ -21,6 +21,14 @@ class Story < ActiveRecord::Base
   validates :author, presence: true
   validates :published, inclusion: { in: [ true, false ] }
 
+  # PG Search to handle searching function
+  include PgSearch
+  multisearchable :against => [:title, :sub_title, :content],
+                  :using => {
+                    :tsearch => {:any_word => true}
+                  },
+                  :if => lambda { |story| story.published }
+
   has_attached_file :image,
     default_url: "no_image",
     styles: { medium: "740"}

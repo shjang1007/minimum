@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
   validates :email, :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  # PG Search to handle searching function
+  include PgSearch
+  multisearchable :against => [:username, :name, :description],
+                  using: :tsearch
+
   has_attached_file :avatar,
     default_url: "profile-avatar.png",
     styles: { default: "100x100#" }
