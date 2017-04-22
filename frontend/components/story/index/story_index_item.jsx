@@ -72,8 +72,23 @@ class StoryIndexItem extends Component {
   }
 
   render() {
-    const { id, title, sub_title, content, author, published_at, image_url, liked_users } =
+    const { id, title, sub_title, content, author,
+            published_at, image_url, liked_users } =
       this.props.story;
+
+    const displayTitle = title ?
+      (<li>
+        <h3 className="index-item-title">
+          {title}
+        </h3>
+      </li>) : "";
+
+    const displaySubTitle = title ?
+      (<li>
+        <h4 className="index-item-subtitle">
+          {sub_title}
+        </h4>
+      </li>) : "";
 
     return(
       <li className="index-item">
@@ -81,7 +96,8 @@ class StoryIndexItem extends Component {
           <ul className="index-item-author-info">
             <li>
               <Link to={ `/@${author.username}` }>
-                <img src={ author.avatar_url } className="story-avatar avatar" />
+                <img src={ author.avatar_url }
+                    className="story-avatar avatar" />
               </Link>
             </li>
             <li className="author-date-container">
@@ -104,16 +120,8 @@ class StoryIndexItem extends Component {
               <li>
                 <img src={ image_url } className="index-item-image"/>
               </li>
-              <li>
-                <h3 className="index-item-title">
-                  {title}
-                </h3>
-              </li>
-              <li>
-                <h4 className="index-item-subtitle">
-                  {sub_title}
-                </h4>
-              </li>
+              { displayTitle }
+              { displaySubTitle }
               { this.renderContent() }
             </ul>
           </Link>
