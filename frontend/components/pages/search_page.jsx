@@ -53,7 +53,7 @@ class SearchPage extends Component {
 
     const items = showStories ?
       <SearchStoryIndex stories={ stories } currentUser={ currentUser }/> :
-      <SearchUserIndex users={ users }/>;
+      <SearchUserIndex users={ users } currentUser={ currentUser }/>;
 
     return(
         <main className="site-main surface-container">
@@ -76,7 +76,7 @@ class SearchPage extends Component {
                   </li>
                 </ul>
               </div>
-              <div className="home-stories">
+              <div className="home-stories search-items">
                 { items }
               </div>
             </section>
