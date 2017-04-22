@@ -34,7 +34,7 @@ class StoryForm extends Component {
   update(field) {
     const { router, processForm, formType } = this.props;
     return (e) => {
-      return this.setState({[field]: e.target.value}, () => {
+      this.setState({[field]: e.target.value}, () => {
         if (formType === "new") {
           processForm(this.state).then( (action) => {
             router.push(`/${action.story.id}/edit-story`);
