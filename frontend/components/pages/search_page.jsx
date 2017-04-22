@@ -10,6 +10,8 @@ class SearchPage extends Component {
     super(props);
 
     this.state = { showStories: true };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +27,24 @@ class SearchPage extends Component {
     }
   }
 
+  handleClick(tab) {
+    const { showStories } = this.state;
+    const storyButton = document.getElementById("search-nav-stories");
+    const peopleButton = document.getElementById("search-nav-people");
+
+    return (e) => {
+      if (tab === "stories") {
+        this.setState({ showStories: true });
+        storyButton.classList.toggle("black");
+        peopleButton.classList.toggle("black");
+      } else {
+        this.setState({ showStories: false });
+        storyButton.classList.toggle("black");
+        peopleButton.classList.toggle("black");
+      }
+    };
+  }
+
   render() {
     const { searchTerm } = this.props.params;
     const { currentUser } = this.props;
@@ -35,24 +55,34 @@ class SearchPage extends Component {
       <SearchStoryIndex stories={ stories } currentUser={ currentUser }/> :
       <SearchUserIndex users={ users }/>;
 
-  return(
-      <main className="site-main surface-container">
-        <section className="home-container">
-          <section className="home-content">
-            <SearchForm searchTerm={ searchTerm }/>
-            <div className="tab-container">
-              <ul className="tab-content">
-                <li>Stories</li>
-                <li>People</li>
-              </ul>
-            </div>
-            <div className="home-stories">
-              { items }
-            </div>
+    return(
+        <main className="site-main surface-container">
+          <section className="search-page">
+            <section className="home-content search-page-content">
+              <SearchForm searchTerm={ searchTerm }/>
+              <div className="tab-container">
+                <ul className="tab-content">
+                  <li>
+                    <button className="black" id="search-nav-stories"
+                        onClick={ this.handleClick("stories") }>
+                      Stories
+                    </button>
+                  </li>
+                  <li>
+                    <button id="search-nav-people"
+                        onClick={ this.handleClick("people") }>
+                      People
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div className="home-stories">
+                { items }
+              </div>
+            </section>
           </section>
-        </section>
-      </main>
-    );
+        </main>
+      );
   }
 }
 

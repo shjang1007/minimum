@@ -1,0 +1,42 @@
+.search-page {
+  display: flex;
+  justify-content: center;
+  background: white;
+}
+
+.search-page-content {
+  align-items: inherit;
+
+  form {
+    max-width: 660px;
+    width: 100%;
+    padding-bottom: 40px;
+
+    input {
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,.15);
+      font-size: 49.9px;
+      font-weight: 300;
+    }
+  }
+}
+
+.tab-content {
+  display: flex;
+  margin-bottom: 20px;
+  color: rgba(0,0,0,.44);
+
+  .black {
+    color: black;
+  }
+
+  li {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    button {
+      font-size: 16px;
+    }
+  }
+}
