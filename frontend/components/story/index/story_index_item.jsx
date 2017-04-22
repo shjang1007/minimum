@@ -17,6 +17,35 @@ class StoryIndexItem extends Component {
       }
     };
   }
+
+  renderParentSummary() {
+    const { story } = this.props;
+    if (story.parent_story) {
+      const { parent_story } = story;
+        return(
+          <Link to={ `/stories/${parent_story.id}` }>
+            <ul className="parent-story-container">
+              <li>{ parent_story.title }</li>
+              <li>{ parent_story.author.name }</li>
+            </ul>
+          </Link>
+        );
+    }
+  }
+
+  renderContent() {
+    const { story } = this.props;
+    if (!story.title && !story.sub_title) {
+        return(
+          <li>
+            <p className="index-item-content">
+              { story.content }
+            </p>
+          </li>
+        );
+    }
+  }
+
   renderLikeButton() {
     const { story, currentUser } = this.props;
 
@@ -68,6 +97,7 @@ class StoryIndexItem extends Component {
           </ul>
         </div>
         <div className="index-item-content">
+          { this.renderParentSummary() }
           <Link to={ `/stories/${id}` }
               className="gray-button">
             <ul className="content-detail">
@@ -84,6 +114,7 @@ class StoryIndexItem extends Component {
                   {sub_title}
                 </h4>
               </li>
+              { this.renderContent() }
             </ul>
           </Link>
         </div>
