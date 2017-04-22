@@ -23,11 +23,8 @@ class Story < ActiveRecord::Base
 
   # PG Search to handle searching function
   include PgSearch
-  multisearchable :against => [:title, :sub_title, :content],
-                  :using => {
-                    :tsearch => {:any_word => true}
-                  },
-                  :if => lambda { |story| story.published }
+  multisearchable against: [:title, :sub_title, :content],
+                  if: lambda { |story| story.published }
 
   has_attached_file :image,
     default_url: "no_image",

@@ -28,8 +28,7 @@ class User < ActiveRecord::Base
 
   # PG Search to handle searching function
   include PgSearch
-  multisearchable :against => [:username, :name, :description],
-                  using: :tsearch
+  multisearchable against: [:username, :name, :description]
 
   has_attached_file :avatar,
     default_url: "profile-avatar.png",
