@@ -60,7 +60,8 @@ const Root = ({ store }) => {
                 onEnter={ _ensureLoggedIn }/>
           <Route path="/me/stories/drafts" component={ MyStories }
                   onEnter={ _ensureLoggedIn }/>
-                <Route path="/search/:searchTerm" component={ SearchPage }/>
+          <Route path="/search/:searchTerm" component={ SearchPage }/>
+          // <Route path="/search" component={ SearchPage }/>
         </Route>
       </Router>
     </Provider>

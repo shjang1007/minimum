@@ -32,14 +32,16 @@ class SearchForm extends Component {
 
     e.preventDefault();
 
+    // If the search form is in the nav bar, toggle to close the search form
     const toggleElement = e.currentTarget.parentElement.previousSibling;
-    toggleElement.classList.toggle("show");
-
-    if (searchTerm === "") {
-      router.push("/search/=q");
-    } else {
-      router.push(`/search/${searchTerm}`);
+    if (toggleElement) {
+      toggleElement.classList.toggle("show");
     }
+
+    // Push to the search form
+    router.push(`/search/${searchTerm}`);
+    // Clear search after
+    this.setState({ searchTerm: "" });
   }
 
   render() {

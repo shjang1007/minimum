@@ -1,6 +1,6 @@
 class Api::SearchesController < ApplicationController
   def index
-    if params[:search_term].empty?
+    if !params[:search_term]
       stories = []
       users = []
     else
