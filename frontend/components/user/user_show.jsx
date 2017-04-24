@@ -22,14 +22,12 @@ class UserShow extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     this.props.fetchUser(this.props.params.username);
-    this.props.fetchUserStories(this.props.params.username);
   }
 
   componentWillReceiveProps(newProps) {
     window.scrollTo(0, 0);
     if (newProps.params.username !== this.props.params.username) {
       newProps.fetchUser(newProps.params.username);
-      newProps.fetchUserStories(newProps.params.username);
     }
   }
 
@@ -39,24 +37,24 @@ class UserShow extends Component {
   }
 
   render() {
-    const { user, currentUser, userStories } = this.props;
-    const userStoryList = userStories
-      .map( (story) => (
-      <UserStoryIndexItem key={ story.id } user={ user }
-        story={ story }
-        currentUser={ currentUser }
-        openAuthModal={ this.props.openAuthModal }/>
-    ));
-    
-    const topSide = this.state.toggleForm ?
-                    <UserShowEditForm user={ user }
-                      currentUser={ currentUser }
-                      toggleForm={ this.toggleForm }
-                      updateUserInfo={ this.props.updateUserInfo }/>:
-                    <UserShowDetail user={ user } currentUser={ currentUser }
-                      toggleForm={ this.toggleForm }/>;
+    const { user, currentUser } = this.props;
 
     if (user) {
+      const userStoryList = user.stories
+      .map( (story) => (
+        <UserStoryIndexItem key={ story.id } user={ user }
+          story={ story }
+          currentUser={ currentUser }
+          openAuthModal={ this.props.openAuthModal }/>
+      ));
+
+      const topSide = this.state.toggleForm ?
+      <UserShowEditForm user={ user }
+        currentUser={ currentUser }
+        toggleForm={ this.toggleForm }
+        updateUserInfo={ this.props.updateUserInfo }/>:
+        <UserShowDetail user={ user } currentUser={ currentUser }
+          toggleForm={ this.toggleForm }/>;
       return (
         <main className="user-profile-container">
           { topSide }
@@ -76,17 +74,15 @@ class UserShow extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const user = state.user;
+  const user = state.userData.user;
   const currentUser = state.session.currentUser;
-  const userStories = selectPublishedUserStories(state.stories, state.user.id);
-  return ({ user, currentUser, userStories });
+  return ({ user, currentUser });
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUser: (username) => (dispatch(fetchUser(username))),
     updateUserInfo: (formData) => (dispatch(updateUserInfo(formData))),
-    fetchUserStories: (username) => (dispatch(fetchUserStories(username))),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))
   };
 };

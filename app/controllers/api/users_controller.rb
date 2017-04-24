@@ -15,6 +15,11 @@ class Api::UsersController < ApplicationController
     @user = User.find_by_username(params[:username])
 
     if @user
+      @stories = @user
+                  .stories
+                  .where(published: true)
+                  .where(parent_id: nil)
+                  .reverse
       render :show
     else
       render json: ["No Show"], status: 404
@@ -30,11 +35,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def stories
-    user = User.includes(:stories).find_by_username(params[:username])
-    @stories = user.stories.where(published: true).where(parent_id: nil)
-    render "api/stories/index"
-  end
+  # def stories
+  #   user = User.includes(:stories).find_by_username(params[:username])
+  #   @stories = user.stories.where(published: true).where(parent_id: nil)
+  #   render "api/stories/index"
+  # end
 
   private
 

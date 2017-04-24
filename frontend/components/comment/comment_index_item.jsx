@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router";
+import { withRouter, Link } from "react-router";
 import { values } from "lodash";
+import { fetchStory } from "../../actions/story_actions";
 import { createLike, deleteLike } from "../../actions/like_actions";
 
 // Props has story info
@@ -42,6 +43,17 @@ class CommentIndexItem extends Component {
     }
   }
 
+  handleNavigate(e) {
+    const { router, fetchStory } = this.props;
+    const { id } = this.props.comment;
+
+    e.preventDefault();
+
+    fetchStory(id).then(
+      action => router.push(`/stories/${id}`)
+    );
+  }
+
   render() {
     const { id, title, sub_title, content, parent_story, author, published_at,
             image_url, liked_users } = this.props.comment;
@@ -66,7 +78,7 @@ class CommentIndexItem extends Component {
           </ul>
         </div>
         <div className="index-item-content">
-          <Link to={ `/stories/${id}` }
+          <button onClick={ this.handleNavigate.bind(this) }
               className="gray-button">
             <ul className="content-detail">
               <li>
@@ -88,12 +100,12 @@ class CommentIndexItem extends Component {
                 </p>
               </li>
             </ul>
-          </Link>
+          </button>
         </div>
-        <Link to={ `/stories/${id}` }
+        <button onClick={ this.handleNavigate.bind(this) }
             className="story-index-readmore">
           Read more...
-        </Link>
+        </button>
 
         <div className="post-story-actions">
           { this.renderLikeButton() }
@@ -106,12 +118,13 @@ class CommentIndexItem extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return({
+    fetchStory: (id) => (dispatch(fetchStory(id))),
     createLike: (like) => (dispatch(createLike(like))),
     deleteLike: (like) => (dispatch(deleteLike(like)))
   });
 };
 
-export default connect(
+export default withRouter(connect(
   null,
   mapDispatchToProps
-)(CommentIndexItem);
+)(CommentIndexItem));

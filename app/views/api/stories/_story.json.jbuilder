@@ -26,11 +26,3 @@ if story.image.file?
   json.image_url story.image.url(:medium)
   # json.image_url asset_path(story.image.url(:medium))
 end
-
-# json.comments do
-#   story.comments.each do |comment|
-#     json.set! comment.id do
-#       json.partial! "api/stories/story", story: comment
-#     end
-#   end
-# end

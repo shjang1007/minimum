@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { values } from "lodash";
 import { Link, withRouter } from "react-router";
-import { fetchStoryAndComments } from "../../actions/story_actions";
+import { fetchStory } from "../../actions/story_actions";
 import { openModal } from "../../actions/modal_actions";
 import { createLike, deleteLike } from "../../actions/like_actions";
 import CommentIndex from "../comment/comment_index";
@@ -12,15 +12,15 @@ import AuthModal from "../modal/auth_modal";
 class StoryShow extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.props.fetchStoryAndComments(this.props.params.storyId);
+    this.props.fetchStory(this.props.params.storyId);
   }
 
   componentWillReceiveProps(newProps) {
-    window.scrollTo(0, 0);
-    // When you are accessing from comment to the story fetch story and comments
-    if (!newProps.story) {
-      newProps.fetchStoryAndComments(newProps.params.storyId);
-    }
+    // window.scrollTo(0, 0);
+    // When you click comments
+    // if (this.props.params.storyId !== newProps.params.storyId) {
+    //   newProps.fetchStory(newProps.params.storyId);
+    // }
   }
 
   toggleLike(method) {
@@ -33,6 +33,17 @@ class StoryShow extends Component {
         this.props.createLike(likeInfo);
       }
     };
+  }
+
+  handleNavigate(e) {
+    const { router, fetchStory } = this.props;
+    const { id } = this.props.story.parent_story;
+
+    e.preventDefault();
+
+    fetchStory(id).then(
+      action => router.push(`/stories/${id}`)
+    );
   }
 
   renderImage() {
@@ -74,12 +85,13 @@ class StoryShow extends Component {
     if (story.parent_story) {
       const { parent_story } = story;
         return(
-          <Link to={ `/stories/${parent_story.id}` }>
+          <button onClick={ this.handleNavigate.bind(this) }
+              className="parent-story-btn">
             <ul className="parent-story-container">
               <li>{ parent_story.title }</li>
               <li>{ parent_story.author.name }</li>
             </ul>
-          </Link>
+          </button>
         );
     }
   }
@@ -182,6 +194,7 @@ class StoryShow extends Component {
               <CommentForm currentUser={ currentUser }
                   openAuthModal={this.props.openAuthModal}/>
               <CommentIndex currentUser={ currentUser }
+                  comments={ story.comments }
                   parentId = { this.props.params.storyId }
                   openAuthModal={this.props.openAuthModal}/>
             </div>
@@ -198,23 +211,21 @@ class StoryShow extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    story: state.stories[ownProps.params.storyId],
+    story: state.storyData.story,
     currentUser: state.session.currentUser
   });
 };
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    fetchStoryAndComments: (parentId) => (
-      dispatch(fetchStoryAndComments(parentId))
-    ),
+    fetchStory: (id) => (dispatch(fetchStory(id))),
     createLike: (like) => (dispatch(createLike(like))),
     deleteLike: (like) => (dispatch(deleteLike(like))),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))
   });
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(StoryShow);
+)(StoryShow));

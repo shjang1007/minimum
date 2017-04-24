@@ -7,8 +7,8 @@ import searchReducer from "./search_reducer";
 
 export default combineReducers({
   session: sessionReducer,
-  stories: storyReducer,
+  storyData: storyReducer,
   modal: modalReducer,
-  user: userReducer,
+  userData: userReducer,
   items: searchReducer
 });

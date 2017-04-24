@@ -32,6 +32,10 @@ class Api::StoriesController < ApplicationController
 
   def show
     @story = Story.includes(:author, :tags, :liked_users).find(params[:id])
+    @comments = Story.where("parent_id = #{params[:id]}")
+                      .where(published: true)
+                      .includes(:author, :tags, :liked_users)
+                      .reverse
     render :show
   end
 

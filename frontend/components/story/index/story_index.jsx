@@ -14,7 +14,6 @@ class StoryIndex extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    window.scrollTo(0, 0);
     if (this.props.tagName !== nextProps.tagName) {
       this.props.fetchStories(nextProps.tagName);
     }

@@ -24,14 +24,5 @@ const CommentIndex = ({ comments, openAuthModal, currentUser}) => {
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    comments: selectPublishedComments(state.stories, ownProps.parentId)
-  };
-};
 
-
-export default connect(
-  mapStateToProps,
-  null
-)(CommentIndex);
+export default CommentIndex;
