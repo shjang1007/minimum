@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router";
+import { Link, withRouter } from "react-router";
 import { values } from "lodash";
+import { fetchStory } from "../../../actions/story_actions";
+import { fetchUser } from "../../../actions/user_actions";
 import { createLike, deleteLike } from "../../../actions/like_actions";
 
 // Props has story info
@@ -18,17 +20,40 @@ class StoryIndexItem extends Component {
     };
   }
 
+  handleNavigate(place) {
+    const { router, fetchStory, fetchUser } = this.props;
+    const { story } = this.props;
+
+    return (e) => {
+      e.preventDefault();
+
+      if (place === "parent") {
+        fetchStory(story.parent_id).then(
+          action => router.push(`/stories/${story.parent_id}`)
+        );
+      } else if (place === "author") {
+        fetchUser(story.author.id).then(
+          action => router.push(`/@${story.author.username}`)
+        );
+      } else {
+        fetchStory(story.id).then(
+          action => router.push(`/stories/${story.id}`)
+        );
+      }
+    };
+  }
+
   renderParentSummary() {
     const { story } = this.props;
     if (story.parent_story) {
       const { parent_story } = story;
         return(
-          <Link to={ `/stories/${parent_story.id}` }>
+          <button onClick={ this.handleNavigate("parent").bind(this) }>
             <ul className="parent-story-container">
               <li>{ parent_story.title }</li>
               <li>{ parent_story.author.name }</li>
             </ul>
-          </Link>
+          </button>
         );
     }
   }
@@ -95,26 +120,26 @@ class StoryIndexItem extends Component {
         <div className="index-item-profile">
           <ul className="index-item-author-info">
             <li>
-              <Link to={ `/@${author.username}` }>
+              <button onClick={ this.handleNavigate("author").bind(this) }>
                 <img src={ author.avatar_url }
                     className="story-avatar avatar" />
-              </Link>
+                </button>
             </li>
             <li className="author-date-container">
-              <Link to={ `/@${author.username}` }
+              <button onClick={ this.handleNavigate("author").bind(this) }
                   className="green-button">
                 {author.name}
-              </Link>
-              <Link to={ `/stories/${id}` }
+              </button>
+              <button onClick={ this.handleNavigate().bind(this) }
                   className="gray-button">
                 {published_at}
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
         <div className="index-item-content">
           { this.renderParentSummary() }
-          <Link to={ `/stories/${id}` }
+          <button onClick={ this.handleNavigate().bind(this) }
               className="gray-button">
             <ul className="content-detail">
               <li>
@@ -124,12 +149,12 @@ class StoryIndexItem extends Component {
               { displaySubTitle }
               { this.renderContent() }
             </ul>
-          </Link>
+          </button>
         </div>
-        <Link to={ `/stories/${id}` }
+        <button onClick={ this.handleNavigate().bind(this) }
             className="story-index-readmore">
           Read more...
-        </Link>
+        </button>
         <div className="post-story-actions">
           { this.renderLikeButton() }
           <div className="num-likes">{ values(liked_users).length }</div>
@@ -141,12 +166,13 @@ class StoryIndexItem extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return({
+    fetchStory: (id) => (dispatch(fetchStory(id))),
     createLike: (like) => (dispatch(createLike(like))),
     deleteLike: (like) => (dispatch(deleteLike(like)))
   });
 };
 
-export default connect(
+export default withRouter(connect(
   null,
   mapDispatchToProps
-)(StoryIndexItem);
+)(StoryIndexItem));

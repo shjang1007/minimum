@@ -1,5 +1,3 @@
-@stories.each do |story|
-  json.set! story.id do
-    json.partial! "api/stories/story", story: story
-  end
+json.array! @stories do |story|
+  json.partial! "api/stories/story", story: story
 end

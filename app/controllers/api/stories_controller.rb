@@ -6,7 +6,7 @@ class Api::StoriesController < ApplicationController
       stories = Story.where(published: true, parent_id: nil)
     end
     # Include to make query faster
-    @stories = stories.includes(:author, :liked_users, :tags)
+    @stories = stories.includes(:author, :liked_users, :tags).reverse
     render :index
   end
 
