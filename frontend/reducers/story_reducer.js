@@ -21,7 +21,10 @@ const storyReducer = (oldState = _initialState, action) => {
   switch (action.type) {
     case RECEIVE_STORIES:
 
-      return merge({}, oldState, { stories: action.stories });
+      return {
+        stories: action.stories,
+        story: oldState.story
+      };
     case RECEIVE_STORY:
       // let updateState = merge({}, oldState, {[action.story.id]: action.story});
       // updateState[action.story.id].liked_users = action.story.liked_users;
@@ -38,8 +41,6 @@ const storyReducer = (oldState = _initialState, action) => {
         stories: null,
         story: null
       };
-    case CLEAR_STORY:
-      return {};
     default:
       return oldState;
   }

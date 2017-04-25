@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { signOut } from "../../actions/session_actions";
-import { updateStory, deleteStory, clearStory } from "../../actions/story_actions";
+import { fetchStories, fetchTopStories, fetchBrianStories,
+          updateStory, deleteStory }
+        from "../../actions/story_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import UserDropDown from "./user_drop_down";
 import PublishDropDownForm from "./publish_drop_down_form";
@@ -15,6 +17,7 @@ class MainNav extends Component {
     super(props);
 
     this.signOutUser = this.signOutUser.bind(this);
+    this.handleNavigate = this.handleNavigate.bind(this);
   }
 
   signOutUser() {
@@ -29,6 +32,33 @@ class MainNav extends Component {
       this.props.deleteStory(storyId).then(
         this.props.router.push("/")
       );
+    };
+  }
+
+  handleNavigate(place) {
+    const { router, fetchBrianStories, fetchStories, fetchTopStories }
+      = this.props;
+
+    return (e) => {
+      e.preventDefault();
+
+      if (place === "brian") {
+        fetchBrianStories().then(
+          action => router.push("/brian-stories")
+        );
+      } else if (place === "top") {
+        fetchTopStories().then(
+          action => router.push("/top-stories")
+        );
+      } else if (place === "home") {
+        fetchStories().then(
+          action => router.push("/")
+        );
+      } else {
+        fetchStories(place).then(
+          action => router.push(`/tags/${place}`)
+        );
+      }
     };
   }
 
@@ -151,7 +181,6 @@ class MainNav extends Component {
 
   renderBottomBar() {
     const pathname = this.props.location.pathname;
-    const { clearStory } = this.props;
 
     if (pathname === "/" ||
         pathname.includes("tags") ||
@@ -162,52 +191,52 @@ class MainNav extends Component {
         <div className="inner-bar bottom-bar">
           <ul>
             <li>
-              <Link to="/" onClick= { clearStory }
-                    className="gray-button category">
+              <button onClick={ this.handleNavigate("home") }
+                  className="gray-button category">
                 Home
-              </Link>
-          </li>
+              </button>
+            </li>
             <li>
-              <Link to="/top-stories" onClick={ clearStory }
+              <button onClick={ this.handleNavigate("top") }
                     className="gray-button category">
                 Top stories
-              </Link>
-          </li>
+              </button>
+            </li>
             <li>
-              <Link to="/brian-stories" onClick= { clearStory }
+              <button onClick={ this.handleNavigate("brian") }
                     className="gray-button category">
                 Brian's picks
-              </Link>
+              </button>
             </li>
             <li>
-              <Link to="tags/nba" onClick= { clearStory }
+              <button onClick={ this.handleNavigate("nba") }
                     className="gray-button category">
                 NBA
-              </Link>
+              </button>
             </li>
             <li>
-              <Link to="tags/lol" onClick= { clearStory }
+              <button onClick={ this.handleNavigate("lol") }
                     className="gray-button category">
                 League of Legends
-              </Link>
+              </button>
             </li>
             <li>
-              <Link to="tags/food" onClick= { clearStory }
+              <button onClick={ this.handleNavigate("food") }
                     className="gray-button category">
                 Food
-              </Link>
+              </button>
             </li>
             <li>
-              <Link to="tags/travel" onClick= { clearStory }
+              <button onClick={ this.handleNavigate("travel") }
                     className="gray-button category">
                 Travel
-              </Link>
+              </button>
             </li>
             <li>
-              <Link to="tags/cartoon" onClick= { clearStory }
+              <button onClick={ this.handleNavigate("cartoon") }
                     className="gray-button category">
                 Cartoon
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
@@ -252,9 +281,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
+    fetchStories: (tagName) => (dispatch(fetchStories(tagName))),
+    fetchTopStories: () => (dispatch(fetchTopStories())),
+    fetchBrianStories: () => (dispatch(fetchBrianStories())),
     signOut: () => (dispatch(signOut())),
     deleteStory: (id) => (dispatch(deleteStory(id))),
-    clearStory: () => (dispatch(clearStory())),
     openAuthModal: () => (dispatch(openModal("authIsOpen"))),
     closeAuthModal: () => (dispatch(closeModal("authIsOpen"))),
     openDeleteModal: () => (dispatch(openModal("deleteIsOpen"))),

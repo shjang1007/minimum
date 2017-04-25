@@ -5,7 +5,6 @@ export const RECEIVE_STORIES = "RECEIVE_STORIES";
 export const RECEIVE_STORY = "RECEIVE_STORY";
 export const REMOVE_STORY = "REMOVE_STORY";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
-export const CLEAR_STORY = "CLEAR_STORY";
 
 export const fetchStories = (tag_name) => (dispatch) => {
   return storyApiUtil.fetchStories(tag_name).then(
@@ -113,11 +112,5 @@ export const removeStory = (story) => {
   return ({
     type: REMOVE_STORY,
     story
-  });
-};
-
-export const clearStory = () => {
-  return ({
-    type: CLEAR_STORY
   });
 };
