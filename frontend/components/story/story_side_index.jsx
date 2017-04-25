@@ -41,13 +41,14 @@ class StorySideIndex extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  let allStories = state.storyData.stories ? state.storyData.stories : [];
   let stories;
   if (ownProps.type === "top-stories") {
-    stories = selectTopStories(state);
+    stories = selectTopStories(allStories);
   } else if (ownProps.type === "brian-stories") {
-    stories = selectBrianStories(state);
+    stories = selectBrianStories(allStories);
   } else {
-    stories = selectTopTagStories(state.stories, ownProps.tagName);
+    stories = selectTopTagStories(allStories, ownProps.tagName);
   }
 
   return { stories };

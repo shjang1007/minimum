@@ -6,7 +6,7 @@ import StoryIndex from "./index/story_index";
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    stories: selectPublishedStories(state),
+    stories: state.storyData.stories,
     currentUser: state.session.currentUser,
     tagName: ownProps.tagName
   });

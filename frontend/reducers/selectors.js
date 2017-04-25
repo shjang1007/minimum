@@ -15,34 +15,37 @@ export const orderStories = ({ stories }) => {
 
 export const selectTopTagStories = (stories, tagName) => {
   const tagStories = [];
-  const storiesArray = values(stories).sort((x, y) => (y.id - x.id));
 
   let i = 0;
-  while (storiesArray.length > 0 && i < storiesArray.length) {
-    let story = storiesArray[i];
+  while (stories.length > 0 && i < stories.length) {
+    let story = stories[i];
     let tagNames = story.tags.map((tag) => tag.name);
     if (story.published && !story.parent_id && tagNames.includes(tagName)) {
       tagStories.push(story);
+
+      if (tagStories.length === 3) {
+        return tagStories;
+      }
     }
 
     i++;
   }
 
-  return tagStories.slice(0, 3);
+  return tagStories;
 };
 
-export const selectTopStories = ({ stories }) => {
-  const storiesArray = values(stories).sort((x, y) => (y.likes - x.likes));
+export const selectTopStories = (stories) => {
+  const topStories = stories.sort((x, y) => (y.likes - x.likes));
 
-  return storiesArray.filter( (story) =>
+  return topStories.filter( (story) =>
     story.published && !story.parent_id
   ).slice(0, 3);
 };
 
-export const selectBrianStories = ({ stories }) => {
-  const storiesArray = values(stories).sort((x, y) => (y.id - x.id));
+export const selectBrianStories = (stories) => {
+  const brianStories = stories.sort((x, y) => (y.id - x.id));
 
-  return storiesArray.filter( (story) =>
+  return brianStories.filter( (story) =>
     story.published && !story.parent_id && story.author.username === "BekGu"
   ).slice(0, 3);
 };

@@ -6,7 +6,7 @@ import StoryIndex from "./index/story_index";
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    stories: values(state.stories).sort((x, y) => (x.id - y.id)),
+    stories: state.storyData.stories,
     currentUser: state.session.currentUser
   });
 };
