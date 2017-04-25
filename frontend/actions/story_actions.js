@@ -46,21 +46,21 @@ export const fetchStory = (id) => (dispatch) => {
   );
 };
 
-export const fetchStoryAndComments = (parentId) => (dispatch) => {
-  return storyApiUtil.fetchStoryAndComments(parentId).then(
-    (stories) => {
-      return dispatch(receiveStories(stories));
-    }
-  );
-};
+// export const fetchStoryAndComments = (parentId) => (dispatch) => {
+//   return storyApiUtil.fetchStoryAndComments(parentId).then(
+//     (stories) => {
+//       return dispatch(receiveStories(stories));
+//     }
+//   );
+// };
 
-export const fetchUserStories = (username) => (dispatch) => {
-  return userApiUtil.fetchUserStories(username).then(
-    (stories) => {
-      return dispatch(receiveStories(stories));
-    }
-  );
-};
+// export const fetchUserStories = (username) => (dispatch) => {
+//   return userApiUtil.fetchUserStories(username).then(
+//     (stories) => {
+//       return dispatch(receiveStories(stories));
+//     }
+//   );
+// };
 
 export const createStory = (story) => (dispatch) => {
   return storyApiUtil.createStory(story).then(

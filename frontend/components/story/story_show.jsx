@@ -11,16 +11,13 @@ import AuthModal from "../modal/auth_modal";
 
 class StoryShow extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     this.props.fetchStory(this.props.params.storyId);
   }
 
   componentWillReceiveProps(newProps) {
-    // window.scrollTo(0, 0);
-    // When you click comments
-    // if (this.props.params.storyId !== newProps.params.storyId) {
-    //   newProps.fetchStory(newProps.params.storyId);
-    // }
+    if (this.props.params.storyId !== newProps.params.storyId) {
+      newProps.fetchStory(newProps.params.storyId);
+    }
   }
 
   toggleLike(method) {
@@ -42,7 +39,10 @@ class StoryShow extends Component {
     e.preventDefault();
 
     fetchStory(id).then(
-      action => router.push(`/stories/${id}`)
+      action => {
+        window.scrollTo(0,0);
+        router.push(`/stories/${id}`);
+      }
     );
   }
 

@@ -7,6 +7,7 @@ import { createLike, deleteLike } from "../../actions/like_actions";
 
 // Props has story info
 class CommentIndexItem extends Component {
+
   toggleLike(method) {
     const { comment, currentUser } = this.props;
     const likeInfo = { user_id: currentUser.id, story_id: comment.id };
@@ -50,7 +51,10 @@ class CommentIndexItem extends Component {
     e.preventDefault();
 
     fetchStory(id).then(
-      action => router.push(`/stories/${id}`)
+      action => {
+        window.scrollTo(0,0);
+        router.push(`/stories/${id}`);
+      }
     );
   }
 
