@@ -1,6 +1,7 @@
 import React from "react";
 import { merge } from "lodash";
-import { RECEIVE_USER, RECEIVE_USERS } from "../actions/user_actions";
+import { RECEIVE_USER, RECEIVE_USERS, RECEIVE_LIKES }
+        from "../actions/user_actions";
 
 const _initialState = {
   users: null,

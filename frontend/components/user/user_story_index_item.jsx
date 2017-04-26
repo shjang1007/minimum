@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { values } from "lodash";
-import { createLike, deleteLike } from "../../actions/like_actions";
+import { createUserLike, deleteUserLike } from "../../actions/like_actions";
 
 // Props has story info
 class UserStoryIndexItem extends Component {
@@ -19,31 +19,35 @@ class UserStoryIndexItem extends Component {
   }
   renderLikeButton() {
     const { story, currentUser } = this.props;
-    
     if (currentUser === null) {
       return (
         <button onClick={ this.props.openAuthModal }>
           <img src={ window.images.likeEmpty } />
         </button>
       );
-    } else if (story.liked_users &&
-        Object.keys(story.liked_users).includes(currentUser.id.toString())) {
-      return (
-        <button onClick={ this.toggleLike("delete") }>
-          <img src={ window.images.likeFilled } />
-        </button>
-      );
-    } else {
-      return (
-        <button onClick={ this.toggleLike("create") }>
-          <img src={ window.images.likeEmpty } />
-        </button>
-      );
+    } else if (story.liked_users) {
+      const likedUserIds = story.liked_users.map((user) => user.id);
+      if (likedUserIds.includes(currentUser.id)) {
+        return (
+          <button onClick={ this.toggleLike("delete").bind(this) }>
+            <img src={ window.images.likeFilled } />
+          </button>
+        );
+
+      } else {
+        return (
+          <button onClick={ this.toggleLike("create").bind(this) }>
+            <img src={ window.images.likeEmpty } />
+          </button>
+        );
+
+      }
     }
   }
 
   render() {
-    const { id, title, sub_title, content, published_at, image_url, liked_users } =
+    const { id, title, sub_title, content,
+            published_at, image_url, liked_users } =
       this.props.story;
 
     const { user } = this.props;
@@ -102,8 +106,8 @@ class UserStoryIndexItem extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return({
-    createLike: (like) => (dispatch(createLike(like))),
-    deleteLike: (like) => (dispatch(deleteLike(like)))
+    createLike: (like) => (dispatch(createUserLike(like))),
+    deleteLike: (like) => (dispatch(deleteUserLike(like)))
   });
 };
 
