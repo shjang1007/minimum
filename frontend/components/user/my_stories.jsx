@@ -1,103 +1,108 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { merge, values } from "lodash";
-import { Link } from "react-router";
-import { fetchStories } from "../../actions/story_actions";
-import { selectMyPublishedStories, selectMyDraftStories } from "../../reducers/selectors";
+import { Link, withRouter } from "react-router";
+import { fetchStory } from "../../actions/story_actions";
+
+import MyDrafts from "./my_story_detail/my_drafts";
+import MyPublicStories from "./my_story_detail/my_public_stories";
 
 class MyStories extends Component {
-  componentDidMount() {
-    this.props.fetchStories();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showDrafts: true
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleNavigate = this.handleNavigate.bind(this);
+  }
+
+  handleClick(tab) {
+    const { showStories } = this.state;
+    return (e) => {
+      const draftButton = document.getElementById("my-drafts");
+      const storyButton = document.getElementById("my-stories");
+      if (tab === "drafts") {
+        this.setState({ showDrafts: true });
+        draftButton.classList.toggle("black");
+        storyButton.classList.toggle("black");
+      } else {
+        this.setState({ showDrafts: false });
+        draftButton.classList.toggle("black");
+        storyButton.classList.toggle("black");
+      }
+    };
+  }
+
+  handleNavigate(place, id) {
+    const { router, fetchStory } = this.props;
+
+    return (e) => {
+      e.preventDefault();
+
+      fetchStory(id).then(
+        action => {
+          window.scrollTo(0,0);
+          if (place === "edit") {
+            router.push(`/${id}/edit-story`);
+          } else {
+            router.push(`stories/${id}`);
+          }
+        }
+      );
+    };
   }
 
   render() {
-    const { stories, currentUser } = this.props;
-    const location = this.props.location.pathname;
-    if (stories) {
-      const storyList = stories.map( (story) => {
-        let link = `stories/${story.id}`;
-        if (location.includes("/draft")) {
-          link = `/${story.id}/edit-story`;
-        }
-        if (!story.title) {
-          return (
-            <li key={story.id} className="story-li">
-              <Link to={ link } >
-                <div>Untitled story</div>
-              </Link>
-            </li>
-          );
-        } else {
-          return (
-            <li key={story.id} className="story-li">
-              <Link to={ link }>
-                <div>{ story.title }</div>
-              </Link>
-            </li>
-          );
-        }
-      });
+    const { showDrafts } = this.state;
+    const { stories, drafts } = this.props.currentUser;
 
-      return (
-        <section className="my-story-container">
-          <div className="top-banner">
-            Your stories
-          </div>
-          <ul className="toggle-tab">
-            <li className="tab-first-button">
-              <Link to="/me/stories/drafts">
-                Drafts { this.props.draftNum }
-              </Link>
-            </li>
-            <li>
-              <Link to="/me/stories/public">
-                Public { this.props.publicNum }
-              </Link>
-            </li>
-          </ul>
-          <ul className="story-index">
-            {storyList}
-          </ul>
-        </section>
-      );
-    } else {
-      return(<div className="loading"></div>);
-    }
+    const displayIndex = showDrafts ?
+      <MyDrafts drafts={ drafts }
+                handleNavigate={ this.handleNavigate }/> :
+      <MyPublicStories stories={ stories }
+                      handleNavigate={ this.handleNavigate }/>;
+
+    return (
+      <section className="my-story-container">
+        <div className="top-banner">
+          Your stories
+        </div>
+        <ul className="toggle-tab">
+          <li className="tab-first-button">
+            <button id="my-drafts" className="my-story-btn black"
+                    onClick={ this.handleClick("drafts") }>
+              Drafts ({ drafts.length })
+            </button>
+          </li>
+          <li>
+            <button id="my-stories" className="my-story-btn"
+                    onClick={ this.handleClick() }>
+              Public ({ stories.length })
+            </button>
+          </li>
+        </ul>
+        { displayIndex }
+      </section>
+    );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const publicStories = selectMyPublishedStories(state.stories, state.session.currentUser.id);
-  const draftStories = selectMyDraftStories(state.stories, state.session.currentUser.id);
-
-  let publicNum;
-  let draftNum;
-  if (publicStories && draftStories) {
-    publicNum = publicStories.length;
-    draftNum =  draftStories.length;
-  }
-  if (ownProps.location.pathname.includes("/public")) {
-    return ({
-      currentUser: state.session.currentUser,
-      stories: publicStories,
-      publicNum,
-      draftNum
-    });
-  } else {
-    return ({
-      currentUser: state.session.currentUser,
-      stories: draftStories,
-      publicNum,
-      draftNum
-    });
-  }
+const mapStateToProps = (state) => {
+  return ({
+    currentUser: state.session.currentUser
+  });
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return ({ fetchStories: () => dispatch(fetchStories()) });
+  return ({
+    fetchStory: (id) => (dispatch(fetchStory(id)))
+  });
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(MyStories);
+)(MyStories));

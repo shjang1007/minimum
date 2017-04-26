@@ -28,13 +28,15 @@ const Root = ({ store }) => {
     const currentStory = store.getState().storyData.story;
 
     const currentUserStoryIds = currentUser.stories.map((story) => story.id);
-
+    const currentUserDraftIds = currentUser.drafts.map((draft) => draft.id);
     if (currentStory) {
       if (!currentUser || currentUser.id !== currentStory.author.id) {
         replace("/");
       }
     } else {
-      if (!currentUser || !currentUserStoryIds.includes(currentStoryId)) {
+      if (!currentUser ||
+          (!currentUserStoryIds.includes(parseInt(currentStoryId)) &&
+          !currentUserDraftIds.includes(parseInt(currentStoryId)))) {
         replace("/");
       }
     }
@@ -57,10 +59,8 @@ const Root = ({ store }) => {
               onEnter={ _ensureSameAuthor }/>
           <Route path="/stories/:storyId" component={ StoryShow } />
           <Route path="/@:username" component={ UserShow } />
-          <Route path="/me/stories/public" component={ MyStories }
+          <Route path="/my-stories" component={ MyStories }
                 onEnter={ _ensureLoggedIn }/>
-          <Route path="/me/stories/drafts" component={ MyStories }
-                  onEnter={ _ensureLoggedIn }/>
           <Route path="/search/:searchTerm" component={ SearchPage }/>
         </Route>
       </Router>

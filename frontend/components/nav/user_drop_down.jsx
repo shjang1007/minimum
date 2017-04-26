@@ -23,7 +23,7 @@ const UserDropDown = ({ currentUser,
                 </Link>
               </li>
               <li>
-                <Link id="click-close" to="/me/stories/drafts">
+                <Link id="click-close" to="/my-stories">
                   Stories
                 </Link>
               </li>
