@@ -35,10 +35,11 @@ class StoryIndexItem extends Component {
           }
         );
       } else if (place === "author") {
-        fetchUser(story.author.id).then(
+        const { username } = story.author;
+        fetchUser(username).then(
           action => {
             window.scrollTo(0,0);
-            router.push(`/@${story.author.username}`);
+            router.push(`/@${username}`);
           }
         );
       } else {
@@ -176,6 +177,7 @@ class StoryIndexItem extends Component {
 const mapDispatchToProps = (dispatch) => {
   return({
     fetchStory: (id) => (dispatch(fetchStory(id))),
+    fetchUser: (username) => (dispatch(fetchUser(username))),
     createLike: (like) => (dispatch(createLike(like))),
     deleteLike: (like) => (dispatch(deleteLike(like)))
   });
