@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { values } from "lodash";
 import { Link, withRouter } from "react-router";
-import { fetchStory } from "../../actions/story_actions";
+import { fetchStory, fetchStories } from "../../actions/story_actions";
 import { openModal } from "../../actions/modal_actions";
 import { createLike, deleteLike } from "../../actions/like_actions";
 import CommentIndex from "../comment/comment_index";
@@ -10,6 +10,11 @@ import CommentForm from "../comment/comment_form";
 import AuthModal from "../modal/auth_modal";
 
 class StoryShow extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleNavigate = this.handleNavigate.bind(this);
+  }
   componentDidMount() {
     this.props.fetchStory(this.props.params.storyId);
   }
@@ -32,18 +37,28 @@ class StoryShow extends Component {
     };
   }
 
-  handleNavigate(e) {
-    const { router, fetchStory } = this.props;
-    const { id } = this.props.story.parent_story;
+  handleNavigate(place) {
+    const { router, fetchStory, fetchStories } = this.props;
+    const { parent_id } = this.props.story;
+    return (e) => {
+      e.preventDefault();
 
-    e.preventDefault();
-
-    fetchStory(id).then(
-      action => {
-        window.scrollTo(0,0);
-        router.push(`/stories/${id}`);
+      if (place === "story") {
+        fetchStory(parent_id).then(
+          action => {
+            window.scrollTo(0,0);
+            router.push(`/stories/${parent_id}`);
+          }
+        );
+      } else {
+        fetchStories(place).then(
+          action => {
+            window.scrollTo(0,0);
+            router.push(`tags/${place}`);
+          }
+        );
       }
-    );
+    };
   }
 
   renderImage() {
@@ -85,7 +100,7 @@ class StoryShow extends Component {
     if (story.parent_story) {
       const { parent_story } = story;
         return(
-          <button onClick={ this.handleNavigate.bind(this) }
+          <button onClick={ this.handleNavigate("story") }
               className="parent-story-btn">
             <ul className="parent-story-container">
               <li>{ parent_story.title }</li>
@@ -100,9 +115,10 @@ class StoryShow extends Component {
     const { story } = this.props;
     const tagList = story.tags.map( (tag) => (
       <li key={ tag.id }>
-        <Link to={`tags/${tag.name}`} className="tag-button">
+        <button onClick={ this.handleNavigate(`${tag.name}`) }
+              className="tag-button">
           { tag.name }
-        </Link>
+        </button>
       </li>
     ));
     return(
@@ -219,6 +235,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     fetchStory: (id) => (dispatch(fetchStory(id))),
+    fetchStories: (tagName) => (dispatch(fetchStories(tagName))),
     createLike: (like) => (dispatch(createLike(like))),
     deleteLike: (like) => (dispatch(deleteLike(like))),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))
