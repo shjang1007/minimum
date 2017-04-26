@@ -4,7 +4,8 @@ import { Link, withRouter } from "react-router";
 import { values } from "lodash";
 import { fetchStory } from "../../../actions/story_actions";
 import { fetchUser } from "../../../actions/user_actions";
-import { createLike, deleteLike } from "../../../actions/like_actions";
+import { createIndexLike, deleteIndexLike }
+        from "../../../actions/like_actions";
 
 // Props has story info
 class StoryIndexItem extends Component {
@@ -178,8 +179,8 @@ const mapDispatchToProps = (dispatch) => {
   return({
     fetchStory: (id) => (dispatch(fetchStory(id))),
     fetchUser: (username) => (dispatch(fetchUser(username))),
-    createLike: (like) => (dispatch(createLike(like))),
-    deleteLike: (like) => (dispatch(deleteLike(like)))
+    createLike: (like) => (dispatch(createIndexLike(like))),
+    deleteLike: (like) => (dispatch(deleteIndexLike(like)))
   });
 };
 

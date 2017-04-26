@@ -3,6 +3,7 @@ import * as userApiUtil from "../util/user_api_util";
 import { closeModal } from "./modal_actions";
 
 export const RECEIVE_STORIES = "RECEIVE_STORIES";
+export const RECEIVE_LIKE_STORIES = "RECEIVE_LIKE_STORIES";
 export const RECEIVE_STORY = "RECEIVE_STORY";
 export const REMOVE_STORY = "REMOVE_STORY";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
@@ -121,6 +122,13 @@ export const receiveStories = (stories) => {
   return ({
     type: RECEIVE_STORIES,
     stories
+  });
+};
+
+export const receiveLikeStories = (story) => {
+  return ({
+    type: RECEIVE_LIKE_STORIES,
+    story
   });
 };
 

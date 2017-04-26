@@ -3,6 +3,10 @@ class Api::LikesController < ApplicationController
     like = Like.new(like_params)
     if like.save!
       @story = like.story
+      @comments = Story.where("parent_id = #{@story.id}")
+                        .where(published: true)
+                        .includes(:author, :tags, :liked_users)
+                        .sort { |a, b| b.id <=> a.id }
       render "/api/stories/show"
     else
       render json: @story.errors.full_messages, status: 422
@@ -16,6 +20,10 @@ class Api::LikesController < ApplicationController
     )
 
     @story = like.story
+    @comments = Story.where("parent_id = #{@story.id}")
+                      .where(published: true)
+                      .includes(:author, :tags, :liked_users)
+                      .sort { |a, b| b.id <=> a.id }
     like.destroy
 
     render "/api/stories/show"

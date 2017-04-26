@@ -22,8 +22,8 @@ class StoryIndex extends Component {
     const { stories, currentUser } = this.props;
 
     if (stories) {
-      const storyList = stories.map( (story) => (
-        <StoryIndexItem key={story.id}
+      const storyList = stories.map( (story, index) => (
+        <StoryIndexItem key={index}
             story={ story }
             currentUser={ currentUser }
             openAuthModal={ this.props.openAuthModal }/>
