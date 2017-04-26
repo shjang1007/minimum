@@ -29,15 +29,24 @@ class StoryIndexItem extends Component {
 
       if (place === "parent") {
         fetchStory(story.parent_id).then(
-          action => router.push(`/stories/${story.parent_id}`)
+          action => {
+            window.scrollTo(0,0);
+            router.push(`/stories/${story.parent_id}`);
+          }
         );
       } else if (place === "author") {
         fetchUser(story.author.id).then(
-          action => router.push(`/@${story.author.username}`)
+          action => {
+            window.scrollTo(0,0);
+            router.push(`/@${story.author.username}`);
+          }
         );
       } else {
         fetchStory(story.id).then(
-          action => router.push(`/stories/${story.id}`)
+          action => {
+            window.scrollTo(0,0);
+            router.push(`/stories/${story.id}`);
+          }
         );
       }
     };

@@ -44,19 +44,31 @@ class MainNav extends Component {
 
       if (place === "brian") {
         fetchBrianStories().then(
-          action => router.push("/brian-stories")
+          action => {
+            window.scrollTo(0,0);
+            router.push("/brian-stories");
+          }
         );
       } else if (place === "top") {
         fetchTopStories().then(
-          action => router.push("/top-stories")
+          action => {
+            window.scrollTo(0,0);
+            router.push("/top-stories");
+          }
         );
       } else if (place === "home") {
         fetchStories().then(
-          action => router.push("/")
+          action => {
+            window.scrollTo(0,0);
+            router.push("/");
+          }
         );
       } else {
         fetchStories(place).then(
-          action => router.push(`/tags/${place}`)
+          action => {
+            window.scrollTo(0,0);
+            router.push(`/tags/${place}`);
+          }
         );
       }
     };
