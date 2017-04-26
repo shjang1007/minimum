@@ -12,8 +12,11 @@ user.stories.each do |story|
   end
 end
 
+stories.sort! { |a, b| b.id <=> a.id }
+drafts.sort! { |a, b| b.id <=> a.id }
+
 json.stories do
-  json.array! stories.reverse do |story|
+  json.array! stories do |story|
     json.extract! story, :id, :title, :sub_title, :content, :parent_id, :published, :published_at
     if story.image.file?
       json.image_url asset_path(story.image.url(:medium))
@@ -28,7 +31,7 @@ json.stories do
 end
 
 json.drafts do
-  json.array! drafts.reverse do |story|
+  json.array! drafts do |story|
     json.extract! story, :id, :title, :sub_title, :content, :parent_id, :published, :published_at
     if story.image.file?
       json.image_url asset_path(story.image.url(:medium))

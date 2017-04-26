@@ -39,12 +39,16 @@ class UserShow extends Component {
 
     if (user) {
       const userStoryList = user.stories
-      .map( (story) => (
-        <UserStoryIndexItem key={ story.id } user={ user }
-          story={ story }
-          currentUser={ currentUser }
-          openAuthModal={ this.props.openAuthModal }/>
-      ));
+      .map( (story) => {
+        if (!story.parent_id) {
+          return (
+            <UserStoryIndexItem key={ story.id } user={ user }
+              story={ story }
+              currentUser={ currentUser }
+              openAuthModal={ this.props.openAuthModal }/>
+          );
+        }
+      });
 
       const topSide = this.state.toggleForm ?
       <UserShowEditForm user={ user }
