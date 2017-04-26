@@ -48,7 +48,7 @@ class SearchPage extends Component {
   render() {
     const { searchTerm } = this.props.params;
     const { currentUser } = this.props;
-    const { stories, users } = this.props.items;
+    const { stories, users } = this.props;
     const { showStories } = this.state;
 
     const items = showStories ?
@@ -88,7 +88,8 @@ class SearchPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.items,
+    users: state.userData.users,
+    stories: state.storyData.stories,
     currentUser: state.session.currentUser
   };
 };
