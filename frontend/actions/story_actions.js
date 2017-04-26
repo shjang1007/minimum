@@ -89,6 +89,28 @@ export const updateStoryImage = (formData) => (dispatch) => {
   );
 };
 
+export const createComment = (comment) => (dispatch) => {
+  return storyApiUtil.createStory(comment).then(
+    (comment) => {
+      return comment;
+    }
+  );
+};
+
+export const updateComment = (comment) => (dispatch) => {
+  return storyApiUtil.updateStory(comment).then(
+    (comment) => {
+      return comment;
+    });
+};
+
+export const publishComment = (comment) => (dispatch) => {
+  return storyApiUtil.updateStory(comment).then(
+    (comment) => {
+      return (dispatch(receiveComment(comment)));
+    });
+};
+
 export const deleteStory = (id) => (dispatch) => {
   return storyApiUtil.deleteStory(id).then(
     () => (dispatch(closeModal("deleteIsOpen")))
@@ -106,6 +128,13 @@ export const receiveStory = (story) => {
   return ({
     type: RECEIVE_STORY,
     story
+  });
+};
+
+export const receiveComment = (comment) => {
+  return ({
+    type: RECEIVE_COMMENT,
+    comment
   });
 };
 

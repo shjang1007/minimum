@@ -41,6 +41,10 @@ const storyReducer = (oldState = _initialState, action) => {
         stories: null,
         story: null
       };
+    case RECEIVE_COMMENT:
+      let newState = merge({}, oldState);
+      newState.story.comments.unshift(action.comment);
+      return newState;
     default:
       return oldState;
   }

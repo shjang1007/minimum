@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isEmpty } from "lodash";
 import { Link, withRouter } from "react-router";
-import { createStory, updateStory } from "../../actions/story_actions";
+import { createStory, updateStory, createComment,
+        updateComment, receiveComment, publishComment }
+        from "../../actions/story_actions";
 
 
 class CommentForm extends Component {
@@ -19,6 +21,7 @@ class CommentForm extends Component {
       showCommentForm: false
     });
 
+    this.update = this.update.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
     this.toggleShowCommentForm = this.toggleShowCommentForm.bind(this);
     this.handleFullScreen = this.handleFullScreen.bind(this);
@@ -27,23 +30,23 @@ class CommentForm extends Component {
   update(field) {
     const { title, sub_title, content, parent_id, author_id, update, id }
       = this.state;
-    const { updateStory, createStory } = this.props;
+    const { updateComment, createComment } = this.props;
 
     return (e) => {
       this.setState({[field]: e.target.value}, () => {
         if (update) {
           const comment =
             ({ title, sub_title,content, parent_id, author_id, id });
-          updateStory(comment);
+          updateComment(comment);
         } else {
           this.setState({ update: true });
           const comment = (
             { title, sub_title, content, parent_id,
               author_id: this.props.currentUser.id }
           );
-          createStory(comment).then(action => {
+          createComment(comment).then(comment => {
             this.setState({
-              id: action.story.id,
+              id: comment.id,
               author_id: this.props.currentUser.id
             });
           });
@@ -70,13 +73,14 @@ class CommentForm extends Component {
       published_at: `${monthNames[date.getMonth()]} ${date.getDate()}`
     };
 
-    this.props.updateStory(comment).then(
+    this.props.publishComment(comment).then(
       this.setState({
         id: null,
         content: "",
         parent_id: this.props.params.storyId,
         author_id: this.props.currentUser.id,
-        update: false
+        update: false,
+        showCommentForm: false
       })
     );
   }
@@ -177,7 +181,11 @@ class CommentForm extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
     createStory: (comment) => (dispatch(createStory(comment))),
-    updateStory: (comment) => (dispatch(updateStory(comment)))
+    updateStory: (comment) => (dispatch(updateStory(comment))),
+    createComment: (comment) => (dispatch(createComment(comment))),
+    updateComment: (comment) => (dispatch(updateComment(comment))),
+    receiveComment: (comment) => (dispatch(receiveComment(comment))),
+    publishComment: (comment) => (dispatch(publishComment(comment)))
   });
 };
 
