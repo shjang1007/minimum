@@ -438,7 +438,7 @@ A lonely and melancholy soul from ancient Shurima, Amumu roams the world in sear
   # Likes
 
   User.all.each do |user|
-    story_ids = (((nba1.id)..(story5.id)).to_a.shuffle)[0..13]
+    story_ids = (((travel1.id)..(nba4.id)).to_a.shuffle)[0..13]
     story_ids.each do |story_id|
       Like.create(user_id: user.id, story_id: story_id)
     end
