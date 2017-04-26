@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router";
 import { values } from "lodash";
 import { fetchStory } from "../../actions/story_actions";
-import { createLike, deleteLike } from "../../actions/like_actions";
+import { createCommentLike, deleteCommentLike }
+        from "../../actions/like_actions";
 
 // Props has story info
 class CommentIndexItem extends Component {
@@ -123,8 +124,8 @@ class CommentIndexItem extends Component {
 const mapDispatchToProps = (dispatch) => {
   return({
     fetchStory: (id) => (dispatch(fetchStory(id))),
-    createLike: (like) => (dispatch(createLike(like))),
-    deleteLike: (like) => (dispatch(deleteLike(like)))
+    createLike: (like) => (dispatch(createCommentLike(like))),
+    deleteLike: (like) => (dispatch(deleteCommentLike(like)))
   });
 };
 
