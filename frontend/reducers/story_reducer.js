@@ -28,12 +28,12 @@ const storyReducer = (oldState = _initialState, action) => {
     case RECEIVE_LIKE_STORIES:
       let newUpdatedState = merge({}, oldState);
       newUpdatedState.stories.forEach((story, i) =>
-       { if (story.id == action.story.id) {
+       { if (story.id === action.story.id) {
          newUpdatedState.stories[i] = action.story;
           }
         }
       );
-      
+
       return newUpdatedState;
     case RECEIVE_STORY:
       return {

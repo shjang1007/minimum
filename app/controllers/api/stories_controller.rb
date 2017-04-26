@@ -15,7 +15,7 @@ class Api::StoriesController < ApplicationController
   def top
     stories = Story.where({published: true, parent_id: nil})
                     .includes(:author, :tags, :likes)
-                    .sort { |a, b| b.likse.count <=> a.likes.count }
+                    .sort { |a, b| a.likes.count <=> b.likes.count }
                     .reverse
     @stories = stories[0..9]
     render :index
