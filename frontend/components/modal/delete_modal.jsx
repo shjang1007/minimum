@@ -36,8 +36,7 @@ const AuthModal = ({ deleteIsOpen, openModal, closeModal, deleteStory }) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    deleteIsOpen: state.modal.deleteIsOpen,
-    deleteStory: ownProps.deleteStory
+    deleteIsOpen: state.modal.deleteIsOpen
   };
 };
 

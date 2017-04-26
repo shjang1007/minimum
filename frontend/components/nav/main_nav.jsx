@@ -17,6 +17,7 @@ class MainNav extends Component {
     super(props);
 
     this.signOutUser = this.signOutUser.bind(this);
+    this.deleteStory = this.deleteStory.bind(this);
     this.handleNavigate = this.handleNavigate.bind(this);
   }
 
@@ -27,10 +28,15 @@ class MainNav extends Component {
   }
 
   deleteStory(storyId) {
-    return () => {
-      this.props.closeDeleteModal();
-      this.props.deleteStory(storyId).then(
-        this.props.router.push("/")
+    const { closeDeleteModal, deleteStory, router } = this.props;
+
+    return (e) => {
+      e.preventDefault();
+
+      deleteStory(storyId).then(
+        action => {
+          router.push("/");
+        }
       );
     };
   }
@@ -87,23 +93,29 @@ class MainNav extends Component {
   renderComposeButton() {
     const storyId = this.props.params.storyId;
     const { currentUser } = this.props;
-    if (currentUser !== null && currentUser.stories &&
-      Object.keys(currentUser.stories).includes(storyId)) {
-      return (<Link to={`/${storyId}/edit-story`}
+
+    if (currentUser) {
+      const currentUserStoryIds = currentUser.stories.map((story) => story.id);
+
+      if (currentUserStoryIds.includes(parseInt(storyId))) {
+        return (
+          <Link to={`/${storyId}/edit-story`}
           className="nav-bar-button green-button">
-        Edit
-      </Link>);
-    } else {
-      return (<Link to="/new-story"
-          className="nav-bar-button green-button">
-        Write a story
-      </Link>);
+            Edit
+          </Link>
+        );
+      } else {
+        return (<Link to="/new-story"
+            className="nav-bar-button green-button">
+          Write a story
+        </Link>);
+      }
     }
   }
 
   renderRightNav() {
     const { currentUser } = this.props;
-    const pathname = this.props.location.pathname;
+    const { pathname } = this.props.location;
     const deleteButton = pathname.includes("/edit-story") ?
       (<button className="gray-button button"
           onClick={this.props.openDeleteModal}>

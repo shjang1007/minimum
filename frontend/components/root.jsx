@@ -25,9 +25,10 @@ const Root = ({ store }) => {
   const _ensureSameAuthor = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
     const currentStoryId = nextState.params.storyId;
-    const currentStory = store.getState().stories[currentStoryId];
+    const currentStory = store.getState().storyData.story;
 
-    const currentUserStoryIds = Object.keys(currentUser.stories);
+    const currentUserStoryIds = currentUser.stories.map((story) => story.id);
+
     if (currentStory) {
       if (!currentUser || currentUser.id !== currentStory.author.id) {
         replace("/");

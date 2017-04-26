@@ -173,8 +173,8 @@ const mapStateToProps = (state, ownProps) => {
 
   let status = "Draft";
 
-  if (state.stories[ownProps.params.storyId]) {
-    story = state.stories[ownProps.params.storyId];
+  if (formType === "edit") {
+    story = state.storyData.story;
     if (story.published) {
       status = story.published_at;
     }

@@ -1,5 +1,6 @@
 import * as storyApiUtil from "../util/story_api_util";
 import * as userApiUtil from "../util/user_api_util";
+import { closeModal } from "./modal_actions";
 
 export const RECEIVE_STORIES = "RECEIVE_STORIES";
 export const RECEIVE_STORY = "RECEIVE_STORY";
@@ -90,7 +91,7 @@ export const updateStoryImage = (formData) => (dispatch) => {
 
 export const deleteStory = (id) => (dispatch) => {
   return storyApiUtil.deleteStory(id).then(
-    (story) => (dispatch(removeStory(story)))
+    () => (dispatch(closeModal("deleteIsOpen")))
   );
 };
 
