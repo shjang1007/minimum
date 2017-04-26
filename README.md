@@ -105,9 +105,8 @@ end
 
 #### Future Features
 
+- [X] Search
 - [ ] Bookmarks
 - [ ] Annotations
 - [ ] Enrich Text Editing
 - [ ] Infinite Scroll
-- [ ] Add two-step sign up process
-- [ ] Add p tags for each paragraphs
