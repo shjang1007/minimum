@@ -6,14 +6,16 @@ class Api::StoriesController < ApplicationController
       stories = Story.where(published: true, parent_id: nil)
     end
     # Include to make query faster
-    @stories = stories.includes(:author, :liked_users, :tags).reverse
+    @stories = stories
+                .includes(:author, :liked_users, :tags)
+                .sort { |a, b| b.id <=> a.id }
     render :index
   end
 
   def top
     stories = Story.where({published: true, parent_id: nil})
                     .includes(:author, :tags, :likes)
-                    .sort_by { |story| story.likes.count }
+                    .sort { |a, b| b.likse.count <=> a.likes.count }
                     .reverse
     @stories = stories[0..9]
     render :index
@@ -23,8 +25,7 @@ class Api::StoriesController < ApplicationController
     brian_id = User.find_by(username: "BekGu").id
     stories = Story.where({published: true, parent_id: nil, author_id: brian_id})
                     .includes(:author, :tags)
-                    .sort_by { |story| story.id }
-                    .reverse
+                    .sort { |a, b| b.id <=> a.id }
 
     @stories = stories[0..9]
     render :index
@@ -35,7 +36,7 @@ class Api::StoriesController < ApplicationController
     @comments = Story.where("parent_id = #{params[:id]}")
                       .where(published: true)
                       .includes(:author, :tags, :liked_users)
-                      .reverse
+                      .sort { |a, b| b.id <=> a.id }
     render :show
   end
 
