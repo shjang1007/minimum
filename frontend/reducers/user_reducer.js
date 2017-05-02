@@ -1,6 +1,6 @@
 import React from "react";
 import { merge } from "lodash";
-import { RECEIVE_USER, RECEIVE_USERS, RECEIVE_LIKES }
+import { RECEIVE_USER, RECEIVE_USERS, RECEIVE_FOLLOW_USERS }
         from "../actions/user_actions";
 
 const _initialState = {
@@ -22,6 +22,16 @@ const userReducer = (oldState = {}, action) => {
         users: action.users,
         user: oldState.user
       };
+    case RECEIVE_FOLLOW_USERS:
+      let newUpdatedState = merge({}, oldState);
+      newUpdatedState.users.forEach((user, i) =>
+       { if (user.id === action.user.id) {
+         newUpdatedState.users[i] = action.user;
+          }
+        }
+      );
+
+      return newUpdatedState;
     default:
       return oldState;
   }

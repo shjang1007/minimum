@@ -3,6 +3,7 @@ import { receiveCurrentUser } from "./session_actions";
 
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USERS = "RECEIVE_USERS";
+export const RECEIVE_FOLLOW_USERS = "RECEIVE_FOLLOW_USERS";
 
 export const updateUserInfo = (formData) => (dispatch) => {
   return userApiUtil.updateUserInfo(formData).then(
@@ -28,5 +29,12 @@ export const receiveUsers = (users) => {
   return ({
     type: RECEIVE_USERS,
     users
+  });
+};
+
+export const receiveFollowUsers = (user) => {
+  return ({
+    type: RECEIVE_FOLLOW_USERS,
+    user
   });
 };
