@@ -60,6 +60,20 @@ class User < ActiveRecord::Base
    source: :story
   )
 
+  has_many(
+    :followers,
+    class_name: "Follow",
+    foreign_key: :followee_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :followees,
+    class_name: "Follow",
+    foreign_key: :follower_id,
+    primary_key: :id
+  )
+
   attr_reader :password
 
   def password=(password)

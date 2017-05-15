@@ -1,14 +1,13 @@
 import React from "react";
 
-const UserShowDetail = ({ user, currentUser, toggleForm }) => {
-  let editButton = null;
-  if (currentUser && user.id === currentUser.id) {
-    editButton =
-      <button type="button" onClick={ toggleForm }
-              className="profile-btn">
-        Edit
-      </button>;
-  }
+const UserShowDetail = ({ user, currentUser, toggleForm, renderFollowButton }) => {
+  const editButton =
+    <button type="button" onClick={ toggleForm }
+            className="profile-btn">
+      Edit
+    </button>;
+
+  const followButton = renderFollowButton();
 
   return (
     <section className="top-side">
@@ -20,7 +19,8 @@ const UserShowDetail = ({ user, currentUser, toggleForm }) => {
           <p className="left-side-description">
             { user.description }
           </p>
-          { editButton }
+          { currentUser && user.id === currentUser.id ?
+            editButton : followButton }
         </div>
         <div className="right-side">
           <img src={ user.avatar_url } className="profile-avatar"/>
