@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router";
 import { fetchStory, fetchStories } from "../../actions/story_actions";
 import { openModal } from "../../actions/modal_actions";
 import { createLike, deleteLike } from "../../actions/like_actions";
+import { createFollow, deleteFollow } from "../../actions/follow_actions";
 import CommentIndex from "../comment/comment_index";
 import CommentForm from "../comment/comment_form";
 import AuthModal from "../modal/auth_modal";
@@ -14,6 +15,7 @@ class StoryShow extends Component {
     super(props);
 
     this.handleNavigate = this.handleNavigate.bind(this);
+    this.toggleFollow = this.toggleFollow.bind(this);
   }
   componentDidMount() {
     this.props.fetchStory(this.props.params.storyId);
@@ -22,6 +24,56 @@ class StoryShow extends Component {
   componentWillReceiveProps(newProps) {
     if (this.props.params.storyId !== newProps.params.storyId) {
       newProps.fetchStory(newProps.params.storyId);
+    }
+  }
+
+  toggleFollow(method) {
+    const { story, currentUser } = this.props;
+    const { storyId } = this.props.params;
+    const followInfo = { follower_id: currentUser.id, followee_id: story.author.id };
+
+    return (e) => {
+      if (method === "delete") {
+        this.props.deleteFollow(followInfo).then(
+          () => this.props.fetchStory(storyId)
+        );
+      } else {
+        this.props.createFollow(followInfo).then(
+          () => this.props.fetchStory(storyId)
+        );
+      }
+    };
+  }
+
+  renderFollowButton() {
+    const { story, currentUser } = this.props;
+
+    if (story.author.id === currentUser.id) {
+      return;
+    }
+
+    if (!currentUser) {
+      return (
+        <button onClick={ this.props.openAuthModal }
+            className="profile-btn green-btn">
+          Follow
+        </button>
+      );
+    } else if (story.author.followers &&
+        story.author.followers.includes(currentUser.id)) {
+      return (
+        <button onClick={ this.toggleFollow("delete") }
+            className="profile-btn green-btn">
+          Following
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={ this.toggleFollow("create") }
+            className="profile-btn green-btn">
+          Follow
+        </button>
+      );
     }
   }
 
@@ -149,6 +201,7 @@ class StoryShow extends Component {
                     <Link to={`/@${author.username}`}>
                       {author.name}
                     </Link>
+                    { this.renderFollowButton() }
                   </li>
                   <li className="description">
                     description of {author.name}
@@ -238,6 +291,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchStories: (tagName) => (dispatch(fetchStories(tagName))),
     createLike: (like) => (dispatch(createLike(like))),
     deleteLike: (like) => (dispatch(deleteLike(like))),
+    createFollow: (follow) => (dispatch(createFollow(follow))),
+    deleteFollow: (follow) => (dispatch(deleteFollow(follow))),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))
   });
 };
