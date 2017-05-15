@@ -41,6 +41,16 @@ padding-bottom: 30px;
   color: rgba(0,0,0,.6);
 }
 
+.follow-info {
+  display: flex;
+  margin-top: 20px;
+  color: rgba(0,0,0,.4);
+
+  li:last-child {
+    padding-left: 16px;
+  }
+}
+
 .right-side {
   margin-top: 32px;
 }

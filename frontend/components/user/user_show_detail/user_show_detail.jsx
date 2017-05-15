@@ -19,6 +19,18 @@ const UserShowDetail = ({ user, currentUser, toggleForm, renderFollowButton }) =
           <p className="left-side-description">
             { user.description }
           </p>
+          <ul className="left-side-description follow-info">
+            <li>
+              <p>
+                { user.followees.length } Following
+              </p>
+            </li>
+            <li>
+              <p>
+                { user.followers.length } Followers
+              </p>
+            </li>
+          </ul>
           { currentUser && user.id === currentUser.id ?
             editButton : followButton }
         </div>
