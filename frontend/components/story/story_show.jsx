@@ -55,7 +55,7 @@ class StoryShow extends Component {
     if (!currentUser) {
       return (
         <button onClick={ this.props.openAuthModal }
-            className="profile-btn green-btn">
+            className="profile-btn green-btn follow-btn">
           Follow
         </button>
       );
@@ -63,14 +63,14 @@ class StoryShow extends Component {
         story.author.followers.includes(currentUser.id)) {
       return (
         <button onClick={ this.toggleFollow("delete") }
-            className="profile-btn green-btn">
+            className="profile-btn green-btn follow-btn">
           Following
         </button>
       );
     } else {
       return (
         <button onClick={ this.toggleFollow("create") }
-            className="profile-btn green-btn">
+            className="profile-btn green-btn follow-btn">
           Follow
         </button>
       );
