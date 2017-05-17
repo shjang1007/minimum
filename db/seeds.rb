@@ -22,6 +22,43 @@ ActiveRecord::Base.transaction do
     User.create(email: "#{letter}@#{letter}", password: "123456", username: "#{letter}", name: "#{letter}")
   end
 
+boys = ["Aaron", "Abel", "Adam", "Andrew", "Bartholomew", "Benjamin", "Dan", "Elijah", "Ezekiel", "Gabriel", "Isaac", "Jacob", "James", "Jesse", "Joel", "John", "Joseph", "Joshua", "Judah", "Lucas",
+  "Luke", "Mark","Matthew","Moses","Noah","Paul","Peter","Philip","Reuben","Seth","Solomon","Stephen","Thaddeus","Thomas","Timothy","Zacharias"]
+
+girls = ["Abigail",
+"Angel",
+"Anna",
+"Chloe",
+"Claudia",
+"Deborah",
+"Diana",
+"Elizabeth",
+"Esther",
+"Eunice",
+"Eve",
+"Hannah",
+"Joanna",
+"Judith",
+"Julia",
+"Leah",
+"Lydia",
+"Martha",
+"Mary",
+"Naomi",
+"Priscilla",
+"Rachel",
+"Rebecca",
+"Ruth",
+"Susanna"]
+
+girls.each do |girl|
+  User.create(email: "#{girl}@naver.com", password: "#{girl}", username:"#{girl.split("").shuffle.join()}", name: "#{girl}")
+end
+
+boys.each do |boy|
+  User.create(email: "#{boy}@naver.com", password: "#{boy}", username:"#{boy.split("").shuffle.join()}", name: "#{boy}")
+end
+
   # Stories
 
   travel1 = Story.create(
@@ -442,5 +479,13 @@ A lonely and melancholy soul from ancient Shurima, Amumu roams the world in sear
     story_ids.each do |story_id|
       Like.create(user_id: user.id, story_id: story_id)
     end
+  end
+
+
+  length = User.all.length
+  User.all[7..length - 1].each do |user|
+    authors = [admin, user1, user2, user3, user4, user5, user6]
+
+    Follow.create(follower_id: user.id, followee_id: authors.sample.id)
   end
 end

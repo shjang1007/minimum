@@ -22,12 +22,12 @@ const UserShowDetail = ({ user, currentUser, toggleForm, renderFollowButton }) =
           <ul className="left-side-description follow-info">
             <li>
               <p>
-                { user.followers.length } Following
+                { user.followees.length } Following
               </p>
             </li>
             <li>
               <p>
-                { user.followees.length } Followers
+                { user.followers.length } Followers
               </p>
             </li>
           </ul>

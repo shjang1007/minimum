@@ -58,7 +58,7 @@ followers = []
 followees = []
 
 user.followers.each { |follower| followers << follower.follower_id }
-user.followees.each { |followee| followers << followee.followee_id }
+user.followees.each { |followee| followees << followee.followee_id }
 
 json.followers do
   json.array! followers
