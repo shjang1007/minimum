@@ -48,7 +48,7 @@ class StoryShow extends Component {
   renderFollowButton() {
     const { story, currentUser } = this.props;
 
-    if (story.author.id === currentUser.id) {
+    if (currentUser && story.author.id === currentUser.id) {
       return;
     }
 
@@ -63,7 +63,7 @@ class StoryShow extends Component {
         story.author.followers.includes(currentUser.id)) {
       return (
         <button onClick={ this.toggleFollow("delete") }
-            className="profile-btn green-btn follow-btn">
+            className="profile-btn green-btn follow-btn following-btn">
           Following
         </button>
       );

@@ -64,7 +64,7 @@ class UserShow extends Component {
         user.followers.includes(currentUser.id)) {
       return (
         <button onClick={ this.toggleFollow("delete") }
-            className="profile-btn green-btn">
+            className="profile-btn green-btn following-btn">
           Following
         </button>
       );
