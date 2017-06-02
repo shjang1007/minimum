@@ -212,7 +212,7 @@ class MainNav extends Component {
         pathname.includes("brian-stories")
     ) {
       return (
-        <div className="inner-bar bottom-bar">
+        <div id="bottom-nav-bar" className="inner-bar bottom-bar">
           <ul>
             <li>
               <button onClick={ this.handleNavigate("home") }
@@ -271,9 +271,9 @@ class MainNav extends Component {
   render() {
     const storyId = this.props.params.storyId;
     return (
-      <section className="main-nav-container">
+      <section id="navigation-bar" className="main-nav-container">
         <header className="main-bar">
-          <div className="inner-bar top-bar">
+          <div id="top-nav-bar" className="inner-bar top-bar">
             <nav className="left-nav">
               <a href="/" className="logo-link">
                 <img src={window.images.minimum} className="logo" />

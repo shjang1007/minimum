@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import MainNav from "./nav/main_nav";
+import { throttle } from "lodash";
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +15,10 @@ class App extends Component {
     this.togglePublishDropDown = this.togglePublishDropDown.bind(this);
     this.toggleUserDropDown = this.toggleUserDropDown.bind(this);
     this.closeDropDowns = this.closeDropDowns.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", throttle(this.scrollNavBar, 500));
   }
 
   togglePublishDropDown() {
@@ -42,8 +48,19 @@ class App extends Component {
                                 "userDropDownOpen";
 
       this.setState({ [dropDownToClose]: false});
-      // this.setState({ publishDropDownOpen: false});
-      // this.setState({ userDropDownOpen: false});
+    }
+  }
+
+  scrollNavBar(e) {
+    // console.log(window.scrollY);
+    if (window.scrollY > 30) {
+      document.getElementById("navigation-bar").classList.add("fix");
+      document.getElementById("bottom-nav-bar").classList.add("hidden");
+      document.getElementById("top-nav-bar").classList.add("fifty-height");
+    } else {
+      document.getElementById("navigation-bar").classList.remove("fix");
+      document.getElementById("bottom-nav-bar").classList.remove("hidden");
+      document.getElementById("top-nav-bar").classList.add("fifty-height");
     }
   }
 

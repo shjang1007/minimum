@@ -265,6 +265,18 @@
   height: 32px;
 }
 
+.hidden {
+  display: none;
+}
+
+.fix {
+  position: fixed;
+}
+
+.fifty-height {
+  height: 50px;
+}
+
 @media screen and (max-width: 692px) {
   .bottom-bar {
     // display: none;
