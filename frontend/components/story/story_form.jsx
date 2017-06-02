@@ -9,7 +9,11 @@ class StoryForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props.story;
+    this.state = this.props.story ? this.props.story : {
+      title: "",
+      sub_title: "",
+      content: ""
+    };
 
     this.updateFile = this.updateFile.bind(this);
   }
@@ -175,7 +179,7 @@ const mapStateToProps = (state, ownProps) => {
 
   if (formType === "edit") {
     story = state.storyData.story;
-    if (story.published) {
+    if (story && story.published) {
       status = story.published_at;
     }
   }

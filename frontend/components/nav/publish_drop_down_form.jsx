@@ -80,7 +80,7 @@ class PublishDropDownForm extends Component {
           if (this.state[tag]) {
             return (
             <li key={ tag }>
-              <button className="tag-button selected"
+              <button className="tag-button selected close-drop-down-immune"
                 onClick={ this.toggleTag(tag) }>
                 { tag }
                 <div>x</div>
@@ -89,7 +89,7 @@ class PublishDropDownForm extends Component {
           } else {
             return (
             <li key={ tag }>
-              <button className="tag-button"
+              <button className="tag-button close-drop-down-immune"
                 onClick={ this.toggleTag(tag) }>
                 { tag }
               </button>
@@ -97,16 +97,16 @@ class PublishDropDownForm extends Component {
           }
         });
         return (
-          <ul className="drop-down-container">
-            <li className="drop-down tags-drop-down">
-              <div className="drop-down-contents">
-                <h4>
+          <ul className="drop-down-container close-drop-down-immune">
+            <li className="drop-down tags-drop-down close-drop-down-immune">
+              <div className="drop-down-contents close-drop-down-immune">
+                <h4 className="close-drop-down-immune">
                   Ready to publish{"?"}
                 </h4>
-                <p>
+                <p className="close-drop-down-immune">
                   Choose tags so your story reaches more people:
                 </p>
-                <ul className="tag-list">
+                <ul className="tag-list close-drop-down-immune">
                   { tagList }
                 </ul>
                 <button className="publish-button"
@@ -115,18 +115,22 @@ class PublishDropDownForm extends Component {
                 </button>
               </div>
             </li>
-            <li className="popover-arrow"></li>
+            <li className="popover-arrow close-drop-down-immune"></li>
           </ul>
         );
       } else {
         return (
-          <ul className="drop-down-container">
-            <li className="drop-down black-background">
-              <div>
-                <p>Publishing will become available after you start writing</p>
+          <ul className="drop-down-container close-drop-down-immune">
+            <li className="drop-down black-background close-drop-down-immune">
+              <div className="close-drop-down-immune">
+                <p className="close-drop-down-immune">
+                  Publishing will become available after you start writing
+                </p>
               </div>
             </li>
-            <li className="popover-arrow black-background"></li>
+            <li className="popover-arrow
+                            black-background
+                            close-drop-down-immune"></li>
           </ul>
         );
       }

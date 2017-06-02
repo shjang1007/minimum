@@ -16,7 +16,7 @@ const UserDropDown = ({ currentUser,
     return (
         <ul onClick={ closeDropDown } className="user-drop-down-container">
           <li>
-            <ul className="drop-down">
+            <ul className="drop-down close-drop-down-immune">
               <li>
                 <Link id="click-close" to="/new-story">
                   New Story

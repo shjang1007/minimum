@@ -36,20 +36,25 @@ class App extends Component {
   closeDropDowns(e) {
     const { publishDropDownOpen, userDropDownOpen } = this.state;
     const anyOpen = publishDropDownOpen || userDropDownOpen;
-    if (anyOpen && !e.target.classList.contains("drop-down-part")) {
-      this.setState({ publishDropDownOpen: false});
-      this.setState({ userDropDownOpen: false});
+    if (anyOpen && !e.target.classList.contains("close-drop-down-immune")) {
+      const dropDownToClose = publishDropDownOpen ?
+                                "publishDropDownOpen" :
+                                "userDropDownOpen";
+
+      this.setState({ [dropDownToClose]: false});
+      // this.setState({ publishDropDownOpen: false});
+      // this.setState({ userDropDownOpen: false});
     }
   }
 
   render() {
     return(
-      <div>
+      <div onClick={ this.closeDropDowns }>
         <MainNav togglePublishDropDown={ this.togglePublishDropDown }
                 publishDropDownOpen={ this.state["publishDropDownOpen"] }
                 toggleUserDropDown={ this.toggleUserDropDown }
                 userDropDownOpen={ this.state["userDropDownOpen"] }/>
-        <div onClick={ this.closeDropDowns }>
+        <div>
           { this.props.children }
         </div>
       </div>
