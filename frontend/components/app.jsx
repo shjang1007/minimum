@@ -52,7 +52,7 @@ class App extends Component {
   }
 
   scrollNavBar(e) {
-    if (window.scrollY > 130) {
+    if (window.scrollY > 100) {
       document.getElementById("navigation-bar").classList.add("fix");
       document.getElementById("bottom-nav-bar").classList.add("hidden");
       document.getElementById("top-nav-bar").classList.add("fifty-height");
