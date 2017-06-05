@@ -3,6 +3,7 @@ import * as userApiUtil from "../util/user_api_util";
 import { closeModal } from "./modal_actions";
 
 export const RECEIVE_STORIES = "RECEIVE_STORIES";
+export const RECEIVE_NEXT_STORIES = "RECEIVE_NEXT_STORIES";
 export const RECEIVE_LIKE_STORIES = "RECEIVE_LIKE_STORIES";
 export const RECEIVE_STORY = "RECEIVE_STORY";
 export const REMOVE_STORY = "REMOVE_STORY";
@@ -12,6 +13,14 @@ export const fetchStories = (tag_name) => (dispatch) => {
   return storyApiUtil.fetchStories(tag_name).then(
     (stories) => {
       return dispatch(receiveStories(stories));
+    }
+  );
+};
+
+export const fetchNextStories = (from_id) => (dispatch) => {
+  return storyApiUtil.fetchNextStories(from_id).then(
+    (stories) => {
+      return dispatch(receiveNextStories(stories));
     }
   );
 };
@@ -121,6 +130,13 @@ export const deleteStory = (id) => (dispatch) => {
 export const receiveStories = (stories) => {
   return ({
     type: RECEIVE_STORIES,
+    stories
+  });
+};
+
+export const receiveNextStories = (stories) => {
+  return ({
+    type: RECEIVE_NEXT_STORIES,
     stories
   });
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { merge } from "lodash";
 
 import { RECEIVE_STORIES,
+          RECEIVE_NEXT_STORIES,
           RECEIVE_LIKE_STORIES,
           RECEIVE_STORY,
           REMOVE_STORY,
@@ -19,22 +20,28 @@ const storyReducer = (oldState = _initialState, action) => {
   // Keep state immutable
   Object.freeze(oldState);
 
+  let newState;
   switch (action.type) {
     case RECEIVE_STORIES:
       return {
         stories: action.stories,
         story: oldState.story
       };
+    case RECEIVE_NEXT_STORIES:
+      newState = merge({}, oldState);
+      newState.stories = newState.stories.concat(action.stories);
+
+      return newState;
     case RECEIVE_LIKE_STORIES:
-      let newUpdatedState = merge({}, oldState);
-      newUpdatedState.stories.forEach((story, i) =>
+      newState = merge({}, oldState);
+      newState.stories.forEach((story, i) =>
        { if (story.id === action.story.id) {
-         newUpdatedState.stories[i] = action.story;
+         newState.stories[i] = action.story;
           }
         }
       );
 
-      return newUpdatedState;
+      return newState;
     case RECEIVE_STORY:
       return {
         stories: oldState.stories,
@@ -46,7 +53,7 @@ const storyReducer = (oldState = _initialState, action) => {
         story: null
       };
     case RECEIVE_COMMENT:
-      let newState = merge({}, oldState);
+      newState = merge({}, oldState);
       newState.story.comments.unshift(action.comment);
       return newState;
     default:

@@ -6,6 +6,14 @@ export const fetchStories = (tag_name) => {
   });
 };
 
+export const fetchNextStories = (from_id) => {
+  return $.ajax({
+    method: "GET",
+    url: "api/stories/next",
+    data: { from_id }
+  });
+};
+
 export const fetchTopStories = () => {
   return $.ajax({
     method: "GET",
