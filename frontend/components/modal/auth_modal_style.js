@@ -23,9 +23,9 @@ const style = {
     borderRadius    : "3px",
     maxWidth        : "520px",
     height          : "100%",
-    maxHeight       : "675px",
+    maxHeight       : "670px",
     width           : "100%",
-    margin          : "30px 0"
+    alignSelf       :"center"
   }
 };
 
