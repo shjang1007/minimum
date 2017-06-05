@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import MainNav from "./nav/main_nav";
 import { throttle } from "lodash";
@@ -15,6 +16,7 @@ class App extends Component {
     this.togglePublishDropDown = this.togglePublishDropDown.bind(this);
     this.toggleUserDropDown = this.toggleUserDropDown.bind(this);
     this.closeDropDowns = this.closeDropDowns.bind(this);
+    this.scrollNavBar = this.scrollNavBar.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +54,7 @@ class App extends Component {
   }
 
   scrollNavBar(e) {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 100 && !this.props.anyModalOpen) {
       document.getElementById("navigation-bar").classList.add("fix");
       document.getElementById("bottom-nav-bar").classList.add("hidden");
       document.getElementById("top-nav-bar").classList.add("fifty-height");
@@ -78,4 +80,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  const { authIsOpen, deleteIsOpen } = state.modal;
+
+  return ({
+    anyModalOpen: authIsOpen || deleteIsOpen
+  });
+};
+
+export default connect(
+  mapStateToProps
+)(App);
