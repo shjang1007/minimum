@@ -15,13 +15,17 @@ class Tag < ActiveRecord::Base
   }
 
   def self.find_stories_by_tag_name(tag_name)
-    self.includes(:stories).where(name: tag_name).first.stories
+    self.includes(:stories)
+        .where(name: tag_name)
+        .first
+        .stories
+        .order(id: :desc)
   end
 
   def self.find_three_stories_by_tag_name(tag_name)
     self.includes(:stories).where(name: tag_name).first.stories
-      .where(published: true)
       .order(id: :desc)
+      .where(published: true)
       .limit(3)
   end
 

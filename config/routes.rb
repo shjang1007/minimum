@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get :comments, on: :member
       get :top, on: :collection
       get :brian, on: :collection
+      get :next, on: :collection
     end
 
     resources :searches, only: :index

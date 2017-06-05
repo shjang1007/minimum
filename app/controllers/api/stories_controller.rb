@@ -3,12 +3,26 @@ class Api::StoriesController < ApplicationController
     if params[:tag_name]
       stories = Tag.find_stories_by_tag_name(params[:tag_name])
     else
-      stories = Story.where(published: true, parent_id: nil)
+      stories = Story.order(id: :desc)
+                      .where(published: true, parent_id: nil)
+                      .limit(4)
     end
     # Include to make query faster
     @stories = stories
                 .includes(:author, :liked_users, :tags)
-                .sort { |a, b| b.id <=> a.id }
+
+    render :index
+  end
+
+  def next
+    stories = Story.order(id: :desc)
+                    .where(published: true, parent_id: nil)
+                    .where("id < ?", params[:from_id])
+                    .limit(4)
+
+    @stories = stories
+                .includes(:author, :liked_users, :tags)
+
     render :index
   end
 
@@ -23,20 +37,21 @@ class Api::StoriesController < ApplicationController
 
   def brian
     brian_id = User.find_by(username: "BekGu").id
-    stories = Story.where({published: true, parent_id: nil, author_id: brian_id})
+    @stories = Story.order(id: :desc)
+                    .where({published: true, parent_id: nil, author_id: brian_id})
+                    .limit(10)
                     .includes(:author, :tags)
-                    .sort { |a, b| b.id <=> a.id }
 
-    @stories = stories[0..9]
     render :index
   end
 
   def show
     @story = Story.includes(:author, :tags, :liked_users).find(params[:id])
-    @comments = Story.where("parent_id = #{params[:id]}")
+    @comments = Story.order(id: :desc)
+                      .where("parent_id = #{params[:id]}")
                       .where(published: true)
                       .includes(:author, :tags, :liked_users)
-                      .sort { |a, b| b.id <=> a.id }
+
     render :show
   end
 
