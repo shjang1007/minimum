@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { openModal } from "../../actions/modal_actions";
-import { fetchStories } from "../../actions/story_actions";
-import { orderStories } from "../../reducers/selectors";
+import { fetchStories,
+          fetchNextStories } from "../../actions/story_actions";
 import StoryIndex from "./index/story_index";
 
 const mapStateToProps = (state) => {
@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
     fetchStories: () => dispatch(fetchStories()),
+    fetchNextStories: (lastId) => dispatch(fetchNextStories(lastId)),
     openAuthModal: () => (dispatch(openModal("authIsOpen")))
   });
 };
