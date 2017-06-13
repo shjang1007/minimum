@@ -19,12 +19,27 @@ class MainNav extends Component {
     this.signOutUser = this.signOutUser.bind(this);
     this.deleteStory = this.deleteStory.bind(this);
     this.handleNavigate = this.handleNavigate.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
   }
 
   signOutUser() {
     this.props.signOut().then(
       this.props.router.push("/")
     );
+  }
+
+  handleModalOpen(modalType) {
+    return (e) => {
+      document.getElementById("navigation-bar").classList.remove("fix");
+      document.getElementById("bottom-nav-bar").classList.remove("hidden");
+      document.getElementById("top-nav-bar").classList.add("fifty-height");
+
+      if (modalType === "auth") {
+        this.props.openAuthModal();
+      } else {
+        this.props.openDeleteModal();
+      }
+    };
   }
 
   deleteStory(storyId) {
@@ -118,7 +133,7 @@ class MainNav extends Component {
     const { pathname } = this.props.location;
     const deleteButton = pathname.includes("/edit-story") ?
       (<button className="gray-button button"
-          onClick={this.props.openDeleteModal}>
+          onClick={this.props.handleModalOpen("delete")}>
         Delete Story</button>) : <div></div>;
 
     if (currentUser) {
@@ -185,14 +200,14 @@ class MainNav extends Component {
       return (
         <ul className="right-nav-menu">
           <li>
-            <a onClick={this.props.openAuthModal}
+            <a onClick={this.handleModalOpen("auth")}
                 className="nav-bar-button gray-button">
               Write a story
             </a>
           </li>
           <li>
             <a className = "middle-button green-button"
-                onClick={this.props.openAuthModal}>
+                onClick={this.handleModalOpen("auth")}>
               Sign In/Sign Up
             </a>
           </li>
