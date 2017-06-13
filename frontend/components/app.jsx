@@ -58,10 +58,12 @@ class App extends Component {
       document.getElementById("navigation-bar").classList.add("fix");
       document.getElementById("bottom-nav-bar").classList.add("hidden");
       document.getElementById("top-nav-bar").classList.add("fifty-height");
+      document.getElementById("handle-jump").classList.add("add-nav-height");
     } else {
       document.getElementById("navigation-bar").classList.remove("fix");
       document.getElementById("bottom-nav-bar").classList.remove("hidden");
       document.getElementById("top-nav-bar").classList.add("fifty-height");
+      document.getElementById("handle-jump").classList.remove("add-nav-height");
     }
   }
 
@@ -73,6 +75,7 @@ class App extends Component {
                 toggleUserDropDown={ this.toggleUserDropDown }
                 userDropDownOpen={ this.state["userDropDownOpen"] }/>
         <div>
+          <div id="handle-jump"></div>
           { this.props.children }
         </div>
       </div>
