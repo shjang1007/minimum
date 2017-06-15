@@ -13,15 +13,20 @@ class StoryIndex extends Component {
   componentDidMount() {
     if (this.props.tagName) {
       this.props.fetchStories(this.props.tagName);
-    } else {
-      this.props.fetchStories().then(
-        action => {
-          window.addEventListener(
-            "scroll", throttle(this.requestNextStories, 1000)
-          );
-        }
+    } else if (this.props.pathname === "/") {
+      window.addEventListener(
+        "scroll", throttle(this.requestNextStories, 1000), false
       );
+      this.props.fetchStories();
+    } else {
+      this.props.fetchStories();
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      "scroll", throttle(this.requestNextStories, 1000), false
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,16 +39,12 @@ class StoryIndex extends Component {
     const lastIdx = this.props.stories.length - 1;
     const lastStoryId = this.props.stories[lastIdx].id;
 
-    // const scrollTop = window.scrollY;
-    // const windowHeight = window.innerHeight;
-    // const scrollPercentage = (scrollTop / windowHeight);
-
     const scrollTop = $(document).scrollTop();
     const windowHeight = $(window).height();
     const bodyHeight = $(document).height() - windowHeight;
     const scrollPercentage = (scrollTop / bodyHeight);
 
-    if(scrollPercentage > 0.9) {
+    if(scrollPercentage > 0.9 && this.props.pathname === "/") {
       this.props.fetchNextStories(lastStoryId);
     }
   }

@@ -8,7 +8,7 @@ const TopStoryPage = (props)=> {
         <section className="home-content">
           <p>Brian's Awesome Stories</p>
           <div className="home-stories">
-            <BrianStoryContainer />
+            <BrianStoryContainer pathname={props.location.pathname}/>
           </div>
         </section>
       </section>

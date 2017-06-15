@@ -5,9 +5,11 @@ import { values, isEqual } from 'lodash';
 import StoryIndex from "./index/story_index";
 
 const mapStateToProps = (state, ownProps) => {
+
   return ({
     stories: state.storyData.stories,
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    pathname: ownProps.pathname
   });
 };
 
