@@ -54,16 +54,22 @@ class App extends Component {
   }
 
   scrollNavBar(e) {
+    const bottomNavBar = document.getElementById("bottom-nav-bar");
+    const topNavBar = document.getElementById("top-nav-bar");
+    const navigationBar = document.getElementById("navigation-bar");
+    const handleJump = document.getElementById("handle-jump");
+    const heightToAdd = bottomNavBar ? "add-height-102" : "add-height-65";
     if (window.scrollY > 100 && !this.props.anyModalOpen) {
-      document.getElementById("navigation-bar").classList.add("fix");
-      document.getElementById("bottom-nav-bar").classList.add("hidden");
-      document.getElementById("top-nav-bar").classList.add("fifty-height");
-      document.getElementById("handle-jump").classList.add("add-nav-height");
+      navigationBar.classList.add("fix");
+      topNavBar.classList.add("fifty-height");
+      handleJump.classList.add(heightToAdd);
+
+      if (bottomNavBar) bottomNavBar.classList.add("hidden");
     } else {
-      document.getElementById("navigation-bar").classList.remove("fix");
-      document.getElementById("bottom-nav-bar").classList.remove("hidden");
-      document.getElementById("top-nav-bar").classList.add("fifty-height");
-      document.getElementById("handle-jump").classList.remove("add-nav-height");
+      navigationBar.classList.remove("fix");
+      topNavBar.classList.remove("fifty-height");
+      handleJump.classList.remove(heightToAdd);
+      if (bottomNavBar) bottomNavBar.classList.remove("hidden");
     }
   }
 
