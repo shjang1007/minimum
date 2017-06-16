@@ -31,8 +31,10 @@ class MainNav extends Component {
   handleModalOpen(modalType) {
     return (e) => {
       document.getElementById("navigation-bar").classList.remove("fix");
-      document.getElementById("bottom-nav-bar").classList.remove("hidden");
       document.getElementById("top-nav-bar").classList.add("fifty-height");
+
+      const bottomNavBar = document.getElementById("bottom-nav-bar");
+      if (bottomNavBar) bottomNavBar.classList.remove("hidden");
 
       if (modalType === "auth") {
         this.props.openAuthModal();
@@ -133,7 +135,7 @@ class MainNav extends Component {
     const { pathname } = this.props.location;
     const deleteButton = pathname.includes("/edit-story") ?
       (<button className="gray-button button"
-          onClick={this.props.handleModalOpen("delete")}>
+          onClick={this.handleModalOpen("delete")}>
         Delete Story</button>) : <div></div>;
 
     if (currentUser) {
