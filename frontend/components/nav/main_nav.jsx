@@ -228,6 +228,7 @@ class MainNav extends Component {
     ) {
       return (
         <div id="bottom-nav-bar" className="inner-bar bottom-bar">
+          <button className="bottom-bar-btn">Click Me</button>
           <ul>
             <li>
               <button onClick={ this.handleNavigate("home") }

@@ -44,6 +44,10 @@
   transition: all 0.3s;
 }
 
+.bottom-bar-btn {
+  display: none;
+}
+
 .bottom-bar > ul {
   display: flex;
   // align-items: flex-start;
@@ -285,8 +289,12 @@
   height: 102px;
 }
 
-@media screen and (max-width: 692px) {
-  .bottom-bar {
-    // display: none;
+@media screen and (max-width: 710px) {
+  .bottom-bar-btn {
+    display: inherit;
+  }
+
+  .bottom-bar > ul {
+    display: none;
   }
 }
