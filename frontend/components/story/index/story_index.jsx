@@ -15,7 +15,7 @@ class StoryIndex extends Component {
       this.props.fetchStories(this.props.tagName);
     } else if (this.props.pathname === "/") {
       window.addEventListener(
-        "scroll", this.reqNextStories, false
+        "scroll", this.reqNextStories
       );
       this.props.fetchStories();
     } else {
@@ -25,7 +25,7 @@ class StoryIndex extends Component {
 
   componentWillUnmount() {
     window.removeEventListener(
-      "scroll", this.reqNextStories, false
+      "scroll", this.reqNextStories
     );
   }
 
