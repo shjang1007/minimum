@@ -5,7 +5,7 @@ class Api::StoriesController < ApplicationController
     else
       stories = Story.order(id: :desc)
                       .where(published: true, parent_id: nil)
-                      .limit(4)
+                      .limit(5)
     end
     # Include to make query faster
     @stories = stories
