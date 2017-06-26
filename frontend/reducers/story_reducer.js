@@ -56,6 +56,11 @@ const storyReducer = (oldState = _initialState, action) => {
       newState = merge({}, oldState);
       newState.story.comments.unshift(action.comment);
       return newState;
+    case CLEAR_STORY:
+      return {
+        stories: oldState.stories,
+        story: null
+      };
     default:
       return oldState;
   }

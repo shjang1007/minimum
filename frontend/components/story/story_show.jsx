@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { values } from "lodash";
 import { Link, withRouter } from "react-router";
-import { fetchStory, fetchStories } from "../../actions/story_actions";
+import { fetchStory, fetchStories, clearStory }
+        from "../../actions/story_actions";
 import { openModal } from "../../actions/modal_actions";
 import { createLike, deleteLike } from "../../actions/like_actions";
 import { createFollow, deleteFollow } from "../../actions/follow_actions";
@@ -25,6 +26,10 @@ class StoryShow extends Component {
     if (this.props.params.storyId !== newProps.params.storyId) {
       newProps.fetchStory(newProps.params.storyId);
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearStory();
   }
 
   toggleFollow(method) {
@@ -293,7 +298,8 @@ const mapDispatchToProps = (dispatch) => {
     deleteLike: (like) => (dispatch(deleteLike(like))),
     createFollow: (follow) => (dispatch(createFollow(follow))),
     deleteFollow: (follow) => (dispatch(deleteFollow(follow))),
-    openAuthModal: () => (dispatch(openModal("authIsOpen")))
+    openAuthModal: () => (dispatch(openModal("authIsOpen"))),
+    clearStory: () => (dispatch(clearStory()))
   });
 };
 

@@ -8,6 +8,7 @@ export const RECEIVE_LIKE_STORIES = "RECEIVE_LIKE_STORIES";
 export const RECEIVE_STORY = "RECEIVE_STORY";
 export const REMOVE_STORY = "REMOVE_STORY";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
+export const CLEAR_STORY = "CLEAR_STORY";
 
 export const fetchStories = (tag_name) => (dispatch) => {
   return storyApiUtil.fetchStories(tag_name).then(
@@ -125,6 +126,12 @@ export const deleteStory = (id) => (dispatch) => {
   return storyApiUtil.deleteStory(id).then(
     () => (dispatch(closeModal("deleteIsOpen")))
   );
+};
+
+export const clearStory = () => {
+  return ({
+    type: CLEAR_STORY
+  });
 };
 
 export const receiveStories = (stories) => {
