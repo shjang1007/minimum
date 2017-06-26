@@ -12,6 +12,13 @@
   width: 100%;
   max-width: 425px;
   align-items: center;
+
+  p {
+    margin-bottom: 20px;
+    font-size: 30px;
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.57);
+  }
 }
 
 .index-home-content {
