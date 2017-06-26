@@ -44,12 +44,11 @@
 }
 
 .bottom-bar-btn {
-  display: none;
+  display: inherit;
 }
 
 .bottom-bar > ul {
-  display: flex;
-  // align-items: flex-start;
+  display: none;
   justify-content: space-around;
   width: 90%;
 }
@@ -130,9 +129,6 @@
   font-size: 16px;
   font-weight: 300;
   background: #fff;
-}
-
-.drop-down > li {
 }
 
 .drop-down > li > a {
@@ -292,12 +288,12 @@
   height: 65px;
 }
 
-@media screen and (max-width: 710px) {
+@media (min-width: 769px) {
   .bottom-bar-btn {
-    display: inherit;
+    display: none;
   }
 
   .bottom-bar > ul {
-    display: none;
+    display: flex;
   }
 }
