@@ -48,6 +48,10 @@ class BottomNavBar extends Component {
     };
   }
 
+  toggleBottomBarList(e) {
+    document.getElementById("bottom-bar-list").classList.toggle("show");
+  }
+
   render() {
     const { pathname } = this.props.location;
 
@@ -57,11 +61,12 @@ class BottomNavBar extends Component {
         pathname.includes("brian-stories")
     ) {
       return (
-        <div id="bottom-nav-bar" className="inner-bar bottom-bar">
-          <button className="bottom-bar-btn">
+        <div className="inner-bar bottom-bar">
+          <button id="bot-nav-btn" className="bottom-bar-btn"
+                  onClick={ this.toggleBottomBarList }>
             <img src={ window.images.navMenu }/>
           </button>
-          <ul>
+          <ul id="bottom-bar-list" className="bottom-bar-list">
             <li>
               <button onClick={ this.handleNavigate("home") }
                   className="gray-button category">
