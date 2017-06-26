@@ -58,7 +58,9 @@ class BottomNavBar extends Component {
     ) {
       return (
         <div id="bottom-nav-bar" className="inner-bar bottom-bar">
-          <button className="bottom-bar-btn">Click Me</button>
+          <button className="bottom-bar-btn">
+            <img src={ window.images.navMenu }/>
+          </button>
           <ul>
             <li>
               <button onClick={ this.handleNavigate("home") }
