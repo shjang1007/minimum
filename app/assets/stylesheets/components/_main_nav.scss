@@ -27,7 +27,11 @@
 .right-nav > ul {
   display: flex;
   align-items: center;
-  margin: 10px 0 10px 10px;
+  margin: 0px;
+
+  li > a {
+    font-size: 10px;
+  }
 }
 
 .right-nav-menu > li > button {
@@ -311,12 +315,45 @@
   display: block;
 }
 
+.top-search-bar {
+  display: none;
+}
+
+.btm-bar-btn-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 97%;
+}
+
+@media (min-width: 321px) {
+  .right-nav > ul {
+    li > a {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (min-width: 376px) {
+  .right-nav > ul {
+    margin: 10px;
+  }
+}
+
 @media (min-width: 769px) {
+  .top-search-bar {
+    display: block;
+  }
+
+  .right-nav > ul {
+    margin: 10px 0 10px 10px;
+  }
+
   .bottom-bar {
     display: flex;
   }
 
-  .bottom-bar-btn {
+  .btm-bar-btn-container {
     display: none;
   }
 

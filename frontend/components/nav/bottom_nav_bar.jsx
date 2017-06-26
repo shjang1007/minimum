@@ -8,6 +8,9 @@ import { fetchBrianStories,
           fetchStories,
           fetchTopStories } from "../../actions/story_actions";
 
+// components
+import SearchBar from "./search_bar";
+
 class BottomNavBar extends Component {
   handleNavigate(place) {
     const { router, fetchBrianStories, fetchStories, fetchTopStories }
@@ -71,10 +74,13 @@ class BottomNavBar extends Component {
     ) {
       return (
         <div id="bottom-nav-bar" className="inner-bar bottom-bar">
-          <button id="bot-nav-btn" className="bottom-bar-btn"
-                  onClick={ this.toggleBottomBarList }>
-            <img src={ window.images.navMenu }/>
-          </button>
+          <div className="btm-bar-btn-container">
+            <button className="bottom-bar-btn"
+              onClick={ this.toggleBottomBarList }>
+              <img src={ window.images.navMenu }/>
+            </button>
+            <SearchBar className="btm-search-bar"/>
+          </div>
           <ul id="bottom-bar-list" className="bottom-bar-list">
             <li>
               <button onClick={ this.handleNavigate("home") }

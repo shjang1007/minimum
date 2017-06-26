@@ -146,7 +146,7 @@ class TopRightNavBar extends Component {
             <li>
               { this.renderComposeButton() }
             </li>
-            <li className="searchBar">
+            <li className="top-search-bar">
               <SearchBar/>
             </li>
             <li>
@@ -181,7 +181,7 @@ class TopRightNavBar extends Component {
               Sign In/Sign Up
             </a>
           </li>
-          <li>
+          <li className="top-search-bar">
             <SearchBar/>
           </li>
         </ul>
