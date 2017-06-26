@@ -109,4 +109,4 @@ end
 - [ ] Bookmarks
 - [ ] Annotations
 - [ ] Enrich Text Editing
-- [ ] Infinite Scroll
+- [X] Infinite Scroll
