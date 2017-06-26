@@ -14,6 +14,13 @@ class BottomNavBar extends Component {
       = this.props;
 
     return (e) => {
+      const bottomBarList = document.getElementById("bottom-bar-list");
+      if (bottomBarList.className.includes("show")) {
+        document.getElementById("bottom-bar-list")
+                .classList
+                .toggle("show-btm-bar");
+      }
+
       e.preventDefault();
       switch (place) {
         case "brian":
@@ -49,7 +56,9 @@ class BottomNavBar extends Component {
   }
 
   toggleBottomBarList(e) {
-    document.getElementById("bottom-bar-list").classList.toggle("show");
+    document.getElementById("bottom-bar-list")
+            .classList
+            .toggle("show-btm-bar");
   }
 
   render() {

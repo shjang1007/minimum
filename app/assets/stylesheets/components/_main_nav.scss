@@ -307,8 +307,12 @@
   height: 65px;
 }
 
+.show-btm-bar {
+  display: block;
+}
+
 @media (min-width: 769px) {
-  .bottom-bar-btn {
+  .bottom-bar {
     display: flex;
   }
 
@@ -330,5 +334,9 @@
         font-size: 14px;
       }
     }
+  }
+
+  .show-btm-bar {
+    display: flex;
   }
 }
