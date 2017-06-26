@@ -70,7 +70,7 @@ class BottomNavBar extends Component {
         pathname.includes("brian-stories")
     ) {
       return (
-        <div className="inner-bar bottom-bar">
+        <div id="bottom-nav-bar" className="inner-bar bottom-bar">
           <button id="bot-nav-btn" className="bottom-bar-btn"
                   onClick={ this.toggleBottomBarList }>
             <img src={ window.images.navMenu }/>

@@ -58,12 +58,13 @@ class StoryIndex extends Component {
             currentUser={ currentUser }
             openAuthModal={ this.props.openAuthModal }/>
       ));
+
       return (
         <section>
           <ul className="story-index">
             {storyList}
           </ul>
-          <AuthModal />
+          <AuthModal/>
         </section>
       );
     } else {
