@@ -1,11 +1,15 @@
+// modules
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
+
+// actions
 import { signOut } from "../../actions/session_actions";
-import { fetchStories, fetchTopStories, fetchBrianStories,
-          updateStory, deleteStory }
-        from "../../actions/story_actions";
+import { updateStory, deleteStory } from "../../actions/story_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
+
+// components
+import BottomNavBar from "./bottom_nav_bar";
 import UserDropDown from "./user_drop_down";
 import PublishDropDownForm from "./publish_drop_down_form";
 import SearchBar from "./search_bar";
@@ -18,7 +22,6 @@ class MainNav extends Component {
 
     this.signOutUser = this.signOutUser.bind(this);
     this.deleteStory = this.deleteStory.bind(this);
-    this.handleNavigate = this.handleNavigate.bind(this);
     this.handleModalOpen = this.handleModalOpen.bind(this);
   }
 
@@ -55,45 +58,6 @@ class MainNav extends Component {
           router.push("/");
         }
       );
-    };
-  }
-
-  handleNavigate(place) {
-    const { router, fetchBrianStories, fetchStories, fetchTopStories }
-      = this.props;
-
-    return (e) => {
-      e.preventDefault();
-
-      if (place === "brian") {
-        fetchBrianStories().then(
-          action => {
-            window.scrollTo(0,0);
-            router.push("/brian-stories");
-          }
-        );
-      } else if (place === "top") {
-        fetchTopStories().then(
-          action => {
-            window.scrollTo(0,0);
-            router.push("/top-stories");
-          }
-        );
-      } else if (place === "home") {
-        fetchStories().then(
-          action => {
-            window.scrollTo(0,0);
-            router.push("/");
-          }
-        );
-      } else {
-        fetchStories(place).then(
-          action => {
-            window.scrollTo(0,0);
-            router.push(`/tags/${place}`);
-          }
-        );
-      }
     };
   }
 
@@ -221,8 +185,6 @@ class MainNav extends Component {
   }
 
   renderBottomBar() {
-    const pathname = this.props.location.pathname;
-
     if (pathname === "/" ||
         pathname.includes("tags") ||
         pathname.includes("top-stories") ||
@@ -303,8 +265,7 @@ class MainNav extends Component {
               { this.renderRightNav() }
             </nav>
           </div>
-
-          { this.renderBottomBar() }
+          <BottomNavBar/>
         </header>
 
         <AuthModal />
@@ -323,9 +284,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    fetchStories: (tagName) => (dispatch(fetchStories(tagName))),
-    fetchTopStories: () => (dispatch(fetchTopStories())),
-    fetchBrianStories: () => (dispatch(fetchBrianStories())),
     signOut: () => (dispatch(signOut())),
     deleteStory: (id) => (dispatch(deleteStory(id))),
     openAuthModal: () => (dispatch(openModal("authIsOpen"))),
