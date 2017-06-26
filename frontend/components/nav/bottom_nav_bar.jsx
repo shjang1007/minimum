@@ -111,6 +111,8 @@ class BottomNavBar extends Component {
           </ul>
         </div>
       );
+    } else {
+      return <div></div>;
     }
   }
 }
