@@ -46,7 +46,7 @@ class TopRightNavBar extends Component {
   }
 
   deleteStory(storyId) {
-    const { closeDeleteModal, deleteStory, router } = this.props;
+    const { deleteStory, router } = this.props;
 
     return (e) => {
       e.preventDefault();
@@ -202,8 +202,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteStory: (id) => (dispatch(deleteStory(id))),
     openAuthModal: () => (dispatch(openModal("authIsOpen"))),
     closeAuthModal: () => (dispatch(closeModal("authIsOpen"))),
-    openDeleteModal: () => (dispatch(openModal("deleteIsOpen"))),
-    closeDeleteModal: () => (dispatch(closeModal("deleteIsOpen")))
+    openDeleteModal: () => (dispatch(openModal("deleteIsOpen")))
   });
 };
 

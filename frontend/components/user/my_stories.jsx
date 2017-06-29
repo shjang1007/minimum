@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { merge, values } from "lodash";
 import { Link, withRouter } from "react-router";
-import { fetchStory } from "../../actions/story_actions";
+import { fetchStory, deleteStory } from "../../actions/story_actions";
+import { openModal } from "../../actions/modal_actions";
 
 import MyDrafts from "./my_story_detail/my_drafts";
 import MyPublicStories from "./my_story_detail/my_public_stories";
@@ -55,6 +56,20 @@ class MyStories extends Component {
     };
   }
 
+  deleteStory(storyId) {
+    const { deleteStory, router } = this.props;
+
+    return (e) => {
+      e.preventDefault();
+
+      deleteStory(storyId).then(
+        action => {
+          router.push("/");
+        }
+      );
+    };
+  }
+
   render() {
     const { showDrafts } = this.state;
     const { stories, drafts } = this.props.currentUser;
@@ -98,7 +113,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    fetchStory: (id) => (dispatch(fetchStory(id)))
+    fetchStory: (id) => (dispatch(fetchStory(id))),
+    deleteStory: (id) => (dispatch(deleteStory(id))),
+    openDeleteModal: () => (dispatch(openModal("deleteIsOpen")))
   });
 };
 
