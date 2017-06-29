@@ -64,11 +64,7 @@ class MyStories extends Component {
     return (e) => {
       e.preventDefault();
 
-      deleteStory(storyId).then(
-        action => {
-          router.push("/");
-        }
-      );
+      deleteStory(storyId);
     };
   }
 
