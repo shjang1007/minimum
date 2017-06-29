@@ -1,7 +1,12 @@
+// modules
 import React from "react";
 import { Link } from "react-router";
 
-const MyPublicStories = ({ stories, handleNavigate }) => {
+// component
+import DeleteModal from "../../modal/delete_modal";
+
+const MyPublicStories = ({ stories, handleNavigate,
+                            deleteStory, handleModalOpen }) => {
   const storyList = stories.map( (story) => {
     const link = `stories/${story.id}`;
 
@@ -11,6 +16,11 @@ const MyPublicStories = ({ stories, handleNavigate }) => {
           <button onClick={ handleNavigate("story", story.id) }>
             <div>Untitled story</div>
           </button>
+          <button className="gray-button button"
+                  onClick={ handleModalOpen }>
+            Delete Story
+          </button>
+          <DeleteModal deleteStory={ deleteStory(story.id) }/>
         </li>
       );
     } else {
@@ -19,6 +29,11 @@ const MyPublicStories = ({ stories, handleNavigate }) => {
           <button onClick={ handleNavigate("story", story.id) }>
             <div>{ story.title }</div>
           </button>
+          <button className="gray-button button"
+                  onClick={ handleModalOpen }>
+            Delete Story
+          </button>
+          <DeleteModal deleteStory={ deleteStory(story.id) }/>
         </li>
       );
     }

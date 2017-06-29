@@ -18,6 +18,8 @@ class MyStories extends Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleNavigate = this.handleNavigate.bind(this);
+    this.deleteStory = this.deleteStory.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
   }
 
   handleClick(tab) {
@@ -70,15 +72,29 @@ class MyStories extends Component {
     };
   }
 
+  handleModalOpen(e) {
+    document.getElementById("navigation-bar").classList.remove("fix");
+    document.getElementById("top-nav-bar").classList.add("fifty-height");
+
+    const bottomNavBar = document.getElementById("bottom-nav-bar");
+    if (bottomNavBar) bottomNavBar.classList.remove("hidden");
+
+    this.props.openDeleteModal();
+  }
+
   render() {
     const { showDrafts } = this.state;
     const { stories, drafts } = this.props.currentUser;
 
     const displayIndex = showDrafts ?
       <MyDrafts drafts={ drafts }
-                handleNavigate={ this.handleNavigate }/> :
+                handleNavigate={ this.handleNavigate }
+                deleteStory={ this.deleteStory }
+                handleModalOpen={ this.handleModalOpen }/> :
       <MyPublicStories stories={ stories }
-                      handleNavigate={ this.handleNavigate }/>;
+                      handleNavigate={ this.handleNavigate }
+                      deleteStory={ this.deleteStory }
+                      handleModalOpen={ this.handleModalOpen }/>;
 
     return (
       <section className="my-story-container">
