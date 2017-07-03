@@ -11,7 +11,7 @@
     "npm": "3.9.3"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "webpack": "node_modules/.bin/webpack --watch",
     "heroku-postbuild": "webpack --config webpack.config.prod.js"
   },
