@@ -42,6 +42,7 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
     "jest": "^20.0.4"
   }
 }
