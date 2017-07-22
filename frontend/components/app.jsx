@@ -83,7 +83,6 @@ class App extends Component {
         <div>
           <div id="handle-jump"></div>
           { this.props.children }
-          <div>hello</div>
         </div>
       </div>
     );
