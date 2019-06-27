@@ -2,9 +2,7 @@
 
 "Minimum" is a full-stack web application inspired by "Medium". Minimum is built using Ruby on Rails and React/Redux.
 
-[Minimum Live][minimum]
-
-[minimum]: https://minimums.herokuapp.com/
+[Minimum Live](https://minimums.herokuapp.com/)
 
 <img src="./screenshots/home-page.gif" alt="homepage"/>
 
