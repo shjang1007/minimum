@@ -4,7 +4,7 @@
 
 [Minimum Live][minimum]
 
-[minimum]: http://www.minimum-story.us
+[minimum]: https://minimums.herokuapp.com/
 
 <img src="./screenshots/home-page.gif" alt="homepage"/>
 
